@@ -13,9 +13,10 @@ class SwiftyCompanion extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'weiss',
         scaffoldBackgroundColor: const Color(0xff042925),
-        secondaryHeaderColor: const Color(0xffE8E4D1),
-        splashColor: const Color(0xff79AB98),
+        splashColor: const Color(0xff0a4c4c),
+        secondaryHeaderColor: const Color(0xff79AB98),
         canvasColor: const Color(0xffE5E5E5),
+        // beige: const Color(0xffe8e4d1),
       ),
       initialRoute: 'home_route',
       routes: {

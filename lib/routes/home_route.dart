@@ -2,35 +2,52 @@ import 'package:flutter/material.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 
 class HomeRoute extends StatelessWidget {
-  const HomeRoute({Key? key}) : super(key: key);
+  HomeRoute({Key? key}) : super(key: key);
+
+  final RoundedLoadingButtonController _btnController = RoundedLoadingButtonController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Container(
-          child: Center(
-            child: Padding(
-              padding: const EdgeInsets.all(30.0),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Image.asset('assets/images/app_logo.jpeg', height: 250.0,),
-                  const SizedBox(height: 30.0,),
-                  Row(
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: RadialGradient(colors: [
+            Theme.of(context).splashColor, Theme.of(context).scaffoldBackgroundColor],
+            center: const Alignment(0, -0.05),
+            radius: 0.9
+        )),
+        child: InkWell(
+          onTap: () => FocusScope.of(context).unfocus(),
+          child: SafeArea(
+            child: SizedBox(
+              width: 500.0,
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 60.0, vertical: 30),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
                     children: [
-                      TextField(
+                      Padding(
+                        child: Image.asset('assets/images/app_logo.jpeg'), padding: const EdgeInsets.symmetric(horizontal: 60.0, vertical: 30.0),
+                      ),
+                      const TextField(
                         decoration: InputDecoration(
-                          filled: true,
-                          fillColor: Theme.of(context).secondaryHeaderColor, // fillColor: Colors.white,
-                          label: Text('Enter login here'),
-                          border: OutlineInputBorder()
+                          label: Text('Enter login', style: TextStyle(color: Colors.white)),
+                          enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
+                          focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
                         ),
                       ),
-                      RoundedLoadingButton(controller: controller, onPressed: onPressed, child: child)
+                      const SizedBox(height: 30.0),
+                      RoundedLoadingButton(
+                        borderRadius: 4.0,
+                        color: Colors.white,
+                        controller: _btnController,
+                        onPressed: () {},
+                        child: const Text('Search', style: TextStyle(color: Colors.black, fontSize: 20.0),),
+                      )
                     ],
-                  )
-                ],
+                  ),
+                ),
               ),
             ),
           ),
