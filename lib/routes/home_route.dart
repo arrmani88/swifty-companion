@@ -17,7 +17,7 @@ class HomeRoute extends StatelessWidget {
             gradient: RadialGradient(colors: [
               Theme.of(context).splashColor, Theme.of(context).scaffoldBackgroundColor],
               center: const Alignment(0, -0.05),
-              radius: 0.9
+              radius: 0.8
           )),
           child: SafeArea(
             child: Center(
