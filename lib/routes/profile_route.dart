@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:swifty_companion/constants/constants.dart';
+import 'package:swifty_companion/widgets/blur_container.dart';
+import 'package:swifty_companion/widgets/intra_info.dart';
+import 'package:swifty_companion/widgets/cover_profile_pictures.dart';
+import 'package:swifty_companion/widgets/personal_info.dart';
+import 'package:flutter_animation_progress_bar/flutter_animation_progress_bar.dart';
 
 class ProfileRoute extends StatelessWidget {
   ProfileRoute({Key? key}) : super(key: key);
-
-  double profileImageSize = kScreenWidth > 500 ? 250 : kScreenWidth * 0.5;
 
   @override
   Widget build(BuildContext context) {
@@ -21,24 +24,28 @@ class ProfileRoute extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Stack(
+              CoverProfilePictures(image: 'assets/images/profile_picture.jpeg'),
+              const SizedBox(height: 25.0),
+              const Text('Anas El boudali', style: TextStyle(color: Colors.white, fontSize: 40.0, fontWeight: FontWeight.bold)),
+              const Text('@''anel-bou', style: TextStyle(color: Colors.white, fontSize: 25.0, fontWeight: FontWeight.bold)),
+              const BlurContainer(
                 children: [
-                  Padding(
-                    child: Image.asset('assets/images/cover.jpg', width: 500.0,), padding: EdgeInsets.only(bottom: profileImageSize / 2),
-                  ),
-                  Positioned(
-                    bottom: 0,
-                    left: (profileImageSize + 5) / 2,
-                    child: Container(
-                      color: Colors.white,
-                      padding: const EdgeInsets.all(5.0),
-                      child: Image.asset('assets/images/profile_picture.jpeg', width: profileImageSize - 16, height: profileImageSize - 16),
-                    ),
-                  )
+                  IntraInfo(title: 'Wallet', value: '30\$'),
+                  IntraInfo(title: 'Evaluation points', value: '2'),
+                  IntraInfo(title: 'Cursus', value: '42'), // DROP DOWN BUTTON TO APPLY HERE
+                  IntraInfo(title: 'Grade', value: 'Lieutenant'),
+                  IntraInfo(title: 'ETEC', value: 'in 8 years'),
                 ],
               ),
-              const SizedBox(height: 30.0),
-              const Text('Anas El boudali', style: TextStyle(color: Colors.white, fontSize: 40.0, fontWeight: FontWeight.bold)),
+              BlurContainer(
+                children: [
+                  PersonalInfo(icon: Icons.location_on, value: 'e2r7p15, Khouribga',),
+                  PersonalInfo(icon: Icons.alternate_email, value: 'anel-bou@student.1337.ma'),
+                  PersonalInfo(icon: Icons.local_phone, value: '0664646125'),
+                  SizedBox(height: 5.0),
+                  FAProgressBar(currentValue: 9, maxValue: 21, displayText: ',7 %', backgroundColor: Theme.of(context).scaffoldBackgroundColor, progressColor: Theme.of(context).secondaryHeaderColor, borderRadius: BorderRadius.circular(0.0),)
+                ],
+              )
             ],
           ),
         ),
