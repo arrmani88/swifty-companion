@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:swifty_companion/widgets/loading_wrapper.dart';
 
-class AuthorizationRoute extends StatelessWidget {
-  const AuthorizationRoute({Key? key}) : super(key: key);
+class AuthorizationRoute extends StatefulWidget {
+  AuthorizationRoute({Key? key}) : super(key: key);
+  @override State<AuthorizationRoute> createState() => _AuthorizationRouteState();
+}
+class _AuthorizationRouteState extends State<AuthorizationRoute> {
+  bool _isAppLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +32,10 @@ class AuthorizationRoute extends StatelessWidget {
                     const SizedBox(height: 40.0),
                     InkWell(
                       child: Image.asset('assets/icons/lock_icon.png', height: 250.0),
-                      onTap: () {},
+                      onTap: () {
+                        _isAppLoading = true;
+                        setState(() {});
+                      },
                     ),
                     const SizedBox(height: 40.0),
                     const Text(
@@ -41,7 +48,7 @@ class AuthorizationRoute extends StatelessWidget {
               ),
             )
           ),
-          const LoadingWrapper(),
+          if(_isAppLoading == true) const LoadingWrapper(),
         ],
       ),
     );
