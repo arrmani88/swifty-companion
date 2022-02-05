@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'dart:ui';
 
 class PopUp extends StatelessWidget {
-  const PopUp({Key? key}) : super(key: key);
+  final List<Widget> children;
+  const PopUp({Key? key, required this.children}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,9 +18,7 @@ class PopUp extends StatelessWidget {
             width: 500.0,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-
-              ],
+              children: children,
             ),
           ),
         ),

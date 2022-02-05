@@ -5,6 +5,7 @@ import "dart:async";
 import 'package:swifty_companion/globals/globals.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'dart:io';
+import 'package:swifty_companion/widgets/pop_up.dart';
 
 class AuthorizationRoute extends StatefulWidget {
   AuthorizationRoute({Key? key}) : super(key: key);
@@ -12,6 +13,7 @@ class AuthorizationRoute extends StatefulWidget {
 }
 class _AuthorizationRouteState extends State<AuthorizationRoute> {
   bool _isAppLoading = false;
+  bool _hasNoInternet = false;
   late Response _response;
   var dio = Dio();
 
@@ -45,6 +47,7 @@ class _AuthorizationRouteState extends State<AuthorizationRoute> {
                             final result = await InternetAddress.lookup('api.intra.42.fr');
                             if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) print('connected');
                           } on SocketException catch (_) {
+                            setState(() => _hasNoInternet = true);
                             print('not connected');
                           }
                           // try {
@@ -79,7 +82,8 @@ class _AuthorizationRouteState extends State<AuthorizationRoute> {
               )
             ),
           ),
-          if(_isAppLoading == true) const LoadingPopUp(),
+          if (_isAppLoading == true && _hasNoInternet == false) const LoadingPopUp(),
+          if (_hasNoInternet == true) PopUp(children: [Container(height: 50.0, width: 50.0,)])
         ],
       ),
     );

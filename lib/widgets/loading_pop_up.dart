@@ -30,22 +30,3 @@ class LoadingPopUp extends StatelessWidget {
     );
   }
 }
-
-
-/*
-
-        Container(
-          color: Colors.black.withOpacity(0.7),
-          height: 200.0,
-          width: 500.0,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text('Loading ...', style: TextStyle(color: Colors.white, fontSize: 25.0)),
-              const SizedBox(height: 20.0),
-              LoadingAnimationWidget.dotsTriangle(color: Colors.white, size: 100.0),
-            ],
-          ),
-        )
-
-*/
