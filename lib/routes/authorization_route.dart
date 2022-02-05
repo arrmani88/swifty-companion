@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
-import 'package:swifty_companion/widgets/loading_wrapper.dart';
+import 'package:swifty_companion/widgets/loading_pop_up.dart';
 import "dart:async";
 import 'package:swifty_companion/globals/globals.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'dart:io';
 
 class AuthorizationRoute extends StatefulWidget {
   AuthorizationRoute({Key? key}) : super(key: key);
@@ -22,9 +23,7 @@ class _AuthorizationRouteState extends State<AuthorizationRoute> {
           InkWell(
             onTap: _isAppLoading == false ? null : () => setState(() =>_isAppLoading = false),
             child: Container(
-              decoration: BoxDecoration(
-                  gradient: RadialGradient(colors: [Theme.of(context).splashColor, Theme.of(context).scaffoldBackgroundColor], radius: 0.8)
-              ),
+              decoration: BoxDecoration(gradient: RadialGradient(colors: [Theme.of(context).splashColor, Theme.of(context).scaffoldBackgroundColor], radius: 0.8)),
               child: SafeArea(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
@@ -42,7 +41,12 @@ class _AuthorizationRouteState extends State<AuthorizationRoute> {
                         onTap: () async {
                           _isAppLoading = true;
                           setState(() {});
-
+                          try {
+                            final result = await InternetAddress.lookup('api.intra.42.fr');
+                            if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) print('connected');
+                          } on SocketException catch (_) {
+                            print('not connected');
+                          }
                           // try {
                             // _response = await dio.post(
                             //   authorizationLink,
@@ -75,7 +79,7 @@ class _AuthorizationRouteState extends State<AuthorizationRoute> {
               )
             ),
           ),
-          if(_isAppLoading == true) const LoadingWrapper(),
+          if(_isAppLoading == true) const LoadingPopUp(),
         ],
       ),
     );

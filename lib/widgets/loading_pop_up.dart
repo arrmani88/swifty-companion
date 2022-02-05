@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'dart:ui';
 
-class LoadingWrapper extends StatelessWidget {
-  const LoadingWrapper({Key? key}) : super(key: key);
+class LoadingPopUp extends StatelessWidget {
+  const LoadingPopUp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
