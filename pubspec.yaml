@@ -18,6 +18,7 @@ dependencies:
   dio: ^4.0.4
   loading_animation_widget: ^1.0.0+3
   blur: ^3.0.0
+  connectivity_plus: ^2.2.0
 
 dev_dependencies:
   flutter_test:
