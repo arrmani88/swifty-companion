@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
-import 'package:swifty_companion/widgets/loading_pop_up.dart';
+import 'package:swifty_companion/widgets/pop_ups/loading_pop_up.dart';
 import "dart:async";
-import 'package:swifty_companion/globals/globals.dart';
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'dart:io';
-import 'package:swifty_companion/widgets/pop_up.dart';
+import 'package:swifty_companion/widgets/pop_ups/pop_up.dart';
+import 'package:swifty_companion/widgets/pop_ups/no_internet_pop_up.dart';
 
 class AuthorizationRoute extends StatefulWidget {
   AuthorizationRoute({Key? key}) : super(key: key);
@@ -17,8 +16,17 @@ class _AuthorizationRouteState extends State<AuthorizationRoute> {
   late Response _response;
   var dio = Dio();
 
+  closeNoInterNetPopUp() {
+    setState(() => _hasNoInternet = false);
+  }
+
+  closeLoadingPopUp() {
+    setState(() => _isAppLoading = false);
+  }
+
   @override
   Widget build(BuildContext context) {
+    print('variable ====== ' + _hasNoInternet.toString());
     return Scaffold(
       body: Stack(
         children: [
@@ -41,14 +49,12 @@ class _AuthorizationRouteState extends State<AuthorizationRoute> {
                       InkWell(
                         child: Image.asset('assets/icons/lock_icon.png', height: 250.0),
                         onTap: () async {
-                          _isAppLoading = true;
                           setState(() {});
                           try {
-                            final result = await InternetAddress.lookup('api.intra.42.fr');
-                            if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) print('connected');
+                            await InternetAddress.lookup('api.intra.42.fr');
+                            _isAppLoading = true;
                           } on SocketException catch (_) {
                             setState(() => _hasNoInternet = true);
-                            print('not connected');
                           }
                           // try {
                             // _response = await dio.post(
@@ -82,8 +88,8 @@ class _AuthorizationRouteState extends State<AuthorizationRoute> {
               )
             ),
           ),
-          if (_isAppLoading == true && _hasNoInternet == false) const LoadingPopUp(),
-          if (_hasNoInternet == true) PopUp(children: [Container(height: 50.0, width: 50.0,)])
+          if (_isAppLoading == true && _hasNoInternet == false) LoadingPopUp(callParentSetState: closeLoadingPopUp,),
+          if (_hasNoInternet == true) NoInternetPopUp(closePopUp: closeNoInterNetPopUp,)
         ],
       ),
     );
