@@ -5,6 +5,7 @@ import "dart:async";
 import 'dart:io';
 import 'package:swifty_companion/widgets/pop_ups/pop_up.dart';
 import 'package:swifty_companion/widgets/pop_ups/no_internet_pop_up.dart';
+import 'package:swifty_companion/constants/constants.dart';
 
 class AuthorizationRoute extends StatefulWidget {
   AuthorizationRoute({Key? key}) : super(key: key);
@@ -26,7 +27,6 @@ class _AuthorizationRouteState extends State<AuthorizationRoute> {
 
   @override
   Widget build(BuildContext context) {
-    print('variable ====== ' + _hasNoInternet.toString());
     return Scaffold(
       body: Stack(
         children: [
@@ -41,7 +41,7 @@ class _AuthorizationRouteState extends State<AuthorizationRoute> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Text(
-                        'Click on the lock to allow Swifty Companion use your 42intra account',
+                        'Click on the lock to allow Swifty Companion use your 42 Intra account',
                         textAlign: TextAlign.center,
                         style: TextStyle(color: Colors.white, fontSize: 25.0),
                       ),
@@ -49,36 +49,36 @@ class _AuthorizationRouteState extends State<AuthorizationRoute> {
                       InkWell(
                         child: Image.asset('assets/icons/lock_icon.png', height: 250.0),
                         onTap: () async {
-                          setState(() {});
+                          setState(() => _isAppLoading = true);
                           try {
                             await InternetAddress.lookup('api.intra.42.fr');
-                            _isAppLoading = true;
+                            _response = await dio.post(
+                              authorizationLink,
+                              data: {
+                                'grant_type': 'client_credentials',
+                                'client_id': '30480b7ab0ff85a13ebca0ac0bd338f56dfaf0904ef8bc4866c3866930212be3',
+                                'client_secret': 'f60c5403a51a62eade9f61d99eca07a7cbac9adec3ce329756aae7a487e9cb8e'
+                              }
+                            );
+                            
+                            // await Future.delayed(const Duration(seconds: 1));
+                            Navigator.pushReplacementNamed(context, 'home_route');
                           } on SocketException catch (_) {
-                            setState(() => _hasNoInternet = true);
+                            setState(() {
+                              _hasNoInternet = true;
+                              _isAppLoading = false;
+                            });
+                          } catch (e) {
+                            if (e is DioError)
+                              print(e.message);
+                            else
+                              print(e);
                           }
-                          // try {
-                            // _response = await dio.post(
-                            //   authorizationLink,
-                            //   data: {
-                            //     'grant_type': 'client_credentials',
-                            //     'client_id': '30480b7ab0ff85a13ebca0ac0bd338f56dfaf0904ef8bc4866c3866930212be3',
-                            //     'client_secret': 'f60c5403a51a62eade9f61d99eca07a7cbac9adec3ce329756aae7a487e9cb8e'
-                            //   }
-                            // );
-                            // print('RESPONSE =');
-                            // print(_response.statusCode);
-                            // print(_response);
-                          // } catch (e) {
-                          //   if (e is DioError)
-                          //     print(e.message);
-                          //   else
-                          //     print(e);
-                          // }
                         },
                       ),
                       const SizedBox(height: 40.0),
                       const Text(
-                        'You\'ll be redirected to the 42 intra website to authorize the use of your account',
+                        'You\'ll be redirected to the 42 Intra website to authorize the use of your account',
                         style: TextStyle(color: Color(0xffa3a3a3), fontSize: 16.5),
                         textAlign: TextAlign.center,
                       )

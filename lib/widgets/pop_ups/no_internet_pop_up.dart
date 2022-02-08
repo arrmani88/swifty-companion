@@ -24,7 +24,7 @@ class NoInternetPopUp extends StatelessWidget {
                   Positioned(child: Image.asset('assets/icons/broken_robot.png', height: 140.0), left: 10, bottom: 0,),
                   Column(
                     children: [
-                      const SizedBox(height: 30.0),
+                      const SizedBox(height: 20.0),
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 17.0),
                         width: 425.0,
@@ -33,10 +33,25 @@ class NoInternetPopUp extends StatelessWidget {
                           child: Text('Oops, something went wrong!', style: TextStyle(color: Colors.white)),
                         ),
                       ),
-                      const SizedBox(height: 30.0),
+                      const SizedBox(height: 20.0),
                       Padding(
                         padding: const EdgeInsets.only(left: 110.0, right: 13.0),
-                        child: Text(descriptionMessage, style: const TextStyle(color: Color(0xffa3a3a3), fontSize: 15.0), textAlign: TextAlign.end,),
+                        child: Text(descriptionMessage, style: const TextStyle(color: Color(0xffa3a3a3), fontSize: 15.0), textAlign: TextAlign.start,),
+                      ),
+                      const SizedBox(height: 20.0),
+                      Container(
+                        width: 100.0,
+                        color: Colors.black,
+                        child: const Center(child:
+                          Padding(
+                            padding: EdgeInsets.only(top: 1.5),
+                            child: Text(
+                              'OK',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(color: Colors.white, height: 1.5, fontSize: 20),
+                            ),
+                          ),
+                        )
                       )
                     ],
                   ),
