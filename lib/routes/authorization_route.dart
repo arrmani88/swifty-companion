@@ -63,7 +63,8 @@ class _AuthorizationRouteState extends State<AuthorizationRoute> {
                             print('---------');
                             print(_response.data);
                             print('---------');
-                            Navigator.pushReplacementNamed(context, 'home_route');
+                            Navigator.pushNamed(context, 'home_route');
+                            // Navigator.pushReplacementNamed(context, 'home_route');
                           } on SocketException catch (_) {
                             setState(() {
                               _hasNoInternet = true;
