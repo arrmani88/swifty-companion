@@ -60,8 +60,9 @@ class _AuthorizationRouteState extends State<AuthorizationRoute> {
                                 'client_secret': 'f60c5403a51a62eade9f61d99eca07a7cbac9adec3ce329756aae7a487e9cb8e'
                               }
                             );
-                            
-                            // await Future.delayed(const Duration(seconds: 1));
+                            print('---------');
+                            print(_response.data);
+                            print('---------');
                             Navigator.pushReplacementNamed(context, 'home_route');
                           } on SocketException catch (_) {
                             setState(() {
