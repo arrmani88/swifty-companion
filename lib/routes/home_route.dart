@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
+import 'package:swifty_companion/globals/globals.dart';
 
 class HomeRoute extends StatelessWidget {
   HomeRoute({Key? key}) : super(key: key);
@@ -47,8 +48,18 @@ class HomeRoute extends StatelessWidget {
                           color: Colors.white,
                           valueColor: Theme.of(context).scaffoldBackgroundColor,
                           controller: _btnController,
-                          onPressed: () => Navigator.pushNamed(context, 'profile_route'),
-                          child: const Text('Search', style: TextStyle(color: Colors.black, fontSize: 20.0)),
+                          onPressed: () async {
+                            try {
+                              print(accessToken);
+                            } catch (e) {
+                              print(e);
+                            }
+                            Navigator.pushNamed(context, 'profile_route');
+                          },
+                          child: const Padding(
+                            padding: EdgeInsets.only(top: 3.5),
+                            child: Text('Search', style: TextStyle(color: Colors.black, fontSize: 20.0)),
+                          ),
                         ),
                         const SizedBox(height: 100.0),
                       ],
@@ -63,3 +74,4 @@ class HomeRoute extends StatelessWidget {
     );
   }
 }
+

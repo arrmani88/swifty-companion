@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'dart:ui';
 
-class NoInternetPopUp extends StatelessWidget {
+class ErrorPopUp extends StatelessWidget {
   final Function closePopUp;
-  const NoInternetPopUp({Key? key, required this.closePopUp}) : super(key: key);
-  final String descriptionMessage = 'Either your device isn\'t connected to the internet, or the server that you are looking for is down';
+  String? descriptionMessage;
+  ErrorPopUp({Key? key, required this.closePopUp, this.descriptionMessage}) : super(key: key);
+  final String unknownErrorMessage = 'An unknown error occurred, try restarting the app';
 
   @override
   Widget build(BuildContext context) {
@@ -17,12 +18,13 @@ class NoInternetPopUp extends StatelessWidget {
             filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
             child: Container(
               color: Colors.black.withOpacity(0.6),
-              height: 200.0,
+              // height: 200.0,
               width: 500.0,
               child: Stack(
                 children: [
                   Positioned(child: Image.asset('assets/icons/broken_robot.png', height: 140.0), left: 10, bottom: 0,),
                   Column(
+                    mainAxisSize: MainAxisSize.min,
                     children: [
                       const SizedBox(height: 20.0),
                       Container(
@@ -36,7 +38,7 @@ class NoInternetPopUp extends StatelessWidget {
                       const SizedBox(height: 20.0),
                       Padding(
                         padding: const EdgeInsets.only(left: 110.0, right: 13.0),
-                        child: Text(descriptionMessage, style: const TextStyle(color: Color(0xffa3a3a3), fontSize: 15.0), textAlign: TextAlign.start,),
+                        child: Text(descriptionMessage ?? unknownErrorMessage, style: const TextStyle(color: Color(0xffa3a3a3), fontSize: 15.0), textAlign: TextAlign.start,),
                       ),
                       const SizedBox(height: 20.0),
                       Container(
@@ -52,7 +54,8 @@ class NoInternetPopUp extends StatelessWidget {
                             ),
                           ),
                         )
-                      )
+                      ),
+                      const SizedBox(height: 20.0),
                     ],
                   ),
                 ],
