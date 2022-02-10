@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
+import 'package:swifty_companion/functions/parse_token.dart';
 import 'package:swifty_companion/widgets/pop_ups/loading_pop_up.dart';
-import "dart:async";
 import 'dart:io';
-import 'package:swifty_companion/widgets/pop_ups/pop_up.dart';
 import 'package:swifty_companion/widgets/pop_ups/no_internet_pop_up.dart';
-import 'package:swifty_companion/constants/constants.dart';
+import 'package:swifty_companion/functions/get_access_token.dart';
 
 class AuthorizationRoute extends StatefulWidget {
   AuthorizationRoute({Key? key}) : super(key: key);
@@ -52,19 +51,8 @@ class _AuthorizationRouteState extends State<AuthorizationRoute> {
                           setState(() => _isAppLoading = true);
                           try {
                             await InternetAddress.lookup('api.intra.42.fr');
-                            _response = await dio.post(
-                              authorizationLink,
-                              data: {
-                                'grant_type': 'client_credentials',
-                                'client_id': '30480b7ab0ff85a13ebca0ac0bd338f56dfaf0904ef8bc4866c3866930212be3',
-                                'client_secret': 'f60c5403a51a62eade9f61d99eca07a7cbac9adec3ce329756aae7a487e9cb8e'
-                              }
-                            );
-                            print('---------');
-                            print(_response.data);
-                            print('---------');
+                            _response = await getAccessToken(dio);
                             Navigator.pushNamed(context, 'home_route');
-                            // Navigator.pushReplacementNamed(context, 'home_route');
                           } on SocketException catch (_) {
                             setState(() {
                               _hasNoInternet = true;
