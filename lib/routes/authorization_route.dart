@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:swifty_companion/functions/save_token_to_local_storage.dart';
+import 'package:swifty_companion/globals/globals.dart';
 import 'package:swifty_companion/widgets/pop_ups/loading_pop_up.dart';
 import 'dart:io';
 import 'package:swifty_companion/widgets/pop_ups/error_pop_up.dart';
@@ -13,7 +14,6 @@ class AuthorizationRoute extends StatefulWidget {
 class _AuthorizationRouteState extends State<AuthorizationRoute> {
   bool _showLoadingPopUp = false;
   bool _showErrorPopUp = false;
-  var dio = Dio();
   String? descriptionMessage;
 
   closeErrorPopUp() {
@@ -36,7 +36,7 @@ class _AuthorizationRouteState extends State<AuthorizationRoute> {
     setState(() => _showLoadingPopUp = true);
     try {
       await InternetAddress.lookup('api.intra.42.fr');
-      await getAccessToken(dio);
+      await getAccessToken();
       Navigator.pushNamed(context, 'home_route');
     } on SocketException catch (_) {
       describeTheError('Either your device isn\'t connected to the internet, or the server that you are looking for is down');
@@ -46,6 +46,7 @@ class _AuthorizationRouteState extends State<AuthorizationRoute> {
       else
         {describeTheError('Try re-connecting the device with internet and restart the app');}
     }
+    print('ACCESS TOKEN - ' + accessToken);
   }
 
   @override

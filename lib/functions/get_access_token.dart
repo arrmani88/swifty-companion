@@ -1,8 +1,9 @@
 import 'package:swifty_companion/constants/constants.dart';
 import 'package:dio/dio.dart';
 import 'package:swifty_companion/functions/save_token_to_local_storage.dart';
+import 'package:swifty_companion/globals/globals.dart';
 
-Future<Response> getAccessToken(Dio dio) async {
+Future<Response> getAccessToken() async {
   Response response = await dio.post(
     authorizationLink,
     data: {
