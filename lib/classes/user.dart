@@ -3,15 +3,15 @@ class User {
   late String login;
   late String phone;
   late String displayName;
-  late String newImageURL;
-  late String correctionPoint;
+  late String imageURL;
   late String location;
-  late String wallet;
-
-  late List cursus = [];
-  late Map<String, String> grade = {};
   late String etec;
   late String campus;
-  late Map<String, double> level = {};
 
+  late int correctionPoint;
+  late int wallet;
+  List cursusNames = [];
+  Map<String, String> grade = {};
+  Map<String, double> level = {};
+  Map<String, Map<String, double>> skills = {};
 }

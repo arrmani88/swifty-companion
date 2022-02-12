@@ -5,7 +5,6 @@ import 'package:swifty_companion/functions/validate_token.dart';
 import 'package:swifty_companion/globals/globals.dart';
 import 'package:swifty_companion/constants/constants.dart';
 import 'package:dio/dio.dart';
-import 'package:swifty_companion/functions/parse_user_data.dart';
 
 class HomeRoute extends StatelessWidget {
   final RoundedLoadingButtonController _btnController = RoundedLoadingButtonController();
