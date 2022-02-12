@@ -3,7 +3,7 @@ import 'package:swifty_companion/routes/home_route.dart';
 import 'package:swifty_companion/routes/authorization_route.dart';
 import 'package:swifty_companion/routes/profile_route.dart';
 import 'package:swifty_companion/constants/constants.dart';
-
+import 'routes/my_home_page.dart';
 void main() {
   runApp(const SwiftyCompanion());
 }
@@ -32,11 +32,12 @@ class _SwiftyCompanionState extends State<SwiftyCompanion> {
         canvasColor: const Color(0xffE5E5E5),
         // beige: const Color(0xffe8e4d1),
       ),
-      initialRoute: 'authorization_route',
+      initialRoute: 'my_home_page',
       routes: {
         'authorization_route': (context) => AuthorizationRoute(),
         'home_route': (context) => HomeRoute(),
-        'profile_route': (context) => ProfileRoute()
+        'profile_route': (context) => ProfileRoute(),
+        'my_home_page': (context) => MyHomePage()
       },
     );
   }

@@ -4,7 +4,7 @@ import 'package:swifty_companion/widgets/blur_container.dart';
 import 'package:swifty_companion/widgets/intra_info.dart';
 import 'package:swifty_companion/widgets/cover_and_profile_pictures.dart';
 import 'package:swifty_companion/widgets/personal_info.dart';
-import 'package:flutter_animation_progress_bar/flutter_animation_progress_bar.dart';
+// import 'package:flutter_animation_progress_bar/flutter_animation_progress_bar.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:swifty_companion/globals/globals.dart';
 
@@ -56,7 +56,12 @@ class ProfileRoute extends StatelessWidget {
                     center: const Text('Level: 9.7', style: TextStyle(color: Colors.white)),
                   )
                 ],
-              )
+              ),
+              BlurContainer(
+                children: [
+                  Container()
+                ],
+              ),
             ],
           ),
         ),
