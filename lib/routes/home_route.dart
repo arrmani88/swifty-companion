@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 import 'package:swifty_companion/functions/parse_user_data.dart';
-import 'package:swifty_companion/functions/validate_token.dart';
+import 'package:swifty_companion/functions/validate_access_token.dart';
 import 'package:swifty_companion/globals/globals.dart';
 import 'package:swifty_companion/constants/constants.dart';
 import 'package:dio/dio.dart';
@@ -14,7 +14,7 @@ class HomeRoute extends StatelessWidget {
 
   void onSearchPressed (BuildContext context) async {
     try {
-      validateToken();
+      validateAccessToken();
       Response _response = await dio.get(
         // hostname + '/v2/users/' + textController.text,
         hostname + '/v2/users/anel-bou',
@@ -39,7 +39,8 @@ class HomeRoute extends StatelessWidget {
               Theme.of(context).splashColor, Theme.of(context).scaffoldBackgroundColor],
                 center: const Alignment(0, -0.05),
                 radius: 0.8
-            )),
+            )
+          ),
           child: SafeArea(
             child: Center(
               child: SizedBox(
@@ -50,7 +51,7 @@ class HomeRoute extends StatelessWidget {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Padding(child: Image.asset('assets/images/app_logo.jpeg'), padding: const EdgeInsets.symmetric(horizontal: 60.0),),
+                        Padding(child: Hero(tag: 'app_logo', child: Image.asset('assets/images/app_logo.jpeg')), padding: const EdgeInsets.symmetric(horizontal: 60.0),),
                         const SizedBox(height: 30.0),
                         TextField(
                           controller: textController,

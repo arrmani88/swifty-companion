@@ -6,6 +6,7 @@ import 'package:swifty_companion/widgets/pop_ups/loading_pop_up.dart';
 import 'dart:io';
 import 'package:swifty_companion/widgets/pop_ups/error_pop_up.dart';
 import 'package:swifty_companion/functions/get_access_token.dart';
+import 'package:swifty_companion/functions/validate_access_token.dart';
 
 class AuthorizationRoute extends StatefulWidget {
   AuthorizationRoute({Key? key}) : super(key: key);
@@ -36,7 +37,7 @@ class _AuthorizationRouteState extends State<AuthorizationRoute> {
     setState(() => _showLoadingPopUp = true);
     try {
       await InternetAddress.lookup('api.intra.42.fr');
-      await getAccessToken();
+      await validateAccessToken();
       Navigator.pushNamed(context, 'home_route');
     } on SocketException catch (_) {
       describeTheError('Either your device isn\'t connected to the internet, or the server that you are looking for is down');

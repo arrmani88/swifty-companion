@@ -4,9 +4,9 @@ import 'package:swifty_companion/widgets/blur_container.dart';
 import 'package:swifty_companion/widgets/intra_info.dart';
 import 'package:swifty_companion/widgets/cover_and_profile_pictures.dart';
 import 'package:swifty_companion/widgets/personal_info.dart';
-// import 'package:flutter_animation_progress_bar/flutter_animation_progress_bar.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:swifty_companion/globals/globals.dart';
+import 'package:flutter_radar_chart/flutter_radar_chart.dart';
 
 class ProfileRoute extends StatelessWidget {
   const ProfileRoute({Key? key}) : super(key: key);
@@ -44,7 +44,6 @@ class ProfileRoute extends StatelessWidget {
                   PersonalInfo(icon: Icons.location_on, value: user.location + ', '+ user.campus,),
                   PersonalInfo(icon: Icons.alternate_email, value: user.email),
                   const PersonalInfo(icon: Icons.local_phone, value: 'ADD MOBILE'),
-                  // FAProgressBar(currentValue: 9, maxValue: 21, displayText: ',7 %', backgroundColor: Theme.of(context).scaffoldBackgroundColor, progressColor: Theme.of(context).secondaryHeaderColor, borderRadius: BorderRadius.circular(0.0)),
                   const SizedBox(height: 10.0),
                   LinearPercentIndicator(
                     progressColor: Theme.of(context).secondaryHeaderColor,
@@ -59,7 +58,11 @@ class ProfileRoute extends StatelessWidget {
               ),
               BlurContainer(
                 children: [
-                  Container()
+                  RadarChart.light(
+                    ticks: [28, 35],
+                    features: ["AA", "BB", "CC", "DD", "EE", "FF", "GG", "HH"],
+                    data: [[10, 20, 28, 5, 16, 15, 17, 6], [15, 1, 4, 14, 23, 10, 6, 19]],
+                  )
                 ],
               ),
             ],
