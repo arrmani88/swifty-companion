@@ -13,7 +13,7 @@ class HomeRoute extends StatelessWidget {
   final TextEditingController textController = TextEditingController();
   HomeRoute({Key? key}) : super(key: key);
 
-  void onSearchPressed () async {
+  void onSearchPressed (BuildContext context) async {
     try {
       validateToken();
       Response _response = await dio.get(
@@ -26,7 +26,7 @@ class HomeRoute extends StatelessWidget {
     } catch (e) {
       print(e);
     }
-    // Navigator.pushReplacementNamed(context, 'profile_route');
+    Navigator.pushReplacementNamed(context, 'profile_route');
   }
 
   @override
@@ -36,11 +36,11 @@ class HomeRoute extends StatelessWidget {
         onTap: () => FocusScope.of(context).unfocus(),
         child: Container(
           decoration: BoxDecoration(
-              gradient: RadialGradient(colors: [
-                Theme.of(context).splashColor, Theme.of(context).scaffoldBackgroundColor],
-                  center: const Alignment(0, -0.05),
-                  radius: 0.8
-              )),
+            gradient: RadialGradient(colors: [
+              Theme.of(context).splashColor, Theme.of(context).scaffoldBackgroundColor],
+                center: const Alignment(0, -0.05),
+                radius: 0.8
+            )),
           child: SafeArea(
             child: Center(
               child: SizedBox(
@@ -51,9 +51,7 @@ class HomeRoute extends StatelessWidget {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Padding(
-                          child: Image.asset('assets/images/app_logo.jpeg'), padding: const EdgeInsets.symmetric(horizontal: 60.0),
-                        ),
+                        Padding(child: Image.asset('assets/images/app_logo.jpeg'), padding: const EdgeInsets.symmetric(horizontal: 60.0),),
                         const SizedBox(height: 30.0),
                         TextField(
                           controller: textController,
@@ -71,7 +69,7 @@ class HomeRoute extends StatelessWidget {
                           disabledColor: const Color(0xFFFFFFFF),
                           valueColor: Theme.of(context).scaffoldBackgroundColor,
                           controller: _btnController,
-                          onPressed: onSearchPressed,
+                          onPressed: () => onSearchPressed(context),
                           child: const Padding(
                             padding: EdgeInsets.only(top: 3.5),
                             child: Text('Search', style: TextStyle(color: Colors.black, fontSize: 20.0)),

@@ -43,9 +43,8 @@ class ProfileRoute extends StatelessWidget {
                   const PersonalInfo(icon: Icons.location_on, value: 'e2r7p15, Khouribga',),
                   const PersonalInfo(icon: Icons.alternate_email, value: 'anel-bou@student.1337.ma'),
                   const PersonalInfo(icon: Icons.local_phone, value: '0664646125'),
-                  const SizedBox(height: 5.0),
-                  FAProgressBar(currentValue: 9, maxValue: 21, displayText: ',7 %', backgroundColor: Theme.of(context).scaffoldBackgroundColor, progressColor: Theme.of(context).secondaryHeaderColor, borderRadius: BorderRadius.circular(0.0)),
-                  const SizedBox(height: 20.0),
+                  // FAProgressBar(currentValue: 9, maxValue: 21, displayText: ',7 %', backgroundColor: Theme.of(context).scaffoldBackgroundColor, progressColor: Theme.of(context).secondaryHeaderColor, borderRadius: BorderRadius.circular(0.0)),
+                  const SizedBox(height: 10.0),
                   LinearPercentIndicator(
                     progressColor: Theme.of(context).secondaryHeaderColor,
                     backgroundColor: Theme.of(context).scaffoldBackgroundColor,
