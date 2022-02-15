@@ -38,7 +38,7 @@ class _SwiftyCompanionState extends State<SwiftyCompanion> {
         'splash_route': (context) => SplashRoute(),
         'authorization_route': (context) => AuthorizationRoute(),
         'home_route': (context) => HomeRoute(),
-        'profile_route': (context) => ProfileRoute1(),
+        'profile_route': (context) => ProfileRoute(),
       },
     );
   }

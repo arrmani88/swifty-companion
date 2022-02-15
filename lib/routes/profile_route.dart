@@ -10,23 +10,43 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:swifty_companion/routes/widget.dart';
 import 'package:fl_chart/fl_chart.dart';
 
-class ProfileRoute extends StatelessWidget {
-  ProfileRoute({Key? key}) : super(key: key);
+class ProfileRoute2 extends StatelessWidget {
+  ProfileRoute2({Key? key}) : super(key: key);
 
-  final List dataSets = [
+  final List<RadarDataSet> dataSets = [
     RadarDataSet(
-      dataEntries: const [RadarEntry(value: 2), RadarEntry(value: 2), RadarEntry(value: 2), RadarEntry(value: 2)]
+      fillColor: null,
+      borderColor: Colors.blue,
+      dataEntries: const [
+        RadarEntry(value: 1),
+        RadarEntry(value: 2),
+        RadarEntry(value: 4),
+        RadarEntry(value: 9),
+        RadarEntry(value: 9),
+      ]
     ),
-    RadarDataSet(
-      dataEntries: const [RadarEntry(value: 4), RadarEntry(value: 4), RadarEntry(value: 4), RadarEntry(value: 4)]
-    ),
-    RadarDataSet(
-      dataEntries: const [RadarEntry(value: 6), RadarEntry(value: 6), RadarEntry(value: 6), RadarEntry(value: 6)]
-    ),
-
-    [2, 2, 2, 2],
-    [4, 4, 4, 4],
-    [6, 6, 6, 6],
+    // RadarDataSet(
+    //   fillColor: null,
+    //   borderColor: Colors.yellow,
+    //   dataEntries: const [
+    //     RadarEntry(value: 9),
+    //     RadarEntry(value: 3),
+    //     RadarEntry(value: 9),
+    //     RadarEntry(value: 9),
+    //     RadarEntry(value: 5),
+    //   ]
+    // ),
+    // RadarDataSet(
+    //   fillColor: null,
+    //   borderColor: Colors.red,
+    //   dataEntries: const [
+    //     RadarEntry(value: 9),
+    //     RadarEntry(value: 9),
+    //     RadarEntry(value: 4),
+    //     RadarEntry(value: 4),
+    //     RadarEntry(value: 5),
+    //   ]
+    // ),
   ];
 
   @override
@@ -35,10 +55,23 @@ class ProfileRoute extends StatelessWidget {
       body: Column(
         children: [
           RadarChartSample1(),
-          RadarChart(
-            RadarChartData(
-
-            )
+          SizedBox(
+            height: 490.0,
+            child: RadarChart(
+              RadarChartData(
+                getTitle: (index) {
+                  switch (index) {
+                    case (0): return 'str1';
+                    case (1): return 'str2';
+                    case (2): return 'str3';
+                    case (3): return 'str4';
+                    case (4): return 'str5';
+                  }
+                  return '';
+                },
+                dataSets: dataSets
+              )
+            ),
           )
         ],
       ),
@@ -47,8 +80,18 @@ class ProfileRoute extends StatelessWidget {
 }
 
 
-class ProfileRoute1 extends StatelessWidget {
-  const ProfileRoute1({Key? key}) : super(key: key);
+
+
+
+
+
+
+
+
+
+
+class ProfileRoute extends StatelessWidget {
+  const ProfileRoute({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

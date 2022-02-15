@@ -1,11 +1,22 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:swifty_companion/constants/constants.dart';
 import 'package:swifty_companion/functions/get_access_token.dart';
 import 'package:swifty_companion/functions/validate_access_token.dart';
 import 'package:swifty_companion/globals/globals.dart';
 
-class SplashRoute extends StatelessWidget {
+class SplashRoute extends StatefulWidget {
   const SplashRoute({Key? key}) : super(key: key);
+  @override State<SplashRoute> createState() => _SplashRouteState();
+}
+class _SplashRouteState extends State<SplashRoute> {
+
+  late Future initAccessTokenVariable;
+
+  @override
+  initState () {
+    initAccessTokenVariable = initAccessToken(context);
+  }
 
   Future<dynamic> initAccessToken (BuildContext context) async {
     try {
@@ -19,8 +30,10 @@ class SplashRoute extends StatelessWidget {
       print('-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-');
       Navigator.pushNamed(context, 'home_route');
     } catch (e) {
-      // rethrow ;
-      print(e);
+      if (e is DioError)
+        print(e.message);
+      else
+        print(e);
     }
   }
 
@@ -28,7 +41,7 @@ class SplashRoute extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: FutureBuilder(
-        future: initAccessToken(context),
+        future: initAccessTokenVariable,
         builder: (context, _) {
           return Container(
             height: kScreenHeight,
