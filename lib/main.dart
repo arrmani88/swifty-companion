@@ -3,7 +3,6 @@ import 'package:swifty_companion/routes/home_route.dart';
 import 'package:swifty_companion/routes/authorization_route.dart';
 import 'package:swifty_companion/routes/profile_route.dart';
 import 'package:swifty_companion/constants/constants.dart';
-import 'routes/my_home_page.dart';
 import 'routes/splash_route.dart';
 
 void main() {
@@ -39,9 +38,9 @@ class _SwiftyCompanionState extends State<SwiftyCompanion> {
         'splash_route': (context) => SplashRoute(),
         'authorization_route': (context) => AuthorizationRoute(),
         'home_route': (context) => HomeRoute(),
-        'profile_route': (context) => ProfileRoute(),
-        'my_home_page': (context) => MyHomePage()
+        'profile_route': (context) => ProfileRoute1(),
       },
     );
   }
 }
+
