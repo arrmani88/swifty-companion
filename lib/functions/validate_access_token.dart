@@ -8,12 +8,15 @@ validateAccessToken() async {
       'https://api.intra.42.fr/oauth/token/info',
       options: Options(headers: {'Authorization': 'Bearer ' + accessToken})
     );
-    if (_response != null && _response.statusCode == 200) {
-      return ;
-    } else {
-      await getAccessToken();
-    }
   } catch (e) {
-    rethrow ;
+    if (e is DioError && e.response?.statusCode == 401) {
+      await getAccessToken();
+      return ;
+    }
+    print('<<<<<<<- ERROR POINT #2 ->>>>>>>');
+    rethrow;
   }
+
+
+
 }

@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 class User {
   late String email;
   late String login;
@@ -13,5 +15,6 @@ class User {
   List cursusNames = [];
   Map<String, String> grade = {};
   Map<String, double> level = {};
-  Map<String, Map<String, double>> skills = {};
+  Map<String, SplayTreeMap<String, double>> skills = {};
+  // Map<String, double> skills = {};
 }

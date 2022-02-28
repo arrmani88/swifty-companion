@@ -27,13 +27,14 @@ class _SplashRouteState extends State<SplashRoute> {
         accessToken = tmpAccessToken;
         await validateAccessToken();
       }
-      print('-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-');
       Navigator.pushNamed(context, 'home_route');
     } catch (e) {
+      print('<<<<<<<- ERROR POINT #1');
       if (e is DioError)
-        print(e.message);
+        print(e.response);
       else
         print(e);
+      print('ERROR POINT #1 ->>>>>>>');
     }
   }
 

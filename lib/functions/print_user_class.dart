@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:swifty_companion/classes/user.dart';
 
 printUSerClass(User user) {

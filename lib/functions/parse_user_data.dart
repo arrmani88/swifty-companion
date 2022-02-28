@@ -1,3 +1,4 @@
+import 'dart:collection';
 import 'package:dio/dio.dart';
 import 'package:swifty_companion/functions/print_user_class.dart';
 import 'package:swifty_companion/globals/globals.dart';
@@ -16,10 +17,16 @@ parseUserData(Response rsp) {
     user.cursusNames.add((cursus['cursus'] as Map<String, dynamic>)['name']);
     user.grade[(cursus['cursus'] as Map<String, dynamic>)['name']] = cursus['grade'] ?? 'Novice';
     user.level[(cursus['cursus'] as Map<String, dynamic>)['name']] = cursus['level'];
-    user.skills[(cursus['cursus'] as Map<String, dynamic>)['name']] = {};
+    user.skills[(cursus['cursus'] as Map<String, dynamic>)['name']] = SplayTreeMap<String, double>();
     for (var skill in cursus['skills']) {
       user.skills[(cursus['cursus'] as Map<String, dynamic>)['name']]![skill['name']] = skill['level'];
     }
+    print(user.skills[(cursus['cursus'] as Map<String, dynamic>)['name']]!.keys.elementAt(0));
   }
+  // print('++++++++++++==================');
+  // print(user.skills);
+
+
+
   // printUSerClass(user);
 }

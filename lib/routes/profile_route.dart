@@ -6,89 +6,84 @@ import 'package:swifty_companion/widgets/cover_and_profile_pictures.dart';
 import 'package:swifty_companion/widgets/personal_info.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:swifty_companion/globals/globals.dart';
-import 'package:fl_chart/fl_chart.dart';
-import 'package:swifty_companion/routes/widget.dart';
-import 'package:fl_chart/fl_chart.dart';
-
-class ProfileRoute2 extends StatelessWidget {
-  ProfileRoute2({Key? key}) : super(key: key);
-
-  final List<RadarDataSet> dataSets = [
-    RadarDataSet(
-      fillColor: null,
-      borderColor: Colors.blue,
-      dataEntries: const [
-        RadarEntry(value: 1),
-        RadarEntry(value: 2),
-        RadarEntry(value: 4),
-        RadarEntry(value: 9),
-        RadarEntry(value: 9),
-      ]
-    ),
-    // RadarDataSet(
-    //   fillColor: null,
-    //   borderColor: Colors.yellow,
-    //   dataEntries: const [
-    //     RadarEntry(value: 9),
-    //     RadarEntry(value: 3),
-    //     RadarEntry(value: 9),
-    //     RadarEntry(value: 9),
-    //     RadarEntry(value: 5),
-    //   ]
-    // ),
-    // RadarDataSet(
-    //   fillColor: null,
-    //   borderColor: Colors.red,
-    //   dataEntries: const [
-    //     RadarEntry(value: 9),
-    //     RadarEntry(value: 9),
-    //     RadarEntry(value: 4),
-    //     RadarEntry(value: 4),
-    //     RadarEntry(value: 5),
-    //   ]
-    // ),
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          RadarChartSample1(),
-          SizedBox(
-            height: 490.0,
-            child: RadarChart(
-              RadarChartData(
-                getTitle: (index) {
-                  switch (index) {
-                    case (0): return 'str1';
-                    case (1): return 'str2';
-                    case (2): return 'str3';
-                    case (3): return 'str4';
-                    case (4): return 'str5';
-                  }
-                  return '';
-                },
-                dataSets: dataSets
-              )
-            ),
-          )
-        ],
-      ),
-    );
-  }
-}
-
-
-
-
-
-
-
-
-
-
-
+import 'package:swifty_companion/widgets/skills.dart';
+//
+// class ProfileRoute extends StatelessWidget {
+//   ProfileRoute({Key? key}) : super(key: key);
+//
+//   final List<RadarDataSet> dataSets = [
+//     RadarDataSet(
+//       fillColor: null,
+//       borderColor: Colors.blue,
+//       dataEntries: const [
+//         RadarEntry(value: 1),
+//         RadarEntry(value: 2),
+//         RadarEntry(value: 4),
+//         RadarEntry(value: 9),
+//         RadarEntry(value: 9),
+//       ]
+//     ),
+//     // RadarDataSet(
+//     //   fillColor: null,
+//     //   borderColor: Colors.yellow,
+//     //   dataEntries: const [
+//     //     RadarEntry(value: 9),
+//     //     RadarEntry(value: 3),
+//     //     RadarEntry(value: 9),
+//     //     RadarEntry(value: 9),
+//     //     RadarEntry(value: 5),
+//     //   ]
+//     // ),
+//     // RadarDataSet(
+//     //   fillColor: null,
+//     //   borderColor: Colors.red,
+//     //   dataEntries: const [
+//     //     RadarEntry(value: 9),
+//     //     RadarEntry(value: 9),
+//     //     RadarEntry(value: 4),
+//     //     RadarEntry(value: 4),
+//     //     RadarEntry(value: 5),
+//     //   ]
+//     // ),
+//   ];
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: Column(
+//         children: [
+//           RadarChartSample1(),
+//           SizedBox(
+//             height: 450.0,
+//             child: RadarChart(
+//               RadarChartData(
+//                   titleTextStyle: const TextStyle(color: titleColor, fontSize: 14),
+//                   gridBorderData: const BorderSide(color: gridColor, width: 2),
+//                   tickBorderData: const BorderSide(color: Colors.transparent),
+//                   ticksTextStyle: const TextStyle(color: Colors.transparent, fontSize: 10),
+//                 // tickCount: null,
+//                 radarBorderData: const BorderSide(color: Colors.transparent),
+//                 borderData: FlBorderData(show: false), // contour dial the whole widget
+//                 radarBackgroundColor: Colors.transparent,
+//                 getTitle: (index) {
+//                   switch (index) {
+//                     case (0): return 'str1';
+//                     case (1): return 'str2';
+//                     case (2): return 'str3';
+//                     case (3): return 'str4';
+//                     case (4): return 'str5';
+//                   }
+//                   return '';
+//                 },
+//                 dataSets: dataSets
+//               ),
+//             ),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
 
 class ProfileRoute extends StatelessWidget {
   const ProfileRoute({Key? key}) : super(key: key);
@@ -116,9 +111,9 @@ class ProfileRoute extends StatelessWidget {
                 children: [
                   IntraInfo(title: 'Wallet', value: user.wallet.toString() + ' \$'),
                   IntraInfo(title: 'Evaluation points', value: user.correctionPoint.toString()),
-                  IntraInfo(title: 'Cursus', value: 'ADD DRP DWN'),
-                  IntraInfo(title: 'Grade', value: 'CHANGE THIS'),
-                  IntraInfo(title: 'ETEC', value: 'UPDATE THIS'),
+                  const IntraInfo(title: 'Cursus', value: 'ADD DRP DWN'),
+                  const IntraInfo(title: 'Grade', value: 'CHANGE THIS'),
+                  const IntraInfo(title: 'ETEC', value: 'UPDATE THIS'),
                 ],
               ),
               BlurContainer(
@@ -138,6 +133,11 @@ class ProfileRoute extends StatelessWidget {
                   )
                 ],
               ),
+              BlurContainer(
+                children: [
+                  SizedBox(height: 300, child: Skills()),
+                ],
+              )
             ],
           ),
         ),

@@ -1,5 +1,4 @@
 import 'package:swifty_companion/globals/globals.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:dio/dio.dart';
 
 saveTokenToLocalStorage(Response rsp) async {

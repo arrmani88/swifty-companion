@@ -21,7 +21,6 @@ class HomeRoute extends StatelessWidget {
         options: Options(headers: {'Authorization': 'Bearer ' + accessToken}),
       );
       parseUserData(_response);
-
     } catch (e) {
       print(e);
     }

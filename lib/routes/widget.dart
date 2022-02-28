@@ -121,8 +121,7 @@ class _RadarChartSample1State extends State<RadarChartSample1> {
                 borderData: FlBorderData(show: false),
                 radarBorderData: const BorderSide(color: Colors.transparent),
                 titlePositionPercentageOffset: 0.2,
-                titleTextStyle:
-                const TextStyle(color: titleColor, fontSize: 14),
+                titleTextStyle: const TextStyle(color: titleColor, fontSize: 14),
                 getTitle: (index) {
                   switch (index) {
                     case 0:
