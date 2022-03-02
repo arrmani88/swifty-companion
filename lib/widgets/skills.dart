@@ -63,4 +63,3 @@ class Skills extends StatelessWidget {
     );
   }
 }
- // 14, 1, 16, 5, 7, 2, 10,

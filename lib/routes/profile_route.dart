@@ -7,6 +7,7 @@ import 'package:swifty_companion/widgets/personal_info.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:swifty_companion/globals/globals.dart';
 import 'package:swifty_companion/widgets/skills.dart';
+import 'package:cool_dropdown/cool_dropdown.dart';
 //
 // class ProfileRoute extends StatelessWidget {
 //   ProfileRoute({Key? key}) : super(key: key);
@@ -111,7 +112,8 @@ class ProfileRoute extends StatelessWidget {
                 children: [
                   IntraInfo(title: 'Wallet', value: user.wallet.toString() + ' \$'),
                   IntraInfo(title: 'Evaluation points', value: user.correctionPoint.toString()),
-                  const IntraInfo(title: 'Cursus', value: 'ADD DRP DWN'),
+                  // const IntraInfo(title: 'Cursus', value: 'ADD DRP DWN'),
+                  // const SelectCursus(),
                   const IntraInfo(title: 'Grade', value: 'CHANGE THIS'),
                   const IntraInfo(title: 'ETEC', value: 'UPDATE THIS'),
                 ],
@@ -146,3 +148,35 @@ class ProfileRoute extends StatelessWidget {
   }
 }
 
+// class SelectCursus extends StatelessWidget {
+//   const SelectCursus({Key? key}) : super(key: key);
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Row(
+//       mainAxisSize: MainAxisSize.max,
+//       children: [
+//         Expanded(
+//           child: Align(
+//             alignment: Alignment.centerRight,
+//             child: Text('Cursus', style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Theme.of(context).secondaryHeaderColor)),
+//           ),
+//         ),
+//         const SizedBox(width: 7.0),
+//         Expanded(
+//             child: DropdownButton(
+//               items: <String>['One', 'Two', 'Free', 'Four']
+//                   .map<DropdownMenuItem<String>>((String value) {
+//                 return DropdownMenuItem<String>(
+//                   value: value,
+//                   child: Text(value),
+//                 );
+//               }).toList(),
+//               // underline: Container(),
+//               onChanged: (_) {},
+//             ),
+//         ),
+//       ],
+//     );
+//   }
+// }
