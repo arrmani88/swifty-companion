@@ -10,28 +10,18 @@ const boxingColor = Color(0xff83dea7);
 const entertainmentColor = Colors.white70;
 const offRoadColor = Color(0xFFFFF59D);
 
-class Skills extends StatelessWidget {
+class Skills extends StatefulWidget {
   Skills({Key? key}) : super(key: key);
-
+  @override State<Skills> createState() => _SkillsState();
+}
+class _SkillsState extends State<Skills> {
   final List<RadarEntry> skillsValues = [];
-  List<RadarEntry> getDataEntries() {
+
+  @override
+  initState() {
     user.skills['42cursus']?.forEach((key, value) => skillsValues.add(RadarEntry(value: value)));
-    return skillsValues;
   }
-  // final List<RadarDataSet> dataSets = [
-  //   RadarDataSet(
-  //     fillColor: null,
-  //     borderColor: const Color(0xff167676),
-  //     dataEntries: getDataEntries(),
-  //     // const [
-  //     //   RadarEntry(value: 1),
-  //     //   RadarEntry(value: 2),
-  //     //   RadarEntry(value: 4),
-  //     //   RadarEntry(value: 9),
-  //     //   RadarEntry(value: 9),
-  //     // ]
-  //   ),
-  // ];
+
   @override
   Widget build(BuildContext context) {
     return RadarChart(
@@ -49,7 +39,7 @@ class Skills extends StatelessWidget {
           RadarDataSet(
             fillColor: null,
             borderColor: const Color(0xff167676),
-            dataEntries: getDataEntries(),
+            dataEntries: skillsValues,
             // const [
             //   RadarEntry(value: 1),
             //   RadarEntry(value: 2),

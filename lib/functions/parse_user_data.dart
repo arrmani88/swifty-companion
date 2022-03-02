@@ -21,11 +21,7 @@ parseUserData(Response rsp) {
     for (var skill in cursus['skills']) {
       user.skills[(cursus['cursus'] as Map<String, dynamic>)['name']]![skill['name']] = skill['level'];
     }
-    print(user.skills[(cursus['cursus'] as Map<String, dynamic>)['name']]!.keys.elementAt(0));
   }
-  // print('++++++++++++==================');
-  // print(user.skills);
-
 
 
   // printUSerClass(user);

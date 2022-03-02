@@ -8,6 +8,7 @@ import 'package:percent_indicator/percent_indicator.dart';
 import 'package:swifty_companion/globals/globals.dart';
 import 'package:swifty_companion/widgets/skills.dart';
 import 'package:cool_dropdown/cool_dropdown.dart';
+import 'package:swifty_companion/widgets/skills_chart.dart';
 //
 // class ProfileRoute extends StatelessWidget {
 //   ProfileRoute({Key? key}) : super(key: key);
@@ -135,9 +136,9 @@ class ProfileRoute extends StatelessWidget {
                   )
                 ],
               ),
-              BlurContainer(
+              const BlurContainer(
                 children: [
-                  SizedBox(height: 300, child: Skills()),
+                  SizedBox(height: 500, child: RadarChartExample(title: 'aaaaaaa',)),
                 ],
               )
             ],
