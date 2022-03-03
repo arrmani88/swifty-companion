@@ -5,6 +5,7 @@ import 'package:swifty_companion/functions/validate_access_token.dart';
 import 'package:swifty_companion/globals/globals.dart';
 import 'package:swifty_companion/constants/constants.dart';
 import 'package:dio/dio.dart';
+import 'package:swifty_companion/functions/set_profile_picture_widget.dart';
 
 class HomeRoute extends StatelessWidget {
   final RoundedLoadingButtonController _btnController = RoundedLoadingButtonController();
@@ -21,10 +22,11 @@ class HomeRoute extends StatelessWidget {
         options: Options(headers: {'Authorization': 'Bearer ' + accessToken}),
       );
       parseUserData(_response);
+      await setProfilePictureWidget(user.imageURL);
     } catch (e) {
       print(e);
     }
-    Navigator.pushReplacementNamed(context, 'profile_route');
+    Navigator.pushNamed(context, 'profile_route');
   }
 
   @override

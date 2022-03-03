@@ -3,8 +3,8 @@ import 'package:swifty_companion/constants/constants.dart';
 import 'package:swifty_companion/globals/globals.dart';
 
 class CoverAndProfilePictures extends StatelessWidget {
-  final String profilePicture;
-  CoverAndProfilePictures({Key? key, required this.profilePicture}) : super(key: key);
+  final String? profilePictureURL;
+  CoverAndProfilePictures({Key? key, required this.profilePictureURL}) : super(key: key);
   final double profileImageSize = kScreenWidth > 500 ? 250 : kScreenWidth * 0.5;
 
   @override
@@ -20,10 +20,11 @@ class CoverAndProfilePictures extends StatelessWidget {
           child: Container(
             color: Colors.white,
             padding: const EdgeInsets.all(5.0),
-            child: Image.network(profilePicture, width: profileImageSize - 16, height: profileImageSize - 16),
+            child: profilePictureWidget,
           ),
         )
       ],
     );
   }
 }
+

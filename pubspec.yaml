@@ -19,7 +19,7 @@ dependencies:
   flutter_secure_storage: ^5.0.2
   fl_chart: ^0.45.0
   cool_dropdown: ^1.4.1
-  radar_chart: ^2.1.0
+  radar_chart: ^2.1.0 #ASP
 
 dev_dependencies:
   flutter_test:
@@ -37,6 +37,7 @@ flutter:
     - assets/images/profile_picture.jpeg
     - assets/icons/lock_icon.png
     - assets/icons/broken_robot.png
+    - assets/images/blank_profile_picture.png
 
   fonts:
     - family: weiss

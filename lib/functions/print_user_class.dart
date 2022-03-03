@@ -8,8 +8,8 @@ printUSerClass(User user) {
   print('login=>>>' + user.login);
   // print('phone=>>>' + user.phone);
   print('displayName=>>>' + user.displayName);
-  print('newImageURL=>>>' + user.imageURL);
-  print('location=>>>' + user.location);
+  print('newImageURL=>>>' + (user.imageURL ?? 'got no image'));
+  print('location=>>>' + (user.location ?? 'Unavailable'));
   // print('etec=>>>' + user.etec);
   print('campus=>>>' + user.campus);
   print('correctionPoint=>>>' + user.correctionPoint.toString());

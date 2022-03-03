@@ -1,2 +1,4 @@
 print('<<<<<<<- ERROR POINT #2 ->>>>>>>');
-ADD drop down button
+
+handle long name in profile_route
+remove circle cursors from radar chart

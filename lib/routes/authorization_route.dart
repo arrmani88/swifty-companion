@@ -47,7 +47,6 @@ class _AuthorizationRouteState extends State<AuthorizationRoute> {
       else
         {describeTheError('Try re-connecting the device with internet and restart the app');}
     }
-    print('ACCESS TOKEN - ' + accessToken);
   }
 
   @override

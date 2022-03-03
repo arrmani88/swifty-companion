@@ -6,7 +6,7 @@ import 'package:swifty_companion/globals/globals.dart';
 parseUserData(Response rsp) {
   user.email = (rsp.data as Map<String, dynamic>)['email'];
   user.login = (rsp.data as Map<String, dynamic>)['login'];
-  // user.phone = (rsp.data as Map<String, dynamic>)['phone'];
+  user.phone = (rsp.data as Map<String, dynamic>)['phone'];
   user.displayName = (rsp.data as Map<String, dynamic>)['displayname'];
   user.imageURL = (rsp.data as Map<String, dynamic>)['image_url'];
   user.correctionPoint = (rsp.data as Map<String, dynamic>)['correction_point'];
@@ -19,10 +19,12 @@ parseUserData(Response rsp) {
     user.level[(cursus['cursus'] as Map<String, dynamic>)['name']] = cursus['level'];
     user.skills[(cursus['cursus'] as Map<String, dynamic>)['name']] = SplayTreeMap<String, double>();
     for (var skill in cursus['skills']) {
-      user.skills[(cursus['cursus'] as Map<String, dynamic>)['name']]![skill['name']] = skill['level'];
+      String key = skill['name'].replaceAll(' ', '\n');
+      key = key.replaceAll('\n&\n', '\n& ');
+      user.skills[(cursus['cursus'] as Map<String, dynamic>)['name']]![key] = skill['level'];
     }
   }
-
+  selectedCursus = user.cursusNames[user.cursusNames.length - 1];
 
   // printUSerClass(user);
 }
