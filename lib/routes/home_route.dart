@@ -18,7 +18,7 @@ class HomeRoute extends StatelessWidget {
       validateAccessToken();
       Response _response = await dio.get(
         // hostname + '/v2/users/' + textController.text,
-        hostname + '/v2/users/anel-bou',
+        hostname + '/v2/users/aai-ihi',
         options: Options(headers: {'Authorization': 'Bearer ' + accessToken}),
       );
       parseUserData(_response);
