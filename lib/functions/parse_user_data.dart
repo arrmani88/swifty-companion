@@ -19,8 +19,8 @@ parseUserData(Response rsp) {
     user.level[(cursus['cursus'] as Map<String, dynamic>)['name']] = cursus['level'];
     user.skills[(cursus['cursus'] as Map<String, dynamic>)['name']] = SplayTreeMap<String, double>();
     for (var skill in cursus['skills']) {
-      String key = skill['name'];//.replaceAll(' ', '\n');
-      // key = key.replaceAll('\n&\n', '\n& ');
+      String key = skill['name'].replaceAll(' ', '\n');
+      key = key.replaceAll('\n&\n', '\n& ');
       user.skills[(cursus['cursus'] as Map<String, dynamic>)['name']]![key] = skill['level'];
     }
   }

@@ -16,7 +16,4 @@ validateAccessToken() async {
     print('<<<<<<<- ERROR POINT #2 ->>>>>>>');
     rethrow;
   }
-
-
-
 }

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'dart:ui' as ui;
 
-class HorizontalBlurContainer extends StatelessWidget {
+class BlurContainer extends StatelessWidget {
   final List<Widget> children;
-  const HorizontalBlurContainer({Key? key, required this.children}) : super(key: key);
+  const BlurContainer({Key? key, required this.children}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -11,9 +12,8 @@ class HorizontalBlurContainer extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(20.0),
         width: 500.0,
-        height: 100.0,
         color: Colors.black.withOpacity(0.4),
-        child: Row(
+        child: Column(
           children: children,
         ),
       ),

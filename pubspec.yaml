@@ -21,6 +21,8 @@ dependencies:
   cool_dropdown: ^1.4.1
   water_drop_nav_bar: ^2.1.0+8
   carousel_slider: ^4.0.0
+  flutter_staggered_animations: ^1.0.0
+  searchable_listview: ^1.3.3
 
 dev_dependencies:
   flutter_test:

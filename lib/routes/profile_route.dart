@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:swifty_companion/constants/constants.dart';
-import 'package:swifty_companion/widgets/vertical_blur_container.dart';
+import 'package:swifty_companion/widgets/blur_container.dart';
 import 'package:swifty_companion/widgets/intra_info.dart';
 import 'package:swifty_companion/widgets/cover_and_profile_pictures.dart';
 import 'package:swifty_companion/widgets/personal_info.dart';
@@ -35,7 +35,7 @@ class _ProfileRouteState extends State<ProfileRoute> {
               const SizedBox(height: 25.0),
               Text(user.displayName, style: const TextStyle(color: Colors.white, fontSize: 40.0, fontWeight: FontWeight.bold)),
               Text('@'+user.login, style: const TextStyle(color: Colors.white, fontSize: 25.0, fontWeight: FontWeight.bold)),
-              VerticalBlurContainer(
+              BlurContainer(
                 children: [
                   IntraInfo(title: 'Wallet', value: user.wallet.toString() + ' \$'),
                   IntraInfo(title: 'Evaluation points', value: user.correctionPoint.toString()),
@@ -45,7 +45,7 @@ class _ProfileRouteState extends State<ProfileRoute> {
                   const IntraInfo(title: 'ETEC', value: 'EDIT THIS'),
                 ],
               ),
-              VerticalBlurContainer(
+              BlurContainer(
                 children: [
                   PersonalInfo(icon: Icons.location_on, value: (user.location ?? 'Unavailable') + ', '+ user.campus,),
                   PersonalInfo(icon: Icons.alternate_email, value: user.email),
@@ -62,11 +62,11 @@ class _ProfileRouteState extends State<ProfileRoute> {
                   )
                 ],
               ),
-              // BlurContainer(
-              //   children: [
-              //     SizedBox(height: 320, child: Skills()),
-              //   ],
-              // )
+              BlurContainer(
+                children: [
+                  SizedBox(height: 320, child: Skills()),
+                ],
+              )
             ],
           ),
         ),

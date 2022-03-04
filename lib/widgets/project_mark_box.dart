@@ -1,0 +1,51 @@
+import 'package:flutter/material.dart';
+import 'package:swifty_companion/globals/globals.dart';
+import 'package:swifty_companion/classes/project.dart';
+
+class ProjectMarkBox extends StatelessWidget {
+  Color subscribedColor = Color(0xff00babc);
+  Color validatedColor = Color(0xff5cb85c);
+  Color failedColor = Color(0xffD8636F);
+  Project project;
+  ProjectMarkBox({Key? key, required this.project}) : super(key: key);
+
+  Color getColor(var status) {
+    switch (status) {
+      case(Status.validated): return validatedColor;
+      case(Status.failed): return failedColor;
+    }
+    return subscribedColor;
+  }
+
+  Icon getIcon(var status) {
+    switch (status) {
+      case(Status.validated): return const Icon(Icons.check, size: 35.0,);
+      case(Status.failed): return const Icon(Icons.close, size: 35.0,);
+    }
+    return const Icon(Icons.flash_on_rounded, size: 35.0,);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: getColor(project.status),
+      height: 80.0,
+      width: 125.0,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          getIcon(project.status),
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.baseline,
+            textBaseline: TextBaseline.alphabetic,
+            children: [
+              Text(project.finalMark.toString(), style: const TextStyle(color: Colors.black, fontSize: 35.0)),
+              const Text('/100', style: const TextStyle(color: Colors.black, fontSize: 13.0))
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
