@@ -19,12 +19,12 @@ parseUserData(Response rsp) {
     user.level[(cursus['cursus'] as Map<String, dynamic>)['name']] = cursus['level'];
     user.skills[(cursus['cursus'] as Map<String, dynamic>)['name']] = SplayTreeMap<String, double>();
     for (var skill in cursus['skills']) {
-      String key = skill['name'].replaceAll(' ', '\n');
-      key = key.replaceAll('\n&\n', '\n& ');
+      String key = skill['name'];//.replaceAll(' ', '\n');
+      // key = key.replaceAll('\n&\n', '\n& ');
       user.skills[(cursus['cursus'] as Map<String, dynamic>)['name']]![key] = skill['level'];
     }
   }
   selectedCursus = user.cursusNames[user.cursusNames.length - 1];
-
+  // user.imageURL = 'https://images.unsplash.com/photo-1526666923127-b2970f64b422?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3572&q=80.jpg';
   // printUSerClass(user);
 }

@@ -4,6 +4,8 @@ import 'package:swifty_companion/routes/authorization_route.dart';
 import 'package:swifty_companion/routes/profile_route.dart';
 import 'package:swifty_companion/constants/constants.dart';
 import 'routes/splash_route.dart';
+import 'routes/routes_holder.dart';
+import 'routes/projects.dart';
 
 void main() {
   runApp(const SwiftyCompanion());
@@ -13,7 +15,6 @@ class SwiftyCompanion extends StatefulWidget {
   @override
   State<SwiftyCompanion> createState() => _SwiftyCompanionState();
 }
-
 class _SwiftyCompanionState extends State<SwiftyCompanion> {
 
   @override
@@ -33,12 +34,14 @@ class _SwiftyCompanionState extends State<SwiftyCompanion> {
         canvasColor: const Color(0xffE5E5E5),
         // beige: const Color(0xffe8e4d1),
       ),
-      initialRoute: 'splash_route',
+      initialRoute: 'projects',
       routes: {
         'splash_route': (context) => SplashRoute(),
         'authorization_route': (context) => AuthorizationRoute(),
         'home_route': (context) => HomeRoute(),
         'profile_route': (context) => ProfileRoute(),
+        'routes_holder': (context) => RoutesHolder(),
+        'projects': (context) => Projects(),
       },
     );
   }

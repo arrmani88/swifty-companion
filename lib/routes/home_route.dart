@@ -15,14 +15,14 @@ class HomeRoute extends StatelessWidget {
 
   void onSearchPressed (BuildContext context) async {
     try {
-      validateAccessToken();
+      await validateAccessToken();
       Response _response = await dio.get(
         // hostname + '/v2/users/' + textController.text,
-        hostname + '/v2/users/aai-ihi',
+        hostname + '/v2/users/anel-bou',
         options: Options(headers: {'Authorization': 'Bearer ' + accessToken}),
       );
       parseUserData(_response);
-      await setProfilePictureWidget(user.imageURL);
+      setProfilePictureWidget(user.imageURL);
     } catch (e) {
       print(e);
     }

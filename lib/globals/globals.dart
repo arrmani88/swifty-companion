@@ -8,5 +8,5 @@ Dio dio = Dio();
 User user = User();
 const storage = FlutterSecureStorage();
 late String selectedCursus;
-late Image profilePictureWidget;
+late Widget profilePictureWidget;
 
