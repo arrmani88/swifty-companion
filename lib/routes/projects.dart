@@ -6,6 +6,8 @@ import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:searchable_listview/searchable_listview.dart';
 import 'package:swifty_companion/globals/globals.dart';
 import 'package:swifty_companion/classes/project.dart';
+import 'package:provider/provider.dart';
+import 'package:swifty_companion/providers/user_provider.dart';
 
 // class Projects extends StatelessWidget {
 //   const Projects({Key? key}) : super(key: key);
@@ -137,9 +139,13 @@ class Projects extends StatelessWidget {
               children: [
                 Expanded(
                   child: SearchableList<Project>(
-                    initialList: user.projectsList,
+                    initialList: context.watch<UserProvider>().projectsList,
                     builder: (dynamic project) => ItemProject(project: project),
-                    filter: _filterUserList,
+                    filter: (search) {
+                      return context.watch<UserProvider>().projectsList.where((element) {
+                        return element.title.toLowerCase().contains(search) || element.status.toString().contains(search);
+                      }).toList();
+                    },
                     inputDecoration: InputDecoration(
                       label: const Text('Enter login', style: TextStyle(color: Colors.white)),
                       enabledBorder: border,
@@ -153,11 +159,5 @@ class Projects extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  List<Project> _filterUserList(search) {
-    return user.projectsList.where((element) {
-      return element.title.toLowerCase().contains(search) || element.status.toString().contains(search);
-    }).toList();
   }
 }

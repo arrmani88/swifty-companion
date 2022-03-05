@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:swifty_companion/classes/user.dart';
 import 'package:swifty_companion/globals/globals.dart';
+import 'package:provider/provider.dart';
+import 'package:swifty_companion/providers/user_provider.dart';
 
 class SelectCursus extends StatefulWidget {
-  final Function parentSetState;
-  const SelectCursus({Key? key, required this.parentSetState}) : super(key: key);
+  const SelectCursus({Key? key}) : super(key: key);
   @override _SelectCursusState createState() => _SelectCursusState();
 }
 class _SelectCursusState extends State<SelectCursus> {
@@ -12,7 +14,7 @@ class _SelectCursusState extends State<SelectCursus> {
 
   @override
   void initState() {
-    for (String cursus in user.cursusNames) {
+    for (String cursus in context.read<UserProvider>().cursusNames) {
       cursuses!.add(DropdownMenuItem(value: cursus, child: FittedBox(child: Text(cursus), fit: BoxFit.fitWidth,),));
     }
     super.initState();
@@ -41,11 +43,11 @@ class _SelectCursusState extends State<SelectCursus> {
                 underline: Container(height: 2, color: Theme.of(context).secondaryHeaderColor,),
                 style: const TextStyle(color: Colors.white),
                 icon: const Icon(Icons.arrow_downward, color: Colors.white,),
-                value: selectedCursus,
+                value: context.watch<UserProvider>().selectedCursus,
                 items: cursuses,
                 onChanged: (newValue) => setState(() {
-                  selectedCursus = newValue!;
-                  widget.parentSetState();
+                  context.read<UserProvider>().updateSelectedCursus(newValue!);
+                  context.read<UserProvider>().parseUserVariableData();
                 }),
               ),
             )

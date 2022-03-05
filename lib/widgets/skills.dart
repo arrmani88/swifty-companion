@@ -2,6 +2,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:swifty_companion/globals/globals.dart';
+import 'package:provider/provider.dart';
+import 'package:swifty_companion/providers/user_provider.dart';
 
 class Skills extends StatefulWidget {
   const Skills({Key? key}) : super(key: key);
@@ -15,7 +17,7 @@ class _SkillsState extends State<Skills> {
     print('@@@@@@@@@ setting data @@@@@@@@@');
     skillsValues.clear();
     dataSets.clear();
-    user.skills[selectedCursus]?.forEach((key, value) => skillsValues.add(RadarEntry(value: value)));
+    context.watch<UserProvider>().skills[context.watch<UserProvider>().selectedCursus]?.forEach((key, value) => skillsValues.add(RadarEntry(value: value)));
     dataSets = [
       RadarDataSet(
         fillColor: null,
@@ -31,7 +33,7 @@ class _SkillsState extends State<Skills> {
 
     print('-------------------------- debug');
     for (RadarEntry re in skillsValues) print(re.value);
-    for (String str in (user.skills[selectedCursus]?.keys)!) print(str);
+    for (String str in (context.watch<UserProvider>().skills[context.watch<UserProvider>().selectedCursus]?.keys)!) print(str);
     print('debug --------------------------');
 
     return RadarChart(
@@ -45,8 +47,8 @@ class _SkillsState extends State<Skills> {
         borderData: FlBorderData(show: false), // contour dial the whole widget (malay9 lwalo)
         radarBackgroundColor: Colors.transparent,
         getTitle: (index) {
-          if (index < (user.skills[selectedCursus]?.keys.length)!) {
-            return (user.skills[selectedCursus]?.keys.elementAt(index))!;
+          if (index < (context.read<UserProvider>().skills[context.read<UserProvider>().selectedCursus]?.keys.length)!) {
+            return (context.read<UserProvider>().skills[context.read<UserProvider>().selectedCursus]?.keys.elementAt(index))!;
           }
           return '';
         },

@@ -6,9 +6,16 @@ import 'package:swifty_companion/constants/constants.dart';
 import 'routes/splash_route.dart';
 import 'routes/routes_holder.dart';
 import 'routes/projects.dart';
+import 'package:provider/provider.dart';
+import 'package:swifty_companion/providers/user_provider.dart';
 
 void main() {
-  runApp(const SwiftyCompanion());
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (_) => UserProvider())
+    ],
+    child: SwiftyCompanion()
+  ));
 }
 class SwiftyCompanion extends StatefulWidget {
   const SwiftyCompanion({Key? key}) : super(key: key);

@@ -6,6 +6,8 @@ import 'package:swifty_companion/globals/globals.dart';
 import 'package:swifty_companion/constants/constants.dart';
 import 'package:dio/dio.dart';
 import 'package:swifty_companion/functions/set_profile_picture_widget.dart';
+import 'package:provider/provider.dart';
+import 'package:swifty_companion/providers/user_provider.dart';
 
 class HomeRoute extends StatelessWidget {
   final RoundedLoadingButtonController _btnController = RoundedLoadingButtonController();
@@ -21,12 +23,14 @@ class HomeRoute extends StatelessWidget {
         hostname + '/v2/users/anel-bou',
         options: Options(headers: {'Authorization': 'Bearer ' + accessToken}),
       );
-      parseUserData(_response);
-      setProfilePictureWidget(user.imageURL);
+      await context.read<UserProvider>().parseUserConstantData(_response);
+      await context.read<UserProvider>().parseUserVariableData();
+      print('kkk');
+      // await setProfilePictureWidget(context);
     } catch (e) {
       print(e);
     }
-    Navigator.pushNamed(context, 'projects');
+    Navigator.pushNamed(context, 'profile_route');
   }
 
   @override

@@ -9,17 +9,14 @@ import 'package:swifty_companion/globals/globals.dart';
 import 'package:swifty_companion/widgets/skills.dart';
 import 'package:swifty_companion/widgets/skills_chart.dart';
 import 'package:swifty_companion/widgets/select_cursus.dart';
+import 'package:provider/provider.dart';
+import 'package:swifty_companion/providers/user_provider.dart';
 
 class ProfileRoute extends StatefulWidget {
   const ProfileRoute({Key? key}) : super(key: key);
   @override State<ProfileRoute> createState() => _ProfileRouteState();
 }
 class _ProfileRouteState extends State<ProfileRoute> {
-
-  changeCursus() {
-    print('>>>>>>>> PAGE REBUILT <<<<<<<<');
-    setState(() {});
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,25 +28,25 @@ class _ProfileRouteState extends State<ProfileRoute> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              CoverAndProfilePictures(profilePictureURL: user.imageURL,),
+              CoverAndProfilePictures(),
               const SizedBox(height: 25.0),
-              Text(user.displayName, style: const TextStyle(color: Colors.white, fontSize: 40.0, fontWeight: FontWeight.bold)),
-              Text('@'+user.login, style: const TextStyle(color: Colors.white, fontSize: 25.0, fontWeight: FontWeight.bold)),
+              Text(context.watch<UserProvider>().displayName, style: const TextStyle(color: Colors.white, fontSize: 40.0, fontWeight: FontWeight.bold)),
+              Text('@'+context.watch<UserProvider>().login, style: const TextStyle(color: Colors.white, fontSize: 25.0, fontWeight: FontWeight.bold)),
               BlurContainer(
                 children: [
-                  IntraInfo(title: 'Wallet', value: user.wallet.toString() + ' \$'),
-                  IntraInfo(title: 'Evaluation points', value: user.correctionPoint.toString()),
-                  SelectCursus(parentSetState: changeCursus),
+                  IntraInfo(title: 'Wallet', value: context.watch<UserProvider>().wallet.toString() + ' \$'),
+                  IntraInfo(title: 'Evaluation points', value: context.watch<UserProvider>().correctionPoint.toString()),
+                  SelectCursus(),
                   const SizedBox(height: 5.0),
-                  IntraInfo(title: 'Grade', value: user.grade[selectedCursus]!),
+                  IntraInfo(title: 'Grade', value: context.watch<UserProvider>().grade[context.watch<UserProvider>().selectedCursus]!),
                   const IntraInfo(title: 'ETEC', value: 'EDIT THIS'),
                 ],
               ),
               BlurContainer(
                 children: [
-                  PersonalInfo(icon: Icons.location_on, value: (user.location ?? 'Unavailable') + ', '+ user.campus,),
-                  PersonalInfo(icon: Icons.alternate_email, value: user.email),
-                  PersonalInfo(icon: Icons.local_phone, value: user.phone ?? 'Hidden'),
+                  PersonalInfo(icon: Icons.location_on, value: (context.watch<UserProvider>().location ?? 'Unavailable') + ', '+ context.watch<UserProvider>().campus,),
+                  PersonalInfo(icon: Icons.alternate_email, value: context.watch<UserProvider>().email),
+                  PersonalInfo(icon: Icons.local_phone, value: context.watch<UserProvider>().phone ?? 'Hidden'),
                   const SizedBox(height: 10.0),
                   LinearPercentIndicator(
                     progressColor: Theme.of(context).secondaryHeaderColor,
@@ -57,8 +54,8 @@ class _ProfileRouteState extends State<ProfileRoute> {
                     animation: true,
                     animationDuration: 3000,
                     lineHeight: 30.0,
-                    percent: user.level[selectedCursus]! / 21,
-                    center: Text('Level: ' + user.level[selectedCursus].toString(), style: const TextStyle(color: Colors.white)),
+                    percent: context.watch<UserProvider>().level[context.watch<UserProvider>().selectedCursus]! / 21,
+                    center: Text('Level: ' + context.watch<UserProvider>().level[context.watch<UserProvider>().selectedCursus].toString(), style: const TextStyle(color: Colors.white)),
                   )
                 ],
               ),
