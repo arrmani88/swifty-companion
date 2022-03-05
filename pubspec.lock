@@ -261,6 +261,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.27.3"
+  salomon_bottom_bar:
+    dependency: "direct main"
+    description:
+      name: salomon_bottom_bar
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.2.0"
   searchable_listview:
     dependency: "direct main"
     description:
@@ -273,13 +280,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.99"
-  sliding_clipped_nav_bar:
-    dependency: "direct main"
-    description:
-      name: sliding_clipped_nav_bar
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.0.0+3"
   source_span:
     dependency: transitive
     description:

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sliding_clipped_nav_bar/sliding_clipped_nav_bar.dart';
+
 import 'package:swifty_companion/constants/constants.dart';
 import 'package:swifty_companion/routes/profile_route.dart';
 import 'package:swifty_companion/routes/projects_route.dart';
@@ -14,10 +14,6 @@ class _RoutesHolderState extends State<RoutesHolder> {
   late PageController _pageController;
   int selectedIndex = 0;
 
-  List<BarItem> navBarItems = [
-    BarItem(title: 'Profile', icon: Icons.account_box_sharp),
-    BarItem(title: 'Projects', icon: Icons.task_sharp)
-  ];
 
   @override
   void initState() {
@@ -40,7 +36,14 @@ class _RoutesHolderState extends State<RoutesHolder> {
           ],
         ),
       ),
-      bottomNavigationBar: SlidingClippedNavBar(
+      bottomNavigationBar: ,
+    );
+  }
+}
+
+
+/*
+SlidingClippedNavBar(
         iconSize: 25.0,
         backgroundColor: Theme.of(context).secondaryHeaderColor,
         onButtonPressed: (int index) {
@@ -50,8 +53,5 @@ class _RoutesHolderState extends State<RoutesHolder> {
         barItems: navBarItems,
         activeColor: Theme.of(context).scaffoldBackgroundColor,
         selectedIndex: selectedIndex,
-      ),
-    );
-  }
-}
-
+      )
+* */
