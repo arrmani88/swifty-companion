@@ -121,8 +121,8 @@ CarouselSlider(
 //   }
 // }
 
-class Projects extends StatelessWidget {
-  Projects({Key? key}) : super(key: key);
+class ProjectsRoute extends StatelessWidget {
+  ProjectsRoute({Key? key}) : super(key: key);
   final OutlineInputBorder border = OutlineInputBorder(borderSide: const BorderSide(color: Colors.white), borderRadius: BorderRadius.circular(0.0));
 
   @override

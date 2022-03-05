@@ -14,7 +14,6 @@ class _SkillsState extends State<Skills> {
   List<RadarDataSet> dataSets = [];
 
   setData() {
-    print('@@@@@@@@@ setting data @@@@@@@@@');
     skillsValues.clear();
     dataSets.clear();
     context.watch<UserProvider>().skills[context.watch<UserProvider>().selectedCursus]?.forEach((key, value) => skillsValues.add(RadarEntry(value: value)));
@@ -30,12 +29,6 @@ class _SkillsState extends State<Skills> {
   @override
   Widget build(BuildContext context) {
     setData();
-
-    print('-------------------------- debug');
-    for (RadarEntry re in skillsValues) print(re.value);
-    for (String str in (context.watch<UserProvider>().skills[context.watch<UserProvider>().selectedCursus]?.keys)!) print(str);
-    print('debug --------------------------');
-
     return RadarChart(
       RadarChartData(
         titleTextStyle: TextStyle(color: Theme.of(context).secondaryHeaderColor, fontSize: 8),

@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
-import 'package:swifty_companion/functions/parse_user_data.dart';
 import 'package:swifty_companion/functions/validate_access_token.dart';
 import 'package:swifty_companion/globals/globals.dart';
 import 'package:swifty_companion/constants/constants.dart';
 import 'package:dio/dio.dart';
-import 'package:swifty_companion/functions/set_profile_picture_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:swifty_companion/providers/user_provider.dart';
 
@@ -25,12 +23,10 @@ class HomeRoute extends StatelessWidget {
       );
       await context.read<UserProvider>().parseUserConstantData(_response);
       await context.read<UserProvider>().parseUserVariableData();
-      print('kkk');
-      // await setProfilePictureWidget(context);
     } catch (e) {
       print(e);
     }
-    Navigator.pushNamed(context, 'profile_route');
+    Navigator.pushNamed(context, 'routes_holder');
   }
 
   @override

@@ -46,7 +46,7 @@ class _ProfileRouteState extends State<ProfileRoute> {
                 children: [
                   PersonalInfo(icon: Icons.location_on, value: (context.watch<UserProvider>().location ?? 'Unavailable') + ', '+ context.watch<UserProvider>().campus,),
                   PersonalInfo(icon: Icons.alternate_email, value: context.watch<UserProvider>().email),
-                  PersonalInfo(icon: Icons.local_phone, value: context.watch<UserProvider>().phone ?? 'Hidden'),
+                  PersonalInfo(icon: Icons.local_phone, value: context.watch<UserProvider>().phone),
                   const SizedBox(height: 10.0),
                   LinearPercentIndicator(
                     progressColor: Theme.of(context).secondaryHeaderColor,
@@ -59,11 +59,11 @@ class _ProfileRouteState extends State<ProfileRoute> {
                   )
                 ],
               ),
-              BlurContainer(
-                children: [
-                  SizedBox(height: 320, child: Skills()),
-                ],
-              )
+              // const BlurContainer(
+              //   children: [
+              //     SizedBox(height: 320, child: Skills()),
+              //   ],
+              // )
             ],
           ),
         ),

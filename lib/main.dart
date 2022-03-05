@@ -5,7 +5,7 @@ import 'package:swifty_companion/routes/profile_route.dart';
 import 'package:swifty_companion/constants/constants.dart';
 import 'routes/splash_route.dart';
 import 'routes/routes_holder.dart';
-import 'routes/projects.dart';
+import 'routes/projects_route.dart';
 import 'package:provider/provider.dart';
 import 'package:swifty_companion/providers/user_provider.dart';
 
@@ -48,7 +48,7 @@ class _SwiftyCompanionState extends State<SwiftyCompanion> {
         'home_route': (context) => HomeRoute(),
         'profile_route': (context) => ProfileRoute(),
         'routes_holder': (context) => RoutesHolder(),
-        'projects': (context) => Projects(),
+        'projects': (context) => ProjectsRoute(),
       },
     );
   }

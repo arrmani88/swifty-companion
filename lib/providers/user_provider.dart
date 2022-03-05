@@ -1,8 +1,6 @@
 import 'dart:collection';
-import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:swifty_companion/classes/project.dart';
-import 'package:swifty_companion/classes/user.dart';
 import 'package:swifty_companion/functions/get_status_string_from_enum.dart';
 import 'package:dio/dio.dart';
 
@@ -10,7 +8,7 @@ class UserProvider with ChangeNotifier {
 
   late String email;
   late String login;
-  String? phone;
+  late String phone;
   late String displayName;
   String? imageURL;
   late String? location;
@@ -48,8 +46,6 @@ class UserProvider with ChangeNotifier {
     correctionPoint = (response.data as Map<String, dynamic>)['correction_point'];
     wallet = (response.data as Map<String, dynamic>)['wallet'];
     for (var cursus in ((response.data as Map<String, dynamic>)['cursus_users'] as List<dynamic>)) {
-      // cursusNames.add((cursus['cursus'] as Map<String, dynamic>)['name']);
-      // cursusIds[(cursus['cursus'] as Map<String, dynamic>)['name']] = (cursus['cursus'] as Map<String, dynamic>)['id'];
       grade[(cursus['cursus'] as Map<String, dynamic>)['name']] = cursus['grade'] ?? 'Novice';
       level[(cursus['cursus'] as Map<String, dynamic>)['name']] = cursus['level'];
       skills[(cursus['cursus'] as Map<String, dynamic>)['name']] = SplayTreeMap<String, double>();
@@ -59,12 +55,15 @@ class UserProvider with ChangeNotifier {
         skills[(cursus['cursus'] as Map<String, dynamic>)['name']]![key] = skill['level'];
       }
     }
+    projectsList.clear();
     for (Map<String, dynamic> project in (response.data as Map<String, dynamic>)['projects_users']) {
-      projectsList.add(Project(
+      if ((project['cursus_ids'] as List).contains(cursusIds[selectedCursus])) {
+        projectsList.add(Project(
           title: (project['project'] as Map<String, dynamic>)['slug'],
           status: getStatusStringFromEnum(project['status'], project['validated?']),
-          finalMark: project['final_mark']
-      ));
+          finalMark: project['final_mark'])
+        );
+      }
     }
     notifyListeners();
     // user.imageURL = 'https://images.unsplash.com/photo-1526666923127-b2970f64b422?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3572&q=80.jpg';
