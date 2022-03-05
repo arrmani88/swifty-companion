@@ -41,7 +41,10 @@ class ProjectMarkBox extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.baseline,
             textBaseline: TextBaseline.alphabetic,
             children: [
-              Text(project.finalMark.toString(), style: const TextStyle(color: Colors.black, fontSize: 30.0)),
+              Text(
+                project.finalMark != null ? project.finalMark.toString() : '...',
+                style: const TextStyle(color: Colors.black, fontSize: 30.0)
+              ),
               const Text('/100', style: TextStyle(color: Colors.black, fontSize: 13.0))
             ],
           ),

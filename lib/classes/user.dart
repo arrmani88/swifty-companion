@@ -1,4 +1,5 @@
 import 'dart:collection';
+import 'package:swifty_companion/classes/project.dart';
 
 class User {
   late String email;
@@ -13,7 +14,9 @@ class User {
   late int correctionPoint;
   late int wallet;
   List cursusNames = [];
+  Map<String, int> cursusIds= {};
   Map<String, String> grade = {};
   Map<String, double> level = {};
   Map<String, SplayTreeMap<String, double>> skills = {};
+  List<Project> projectsList = [];
 }

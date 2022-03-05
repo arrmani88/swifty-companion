@@ -34,7 +34,7 @@ class _SwiftyCompanionState extends State<SwiftyCompanion> {
         canvasColor: const Color(0xffE5E5E5),
         // beige: const Color(0xffe8e4d1),
       ),
-      initialRoute: 'projects',
+      initialRoute: 'splash_route',
       routes: {
         'splash_route': (context) => SplashRoute(),
         'authorization_route': (context) => AuthorizationRoute(),

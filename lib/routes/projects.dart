@@ -122,11 +122,6 @@ CarouselSlider(
 class Projects extends StatelessWidget {
   Projects({Key? key}) : super(key: key);
   final OutlineInputBorder border = OutlineInputBorder(borderSide: const BorderSide(color: Colors.white), borderRadius: BorderRadius.circular(0.0));
-  List<Project> projectsList = [
-    Project(title: 'Project 1565655654654654654654654654654654', status: Status.failed, finalMark: 100),
-    Project(title: 'Project 2', status: Status.subscribed, finalMark: 200),
-    Project(title: 'Project 3', status: Status.validated, finalMark: 300),
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -142,7 +137,7 @@ class Projects extends StatelessWidget {
               children: [
                 Expanded(
                   child: SearchableList<Project>(
-                    initialList: projectsList,
+                    initialList: user.projectsList,
                     builder: (dynamic project) => ItemProject(project: project),
                     filter: _filterUserList,
                     inputDecoration: InputDecoration(
@@ -161,7 +156,7 @@ class Projects extends StatelessWidget {
   }
 
   List<Project> _filterUserList(search) {
-    return projectsList.where((element) {
+    return user.projectsList.where((element) {
       return element.title.toLowerCase().contains(search) || element.status.toString().contains(search);
     }).toList();
   }

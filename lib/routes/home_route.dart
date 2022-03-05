@@ -26,7 +26,7 @@ class HomeRoute extends StatelessWidget {
     } catch (e) {
       print(e);
     }
-    Navigator.pushNamed(context, 'profile_route');
+    Navigator.pushNamed(context, 'projects');
   }
 
   @override

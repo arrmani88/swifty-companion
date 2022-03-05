@@ -30,10 +30,9 @@ class _ItemProjectState extends State<ItemProject> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                LayoutBuilder(
-                  builder: (context, constraints) {
-                    return MarqueeWidget(child: Text(widget.project.title, style: TextStyle(color: Colors.white, fontSize: 25),));
-                  }
+                SizedBox(
+                  width: 170.0,
+                  child: MarqueeWidget(child: Text(widget.project.title, style: TextStyle(color: Colors.white, fontSize: 25),)),
                 ),
                 Text(parseProjectStatus(widget.project.status), style: TextStyle(color: Colors.white60))
               ],
