@@ -9,5 +9,5 @@ User user = User();
 const storage = FlutterSecureStorage();
 late String selectedCursus;
 late Widget profilePictureWidget;
-enum Status{subscribed, validated, failed}
+enum Status{waitingForCorrection, subscribed, validated, failed}
 

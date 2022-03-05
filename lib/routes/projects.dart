@@ -123,7 +123,7 @@ class Projects extends StatelessWidget {
   Projects({Key? key}) : super(key: key);
   final OutlineInputBorder border = OutlineInputBorder(borderSide: const BorderSide(color: Colors.white), borderRadius: BorderRadius.circular(0.0));
   List<Project> projectsList = [
-    Project(title: 'Project 1', status: Status.failed, finalMark: 100),
+    Project(title: 'Project 1565655654654654654654654654654654', status: Status.failed, finalMark: 100),
     Project(title: 'Project 2', status: Status.subscribed, finalMark: 200),
     Project(title: 'Project 3', status: Status.validated, finalMark: 300),
   ];
@@ -137,7 +137,7 @@ class Projects extends StatelessWidget {
           width: kScreenWidth,
           decoration: BoxDecoration(gradient: RadialGradient(colors: [Theme.of(context).splashColor, Theme.of(context).scaffoldBackgroundColor], center: const Alignment(0, -0.05), radius: 0.8)),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
+            padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 30.0),
             child: Column(
               children: [
                 Expanded(

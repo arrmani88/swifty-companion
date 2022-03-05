@@ -28,9 +28,10 @@ class ProjectMarkBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: const EdgeInsets.only(top: 5.0, right: 3.0),
       color: getColor(project.status),
-      height: 80.0,
-      width: 125.0,
+      height: 60.0,
+      width: 115.0,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
@@ -40,8 +41,8 @@ class ProjectMarkBox extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.baseline,
             textBaseline: TextBaseline.alphabetic,
             children: [
-              Text(project.finalMark.toString(), style: const TextStyle(color: Colors.black, fontSize: 35.0)),
-              const Text('/100', style: const TextStyle(color: Colors.black, fontSize: 13.0))
+              Text(project.finalMark.toString(), style: const TextStyle(color: Colors.black, fontSize: 30.0)),
+              const Text('/100', style: TextStyle(color: Colors.black, fontSize: 13.0))
             ],
           ),
         ],
