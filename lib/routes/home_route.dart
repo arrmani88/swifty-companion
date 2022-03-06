@@ -21,6 +21,7 @@ class HomeRoute extends StatelessWidget {
         hostname + '/v2/users/anel-bou',
         options: Options(headers: {'Authorization': 'Bearer ' + accessToken}),
       );
+      print('ACCESS TOKEN=<${accessToken}>');
       await context.read<UserProvider>().parseUserConstantData(_response);
       await context.read<UserProvider>().parseUserVariableData();
     } catch (e) {

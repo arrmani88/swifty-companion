@@ -38,6 +38,7 @@ class _SelectCursusState extends State<SelectCursus> {
             child: SizedBox(
               width: 1,
               child: DropdownButton<String>(
+                dropdownColor: Theme.of(context).secondaryHeaderColor,
                 isDense: true,
                 isExpanded: true,
                 underline: Container(height: 2, color: Theme.of(context).secondaryHeaderColor,),

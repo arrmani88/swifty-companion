@@ -142,7 +142,7 @@ class ProjectsRoute extends StatelessWidget {
                     initialList: context.watch<UserProvider>().projectsList,
                     builder: (dynamic project) => ItemProject(project: project),
                     filter: (search) {
-                      return context.watch<UserProvider>().projectsList.where((element) {
+                      return context.read<UserProvider>().projectsList.where((element) {
                         return element.title.toLowerCase().contains(search) || element.status.toString().contains(search);
                       }).toList();
                     },

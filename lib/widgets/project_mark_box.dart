@@ -3,9 +3,9 @@ import 'package:swifty_companion/globals/globals.dart';
 import 'package:swifty_companion/classes/project.dart';
 
 class ProjectMarkBox extends StatelessWidget {
-  Color subscribedColor = Color(0xff00babc);
-  Color validatedColor = Color(0xff5cb85c);
-  Color failedColor = Color(0xffD8636F);
+  Color subscribedColor = const Color(0xffdec666);
+  Color validatedColor = const Color(0xff79ab98);
+  Color failedColor = const Color(0xffdc8088);
   Project project;
   ProjectMarkBox({Key? key, required this.project}) : super(key: key);
 

@@ -30,7 +30,7 @@ class _ProfileRouteState extends State<ProfileRoute> {
             children: [
               CoverAndProfilePictures(),
               const SizedBox(height: 25.0),
-              Text(context.watch<UserProvider>().displayName, style: const TextStyle(color: Colors.white, fontSize: 40.0, fontWeight: FontWeight.bold)),
+              Text(context.watch<UserProvider>().displayName, style: const TextStyle(color: Colors.white, fontSize: 40.0, fontWeight: FontWeight.bold), textAlign: TextAlign.center,),
               Text('@'+context.watch<UserProvider>().login, style: const TextStyle(color: Colors.white, fontSize: 25.0, fontWeight: FontWeight.bold)),
               BlurContainer(
                 children: [

@@ -1,7 +1,5 @@
 print('<<<<<<<- ERROR POINT #2 ->>>>>>>');
 
-load image first then push 'profile_route'
 handle long name in profile_route
 remove circle cursors from radar chart
 try with a non existing username
-7ayed had function "setProfilePictureWidget" w 7ott lwidget d tswera direct fe tree
