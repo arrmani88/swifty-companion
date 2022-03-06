@@ -3,3 +3,7 @@ print('<<<<<<<- ERROR POINT #2 ->>>>>>>');
 handle long name in profile_route
 remove circle cursors from radar chart
 try with a non existing username
+sync navbar when manual scroll on pageview
+
+
+CHANGING PROVIDER VARIABLES DOESNT REFRESH THE TREE

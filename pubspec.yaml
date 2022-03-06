@@ -43,6 +43,7 @@ flutter:
     - assets/icons/lock_icon.png
     - assets/icons/broken_robot.png
     - assets/images/blank_profile_picture.png
+    - assets/images/not_found.png
 
   fonts:
     - family: weiss

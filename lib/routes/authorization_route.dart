@@ -13,28 +13,28 @@ class AuthorizationRoute extends StatefulWidget {
   @override State<AuthorizationRoute> createState() => _AuthorizationRouteState();
 }
 class _AuthorizationRouteState extends State<AuthorizationRoute> {
-  bool _showLoadingPopUp = false;
-  bool _showErrorPopUp = false;
+  bool _isLoadingPopUpDisplayed = false;
+  bool _isErrorPopUpDisplayed = false;
   String? descriptionMessage;
 
   closeErrorPopUp() {
-    setState(() => _showErrorPopUp = false);
+    setState(() => _isErrorPopUpDisplayed = false);
   }
 
   closeLoadingPopUp() {
-    setState(() => _showLoadingPopUp = false);
+    setState(() => _isLoadingPopUpDisplayed = false);
   }
 
   describeTheError(String msg) {
     setState(() {
       descriptionMessage = msg;
-      _showErrorPopUp = true;
-      _showLoadingPopUp = false;
+      _isErrorPopUpDisplayed = true;
+      _isLoadingPopUpDisplayed = false;
     });
   }
 
   onLockTap() async {
-    setState(() => _showLoadingPopUp = true);
+    setState(() => _isLoadingPopUpDisplayed = true);
     try {
       await InternetAddress.lookup('api.intra.42.fr');
       await validateAccessToken();
@@ -55,7 +55,7 @@ class _AuthorizationRouteState extends State<AuthorizationRoute> {
       body: Stack(
         children: [
           InkWell(
-            onTap: _showLoadingPopUp == false ? null : () => setState(() =>_showLoadingPopUp = false),
+            onTap: _isLoadingPopUpDisplayed == false ? null : () => setState(() =>_isLoadingPopUpDisplayed = false),
             child: Container(
               decoration: BoxDecoration(gradient: RadialGradient(colors: [Theme.of(context).splashColor, Theme.of(context).scaffoldBackgroundColor], radius: 0.8)),
               child: SafeArea(
@@ -86,9 +86,9 @@ class _AuthorizationRouteState extends State<AuthorizationRoute> {
               )
             ),
           ),
-          if (_showLoadingPopUp == true && _showErrorPopUp == false)
+          if (_isLoadingPopUpDisplayed == true && _isErrorPopUpDisplayed == false)
             LoadingPopUp(callParentSetState: closeLoadingPopUp),
-          if (_showErrorPopUp == true)
+          if (_isErrorPopUpDisplayed == true)
             ErrorPopUp(closePopUp: closeErrorPopUp, descriptionMessage: descriptionMessage)
         ],
       ),

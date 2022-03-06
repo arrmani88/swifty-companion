@@ -74,5 +74,4 @@ class UserProvider with ChangeNotifier {
     selectedCursus = newCursus;
     notifyListeners();
   }
-
 }

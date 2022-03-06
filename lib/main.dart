@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:swifty_companion/providers/pop_up_provider.dart';
 import 'package:swifty_companion/routes/home_route.dart';
 import 'package:swifty_companion/routes/authorization_route.dart';
 import 'package:swifty_companion/routes/profile_route.dart';
@@ -9,10 +10,12 @@ import 'routes/projects_route.dart';
 import 'package:provider/provider.dart';
 import 'package:swifty_companion/providers/user_provider.dart';
 
+
 void main() {
   runApp(MultiProvider(
     providers: [
-      ChangeNotifierProvider(create: (_) => UserProvider())
+      ChangeNotifierProvider(create: (_) => UserProvider()),
+      ChangeNotifierProvider(create: (_) => PopUpProvider()),
     ],
     child: SwiftyCompanion()
   ));
