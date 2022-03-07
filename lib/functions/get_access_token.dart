@@ -8,7 +8,7 @@ Future<Response> getAccessToken() async {
 
   try {
      response = await dio.post(
-        authorizationLink,
+        kAuthorizationLink,
         data: {
           'grant_type': 'client_credentials',
           'client_id': '30480b7ab0ff85a13ebca0ac0bd338f56dfaf0904ef8bc4866c3866930212be3',

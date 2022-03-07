@@ -21,14 +21,13 @@ class _HomeRouteState extends State<HomeRoute> {
   final RoundedLoadingButtonController _btnController = RoundedLoadingButtonController();
   final OutlineInputBorder border = OutlineInputBorder(borderSide: const BorderSide(color: Colors.white), borderRadius: BorderRadius.circular(0.0));
   final TextEditingController textController = TextEditingController();
-  bool _isUserNotFoundPopUpDisplayed = true;
 
   void onSearchPressed (BuildContext context, RoundedLoadingButtonController _btnController) async {
     try {
       await validateAccessToken();
       Response _response = await dio.get(
         // hostname + '/v2/users/' + textController.text,
-        hostname + '/v2/users/hbel-hou',
+        kHostname + '/v2/users/hbel-hou',
         options: Options(headers: {'Authorization': 'Bearer ' + accessToken}),
       );
       print('ACCESS TOKEN=<$accessToken>');
