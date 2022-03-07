@@ -36,7 +36,7 @@ class _ProfileRouteState extends State<ProfileRoute> {
                 children: [
                   IntraInfo(title: 'Wallet', value: context.watch<UserProvider>().wallet.toString() + ' \$'),
                   IntraInfo(title: 'Evaluation points', value: context.watch<UserProvider>().correctionPoint.toString()),
-                  SelectCursus(),
+                  const SelectCursus(),
                   const SizedBox(height: 5.0),
                   IntraInfo(title: 'Grade', value: context.watch<UserProvider>().grade[context.watch<UserProvider>().selectedCursus]!),
                   const IntraInfo(title: 'ETEC', value: 'EDIT THIS'),

@@ -1,11 +1,8 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
-import 'package:swifty_companion/functions/save_token_to_local_storage.dart';
-import 'package:swifty_companion/globals/globals.dart';
 import 'package:swifty_companion/widgets/pop_ups/loading_pop_up.dart';
-import 'dart:io';
 import 'package:swifty_companion/widgets/pop_ups/error_pop_up.dart';
-import 'package:swifty_companion/functions/get_access_token.dart';
 import 'package:swifty_companion/functions/validate_access_token.dart';
 
 class AuthorizationRoute extends StatefulWidget {
@@ -20,11 +17,9 @@ class _AuthorizationRouteState extends State<AuthorizationRoute> {
   closeErrorPopUp() {
     setState(() => _isErrorPopUpDisplayed = false);
   }
-
   closeLoadingPopUp() {
     setState(() => _isLoadingPopUpDisplayed = false);
   }
-
   describeTheError(String msg) {
     setState(() {
       descriptionMessage = msg;
@@ -32,7 +27,6 @@ class _AuthorizationRouteState extends State<AuthorizationRoute> {
       _isLoadingPopUpDisplayed = false;
     });
   }
-
   onLockTap() async {
     setState(() => _isLoadingPopUpDisplayed = true);
     try {

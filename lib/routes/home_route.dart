@@ -23,12 +23,12 @@ class _HomeRouteState extends State<HomeRoute> {
   final TextEditingController textController = TextEditingController();
   bool _isUserNotFoundPopUpDisplayed = true;
 
-  void onSearchPressed (BuildContext context) async {
+  void onSearchPressed (BuildContext context, RoundedLoadingButtonController _btnController) async {
     try {
       await validateAccessToken();
       Response _response = await dio.get(
         // hostname + '/v2/users/' + textController.text,
-        hostname + '/v2/users/anel-boup',
+        hostname + '/v2/users/hbel-hou',
         options: Options(headers: {'Authorization': 'Bearer ' + accessToken}),
       );
       print('ACCESS TOKEN=<$accessToken>');
@@ -46,6 +46,7 @@ class _HomeRouteState extends State<HomeRoute> {
         print(e);
       }
     }
+    _btnController.reset();
   }
 
   @override
@@ -91,7 +92,7 @@ class _HomeRouteState extends State<HomeRoute> {
                               disabledColor: const Color(0xFFFFFFFF),
                               valueColor: Theme.of(context).scaffoldBackgroundColor,
                               controller: _btnController,
-                              onPressed: () => onSearchPressed(context),
+                              onPressed: () => onSearchPressed(context, _btnController),
                               child: const Padding(
                                 padding: EdgeInsets.only(top: 3.5),
                                 child: Text('Search', style: TextStyle(color: Colors.black, fontSize: 20.0)),
@@ -107,7 +108,7 @@ class _HomeRouteState extends State<HomeRoute> {
               ),
             ),
           ),
-          if (context.read<PopUpProvider>().isUserNotFoundPopUpDisplayed == true) const UserNotFoundPopUp()
+          if (context.watch<PopUpProvider>().isUserNotFoundPopUpDisplayed == true) const UserNotFoundPopUp()
         ],
       ),
     );
