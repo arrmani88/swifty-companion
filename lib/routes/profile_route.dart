@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:swifty_companion/constants/constants.dart';
+import 'package:swifty_companion/widgets/black_hole_absorption.dart';
 import 'package:swifty_companion/widgets/blur_container.dart';
 import 'package:swifty_companion/widgets/intra_info.dart';
 import 'package:swifty_companion/widgets/cover_and_profile_pictures.dart';
 import 'package:swifty_companion/widgets/personal_info.dart';
 import 'package:percent_indicator/percent_indicator.dart';
-import 'package:swifty_companion/globals/globals.dart';
-import 'package:swifty_companion/widgets/skills.dart';
-import 'package:swifty_companion/widgets/skills_chart.dart';
 import 'package:swifty_companion/widgets/select_cursus.dart';
 import 'package:provider/provider.dart';
 import 'package:swifty_companion/providers/user_provider.dart';
+import 'package:swifty_companion/widgets/skills.dart';
 
 class ProfileRoute extends StatefulWidget {
   const ProfileRoute({Key? key}) : super(key: key);
@@ -47,6 +46,8 @@ class _ProfileRouteState extends State<ProfileRoute> {
                   PersonalInfo(icon: Icons.location_on, value: (context.watch<UserProvider>().location ?? 'Unavailable') + ', '+ context.watch<UserProvider>().campus,),
                   PersonalInfo(icon: Icons.alternate_email, value: context.watch<UserProvider>().email),
                   PersonalInfo(icon: Icons.local_phone, value: context.watch<UserProvider>().phone),
+                  if (context.read<UserProvider>().blackHoleAbsorption[context.watch<UserProvider>().selectedCursus] != null)
+                    BlackHoleAbsorption(),
                   const SizedBox(height: 10.0),
                   LinearPercentIndicator(
                     progressColor: Theme.of(context).secondaryHeaderColor,
@@ -56,7 +57,8 @@ class _ProfileRouteState extends State<ProfileRoute> {
                     lineHeight: 30.0,
                     percent: context.watch<UserProvider>().level[context.watch<UserProvider>().selectedCursus]! / 21,
                     center: Text('Level: ' + context.watch<UserProvider>().level[context.watch<UserProvider>().selectedCursus].toString(), style: const TextStyle(color: Colors.white)),
-                  )
+                  ),
+                  // const SizedBox(height: 10.0),
                 ],
               ),
               // const BlurContainer(

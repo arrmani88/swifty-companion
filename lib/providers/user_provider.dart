@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:swifty_companion/classes/project.dart';
 import 'package:swifty_companion/functions/get_status_string_from_enum.dart';
 import 'package:dio/dio.dart';
+import 'package:swifty_companion/functions/get_black_hole_absorption.dart';
 
 class UserProvider with ChangeNotifier {
 
@@ -24,6 +25,7 @@ class UserProvider with ChangeNotifier {
   List<Project> projectsList = [];
   late String selectedCursus;
   late Response response;
+  Map<String, int?> blackHoleAbsorption = {};
 
   parseUserConstantData(Response rsp) {
     response = rsp;
@@ -46,6 +48,7 @@ class UserProvider with ChangeNotifier {
     correctionPoint = (response.data as Map<String, dynamic>)['correction_point'];
     wallet = (response.data as Map<String, dynamic>)['wallet'];
     for (var cursus in ((response.data as Map<String, dynamic>)['cursus_users'] as List<dynamic>)) {
+      blackHoleAbsorption[(cursus['cursus'] as Map<String, dynamic>)['name']] = getBlackHoleAbsorption(cursus['blackholed_at']);
       grade[(cursus['cursus'] as Map<String, dynamic>)['name']] = cursus['grade'] ?? 'Novice';
       level[(cursus['cursus'] as Map<String, dynamic>)['name']] = cursus['level'];
       skills[(cursus['cursus'] as Map<String, dynamic>)['name']] = SplayTreeMap<String, double>();

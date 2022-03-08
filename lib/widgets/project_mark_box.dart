@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:swifty_companion/globals/globals.dart';
 import 'package:swifty_companion/classes/project.dart';
+import 'package:swifty_companion/constants/constants.dart';
 
 class ProjectMarkBox extends StatelessWidget {
-  Color subscribedColor = const Color(0xffdec666);
-  Color validatedColor = const Color(0xff79ab98);
-  Color failedColor = const Color(0xffdc8088);
   Project project;
   ProjectMarkBox({Key? key, required this.project}) : super(key: key);
 
   Color getColor(var status) {
     switch (status) {
-      case(Status.validated): return validatedColor;
-      case(Status.failed): return failedColor;
+      case(Status.validated): return kValidatedColor;
+      case(Status.failed): return kFailedColor;
     }
-    return subscribedColor;
+    return kSubscribedColor;
   }
 
   Icon getIcon(var status) {

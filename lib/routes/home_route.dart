@@ -27,11 +27,9 @@ class _HomeRouteState extends State<HomeRoute> {
       await validateAccessToken();
       Response _response = await dio.get(
         // hostname + '/v2/users/' + textController.text,
-        kHostname + '/v2/users/hbel-hou',
+        kHostname + '/v2/users/anel-bou',
         options: Options(headers: {'Authorization': 'Bearer ' + accessToken}),
       );
-      print('ACCESS TOKEN=<$accessToken>');
-
       if (_response.statusCode! >= 200 && _response.statusCode! <= 299) {
         await context.read<UserProvider>().parseUserConstantData(_response);
         await context.read<UserProvider>().parseUserVariableData();

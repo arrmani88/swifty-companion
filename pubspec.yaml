@@ -44,6 +44,7 @@ flutter:
     - assets/icons/broken_robot.png
     - assets/images/blank_profile_picture.png
     - assets/images/not_found.png
+    - assets/icons/black_hole.png
 
   fonts:
     - family: weiss

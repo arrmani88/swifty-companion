@@ -3,6 +3,7 @@ import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'package:swifty_companion/constants/constants.dart';
 import 'package:swifty_companion/routes/profile_route.dart';
 import 'package:swifty_companion/routes/projects_route.dart';
+import 'package:swifty_companion/routes/clusters_route.dart';
 
 class RoutesHolder extends StatefulWidget {
   const RoutesHolder({Key? key}) : super(key: key);
@@ -33,7 +34,8 @@ class _RoutesHolderState extends State<RoutesHolder> {
           controller: _pageController,
           children: [
             ProfileRoute(),
-            ProjectsRoute()
+            ProjectsRoute(),
+            ClustersRoute(),
           ],
         ),
       ),
@@ -47,7 +49,7 @@ class _RoutesHolderState extends State<RoutesHolder> {
           ),
           child: SalomonBottomBar(
 
-            margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 100.0),
+            margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 70.0),
             itemPadding: const EdgeInsets.symmetric(vertical: 3.0, horizontal: 10.0),
             currentIndex: selectedIndex,
             onTap: (i) => setState(() {
@@ -63,6 +65,11 @@ class _RoutesHolderState extends State<RoutesHolder> {
               SalomonBottomBarItem(
                 icon:  const Icon(Icons.task_sharp),
                 title:  const Text('Projects'),
+                selectedColor: Theme.of(context).splashColor,
+              ),
+              SalomonBottomBarItem(
+                icon:  const Icon(Icons.computer),
+                title:  const Text('Clusters'),
                 selectedColor: Theme.of(context).splashColor,
               ),
             ],

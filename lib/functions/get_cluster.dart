@@ -5,15 +5,17 @@ import '../globals/globals.dart';
 
 getCluster() async {
   await validateAccessToken();
-  Future<Response> _response1 = dio.get(
+  response1 = dio.get(
     kHostname + '/v2/campus/16/locations?page[size]=100&page[number]=1&filter[host]',
     options: Options(headers: {'Authorization': 'Bearer ' + accessToken}),
   );
-  Future<Response> _response2 = dio.get(
+  await Future.delayed(const Duration(milliseconds: 550));
+  response2 = dio.get(
     kHostname + '/v2/campus/16/locations?page[size]=100&page[number]=2&filter[host]',
     options: Options(headers: {'Authorization': 'Bearer ' + accessToken}),
   );
-  Future<Response> _response3 = dio.get(
+  await Future.delayed(const Duration(milliseconds: 550));
+  response3 = dio.get(
     kHostname + '/v2/campus/16/locations?page[size]=100&page[number]=3&filter[host]',
     options: Options(headers: {'Authorization': 'Bearer ' + accessToken}),
   );

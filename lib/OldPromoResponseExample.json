@@ -12,26 +12,36 @@
   "image_url": "https://cdn.intra.42.fr/users/anel-bou.jpg",
   "new_image_url": "https://profile.intra.42.fr/users/anel-bou/photo",
   "staff?": false,
-  "correction_point": 3,
+  "correction_point": 4,
   "pool_month": "january",
   "pool_year": "2019",
-  "location": "e2r13p2",
-  "wallet": 35,
-  "anonymize_date": "2023-02-11T00:00:00.000+01:00",
+  "location": "e2r12p2",
+  "wallet": 70,
+  "anonymize_date": "2023-03-07T00:00:00.000+01:00",
   "created_at": "2018-12-26T10:53:00.635Z",
-  "updated_at": "2022-02-11T12:04:21.920Z",
+  "updated_at": "2022-03-08T12:07:44.336Z",
   "alumni": false,
   "is_launched?": false,
   "groups": [],
   "cursus_users": [
     {
-      "grade": "Lieutenant",
-      "level": 9.07,
+      "grade": "Commander",
+      "level": 12.04,
       "skills": [
+        {
+          "id": 16,
+          "name": "Company experience",
+          "level": 10.83
+        },
         {
           "id": 1,
           "name": "Algorithms & AI",
           "level": 10.77
+        },
+        {
+          "id": 7,
+          "name": "Group & interpersonal",
+          "level": 8.2
         },
         {
           "id": 3,
@@ -47,11 +57,6 @@
           "id": 4,
           "name": "Unix",
           "level": 3.07
-        },
-        {
-          "id": 7,
-          "name": "Group & interpersonal",
-          "level": 2.73
         },
         {
           "id": 14,
@@ -77,21 +82,16 @@
           "id": 15,
           "name": "Technology integration",
           "level": 0.87
-        },
-        {
-          "id": 16,
-          "name": "Company experience",
-          "level": 0.53
         }
       ],
       "blackholed_at": null,
       "id": 59987,
       "begin_at": "2019-03-24T23:00:00.000Z",
-      "end_at": null,
+      "end_at": "2022-02-27T00:00:00.000Z",
       "cursus_id": 1,
       "has_coalition": true,
       "created_at": "2019-03-13T14:32:17.437Z",
-      "updated_at": "2019-03-13T14:32:17.437Z",
+      "updated_at": "2022-02-28T10:39:23.768Z",
       "user": {
         "id": 48944,
         "email": "gkaelboudali@gmail.com",
@@ -106,14 +106,14 @@
         "image_url": "https://cdn.intra.42.fr/users/anel-bou.jpg",
         "new_image_url": "https://profile.intra.42.fr/users/anel-bou/photo",
         "staff?": false,
-        "correction_point": 3,
+        "correction_point": 4,
         "pool_month": "january",
         "pool_year": "2019",
-        "location": "e2r13p2",
-        "wallet": 35,
-        "anonymize_date": "2023-02-11T00:00:00.000+01:00",
+        "location": "e2r12p2",
+        "wallet": 70,
+        "anonymize_date": "2023-03-07T00:00:00.000+01:00",
         "created_at": "2018-12-26T10:53:00.635Z",
-        "updated_at": "2022-02-11T12:04:21.920Z",
+        "updated_at": "2022-03-08T12:07:44.336Z",
         "alumni": false,
         "is_launched?": false
       },
@@ -171,14 +171,14 @@
         "image_url": "https://cdn.intra.42.fr/users/anel-bou.jpg",
         "new_image_url": "https://profile.intra.42.fr/users/anel-bou/photo",
         "staff?": false,
-        "correction_point": 3,
+        "correction_point": 4,
         "pool_month": "january",
         "pool_year": "2019",
-        "location": "e2r13p2",
-        "wallet": 35,
-        "anonymize_date": "2023-02-11T00:00:00.000+01:00",
+        "location": "e2r12p2",
+        "wallet": 70,
+        "anonymize_date": "2023-03-07T00:00:00.000+01:00",
         "created_at": "2018-12-26T10:53:00.635Z",
-        "updated_at": "2022-02-11T12:04:21.920Z",
+        "updated_at": "2022-03-08T12:07:44.336Z",
         "alumni": false,
         "is_launched?": false
       },
@@ -188,15 +188,313 @@
         "name": "Piscine C décloisonnée",
         "slug": "piscine-c-decloisonnee"
       }
+    },
+    {
+      "grade": "Member",
+      "level": 12.04,
+      "skills": [
+        {
+          "id": 16,
+          "name": "Company experience",
+          "level": 10.74
+        },
+        {
+          "id": 1,
+          "name": "Algorithms & AI",
+          "level": 10.63
+        },
+        {
+          "id": 7,
+          "name": "Group & interpersonal",
+          "level": 7.03
+        },
+        {
+          "id": 3,
+          "name": "Rigor",
+          "level": 4.82
+        },
+        {
+          "id": 2,
+          "name": "Imperative programming",
+          "level": 4.76
+        },
+        {
+          "id": 4,
+          "name": "Unix",
+          "level": 4.28
+        },
+        {
+          "id": 14,
+          "name": "Adaptation & creativity",
+          "level": 4.01
+        },
+        {
+          "id": 10,
+          "name": "Network & system administration",
+          "level": 3.79
+        },
+        {
+          "id": 5,
+          "name": "Graphics",
+          "level": 3.07
+        },
+        {
+          "id": 13,
+          "name": "Organization",
+          "level": 3.0
+        },
+        {
+          "id": 15,
+          "name": "Technology integration",
+          "level": 2.45
+        }
+      ],
+      "blackholed_at": "2019-06-09T23:00:00.000Z",
+      "id": 161675,
+      "begin_at": "2019-03-24T23:00:00.000Z",
+      "end_at": null,
+      "cursus_id": 21,
+      "has_coalition": true,
+      "created_at": "2022-02-28T10:38:59.853Z",
+      "updated_at": "2022-02-28T10:38:59.853Z",
+      "user": {
+        "id": 48944,
+        "email": "gkaelboudali@gmail.com",
+        "login": "anel-bou",
+        "first_name": "Anas",
+        "last_name": "El boudali",
+        "usual_full_name": "Anas El Boudali",
+        "usual_first_name": null,
+        "url": "https://api.intra.42.fr/v2/users/anel-bou",
+        "phone": "hidden",
+        "displayname": "Anas El Boudali",
+        "image_url": "https://cdn.intra.42.fr/users/anel-bou.jpg",
+        "new_image_url": "https://profile.intra.42.fr/users/anel-bou/photo",
+        "staff?": false,
+        "correction_point": 4,
+        "pool_month": "january",
+        "pool_year": "2019",
+        "location": "e2r12p2",
+        "wallet": 70,
+        "anonymize_date": "2023-03-07T00:00:00.000+01:00",
+        "created_at": "2018-12-26T10:53:00.635Z",
+        "updated_at": "2022-03-08T12:07:44.336Z",
+        "alumni": false,
+        "is_launched?": false
+      },
+      "cursus": {
+        "id": 21,
+        "created_at": "2019-07-29T08:45:17.896Z",
+        "name": "42cursus",
+        "slug": "42cursus"
+      }
     }
   ],
   "projects_users": [
     {
-      "id": 2422658,
+      "id": 2518035,
       "occurrence": 0,
       "final_mark": null,
-      "status": "waiting_for_correction",
+      "status": "in_progress",
       "validated?": null,
+      "current_team_id": 4034280,
+      "project": {
+        "id": 1395,
+        "name": "swifty-companion",
+        "slug": "42cursus-swifty-companion",
+        "parent_id": null
+      },
+      "cursus_ids": [
+        21
+      ],
+      "marked_at": null,
+      "marked": false,
+      "retriable_at": null,
+      "created_at": "2022-02-28T11:43:12.040Z",
+      "updated_at": "2022-02-28T11:44:37.867Z"
+    },
+    {
+      "id": 2517977,
+      "occurrence": 0,
+      "final_mark": 100,
+      "status": "finished",
+      "validated?": true,
+      "current_team_id": 4034193,
+      "project": {
+        "id": 1643,
+        "name": "Internship I - Peer Video",
+        "slug": "internship-i-internship-i-peer-video",
+        "parent_id": 1638
+      },
+      "cursus_ids": [
+        21
+      ],
+      "marked_at": "2021-04-02T17:29:36.000Z",
+      "marked": true,
+      "retriable_at": "2022-02-28T10:39:09.545Z",
+      "created_at": "2022-02-28T10:39:09.545Z",
+      "updated_at": "2022-02-28T10:39:09.545Z"
+    },
+    {
+      "id": 2517976,
+      "occurrence": 0,
+      "final_mark": 98,
+      "status": "finished",
+      "validated?": true,
+      "current_team_id": 4034192,
+      "project": {
+        "id": 1642,
+        "name": "internship I - Company Final Evaluation",
+        "slug": "internship-i-internship-i-company-final-evaluation",
+        "parent_id": 1638
+      },
+      "cursus_ids": [
+        21
+      ],
+      "marked_at": "2021-04-02T17:29:36.000Z",
+      "marked": true,
+      "retriable_at": "2022-02-28T10:39:09.418Z",
+      "created_at": "2022-02-28T10:39:09.418Z",
+      "updated_at": "2022-02-28T10:39:09.418Z"
+    },
+    {
+      "id": 2517975,
+      "occurrence": 0,
+      "final_mark": 118,
+      "status": "finished",
+      "validated?": true,
+      "current_team_id": 4034191,
+      "project": {
+        "id": 1641,
+        "name": "internship I - Company Mid Evaluation",
+        "slug": "internship-i-internship-i-company-mid-evaluation",
+        "parent_id": 1638
+      },
+      "cursus_ids": [
+        21
+      ],
+      "marked_at": "2021-04-02T17:29:36.000Z",
+      "marked": true,
+      "retriable_at": "2022-02-28T10:39:09.326Z",
+      "created_at": "2022-02-28T10:39:09.326Z",
+      "updated_at": "2022-02-28T10:39:09.326Z"
+    },
+    {
+      "id": 2517974,
+      "occurrence": 0,
+      "final_mark": 125,
+      "status": "finished",
+      "validated?": true,
+      "current_team_id": 4034190,
+      "project": {
+        "id": 1639,
+        "name": "Internship I - Duration",
+        "slug": "internship-i-internship-i-duration",
+        "parent_id": 1638
+      },
+      "cursus_ids": [
+        21
+      ],
+      "marked_at": "2021-04-02T17:29:36.000Z",
+      "marked": true,
+      "retriable_at": "2022-02-28T10:39:09.282Z",
+      "created_at": "2022-02-28T10:39:09.282Z",
+      "updated_at": "2022-02-28T10:39:09.282Z"
+    },
+    {
+      "id": 2517973,
+      "occurrence": 0,
+      "final_mark": 100,
+      "status": "finished",
+      "validated?": true,
+      "current_team_id": 4034189,
+      "project": {
+        "id": 1640,
+        "name": "internship I - Contract Upload",
+        "slug": "internship-i-internship-i-contract-upload",
+        "parent_id": 1638
+      },
+      "cursus_ids": [
+        21
+      ],
+      "marked_at": "2021-04-02T17:29:36.000Z",
+      "marked": true,
+      "retriable_at": "2022-02-28T10:39:09.245Z",
+      "created_at": "2022-02-28T10:39:09.245Z",
+      "updated_at": "2022-02-28T10:39:09.245Z"
+    },
+    {
+      "id": 2517972,
+      "occurrence": 0,
+      "final_mark": 119,
+      "status": "finished",
+      "validated?": true,
+      "current_team_id": 4034188,
+      "project": {
+        "id": 1638,
+        "name": "Internship I",
+        "slug": "internship-i",
+        "parent_id": null
+      },
+      "cursus_ids": [
+        21
+      ],
+      "marked_at": "2021-04-02T17:29:36.000Z",
+      "marked": true,
+      "retriable_at": "2022-02-28T10:39:09.186Z",
+      "created_at": "2022-02-28T10:39:09.186Z",
+      "updated_at": "2022-02-28T10:39:09.186Z"
+    },
+    {
+      "id": 2517971,
+      "occurrence": 0,
+      "final_mark": 124,
+      "status": "finished",
+      "validated?": true,
+      "current_team_id": 4034186,
+      "project": {
+        "id": 1470,
+        "name": "lem_in",
+        "slug": "42cursus-lem_in",
+        "parent_id": null
+      },
+      "cursus_ids": [
+        21
+      ],
+      "marked_at": "2021-02-20T15:34:53.000Z",
+      "marked": true,
+      "retriable_at": "2022-02-28T10:39:03.556Z",
+      "created_at": "2022-02-28T10:39:03.556Z",
+      "updated_at": "2022-02-28T10:39:03.556Z"
+    },
+    {
+      "id": 2517970,
+      "occurrence": 0,
+      "final_mark": 125,
+      "status": "finished",
+      "validated?": true,
+      "current_team_id": 4034185,
+      "project": {
+        "id": 1475,
+        "name": "corewar",
+        "slug": "42cursus-corewar",
+        "parent_id": null
+      },
+      "cursus_ids": [
+        21
+      ],
+      "marked_at": "2021-04-01T18:28:43.000Z",
+      "marked": true,
+      "retriable_at": "2022-02-28T10:39:03.145Z",
+      "created_at": "2022-02-28T10:39:03.145Z",
+      "updated_at": "2022-02-28T10:39:03.145Z"
+    },
+    {
+      "id": 2422658,
+      "occurrence": 0,
+      "final_mark": 100,
+      "status": "finished",
+      "validated?": true,
       "current_team_id": 3900789,
       "project": {
         "id": 121,
@@ -207,11 +505,33 @@
       "cursus_ids": [
         1
       ],
-      "marked_at": null,
-      "marked": false,
-      "retriable_at": null,
+      "marked_at": "2022-02-28T10:38:55.892Z",
+      "marked": true,
+      "retriable_at": "2022-02-28T10:38:57.832Z",
       "created_at": "2021-11-27T10:16:29.593Z",
-      "updated_at": "2022-01-03T12:02:38.683Z"
+      "updated_at": "2022-02-28T10:38:57.847Z"
+    },
+    {
+      "id": 2146081,
+      "occurrence": 0,
+      "final_mark": 119,
+      "status": "finished",
+      "validated?": true,
+      "current_team_id": 3528864,
+      "project": {
+        "id": 118,
+        "name": "First Internship",
+        "slug": "first-internship",
+        "parent_id": null
+      },
+      "cursus_ids": [
+        1
+      ],
+      "marked_at": "2022-02-28T10:38:56.396Z",
+      "marked": true,
+      "retriable_at": "2022-02-28T10:38:57.804Z",
+      "created_at": "2021-04-02T17:29:36.646Z",
+      "updated_at": "2022-02-28T10:38:57.819Z"
     },
     {
       "id": 2180046,
@@ -301,29 +621,6 @@
       "created_at": "2021-05-24T09:23:03.596Z",
       "updated_at": "2021-05-24T09:23:04.035Z"
     },
-    {
-      "id": 2146081,
-      "occurrence": 0,
-      "final_mark": null,
-      "status": "in_progress",
-      "validated?": null,
-      "current_team_id": 3528864,
-      "project": {
-        "id": 118,
-        "name": "First Internship",
-        "slug": "first-internship",
-        "parent_id": null
-      },
-      "cursus_ids": [
-        1
-      ],
-      "marked_at": null,
-      "marked": false,
-      "retriable_at": null,
-      "created_at": "2021-04-02T17:29:36.646Z",
-      "updated_at": "2021-04-02T17:29:36.939Z"
-    },
-
     {
       "id": 2110227,
       "occurrence": 1,
@@ -1971,7 +2268,7 @@
       "kind": "scolarity",
       "visible": true,
       "image": "/uploads/achievement/image/169/BADGE_SCOLARITY_billgates.svg",
-      "nbr_of_success": 1,
+      "nbr_of_success": 10,
       "users_url": "https://api.intra.42.fr/v2/achievements/169/users"
     },
     {
@@ -2085,6 +2382,28 @@
       "users_url": "https://api.intra.42.fr/v2/achievements/25/users"
     },
     {
+      "id": 26,
+      "name": "Rigorous Basterd",
+      "description": "Validated 10 projects in a row (Piscine days included).",
+      "tier": "easy",
+      "kind": "project",
+      "visible": true,
+      "image": "/uploads/achievement/image/26/PRO010.svg",
+      "nbr_of_success": 10,
+      "users_url": "https://api.intra.42.fr/v2/achievements/26/users"
+    },
+    {
+      "id": 27,
+      "name": "Rigorous Basterd",
+      "description": "Validated 21 projects in a row (Piscine days included).",
+      "tier": "medium",
+      "kind": "project",
+      "visible": true,
+      "image": "/uploads/achievement/image/27/PRO010.svg",
+      "nbr_of_success": 21,
+      "users_url": "https://api.intra.42.fr/v2/achievements/27/users"
+    },
+    {
       "id": 39,
       "name": "Sleep is for the weak",
       "description": "Conquered the achievements \"404 - Sleep not found\" and \"All work and no play makes Jack a dull boy\"",
@@ -2094,6 +2413,28 @@
       "image": "/uploads/achievement/image/39/SCO001.svg",
       "nbr_of_success": null,
       "users_url": "https://api.intra.42.fr/v2/achievements/39/users"
+    },
+    {
+      "id": 1,
+      "name": "Welcome, Cadet !",
+      "description": "You have passed the C Piscine! Welcome to 42!",
+      "tier": "none",
+      "kind": "project",
+      "visible": true,
+      "image": "/uploads/achievement/image/1/PRO001.svg",
+      "nbr_of_success": null,
+      "users_url": "https://api.intra.42.fr/v2/achievements/1/users"
+    },
+    {
+      "id": 218,
+      "name": "Welcome, Learner !",
+      "description": "Tu as réussi ta piscine C. Bienvenue à 42 !",
+      "tier": "none",
+      "kind": "project",
+      "visible": true,
+      "image": "/uploads/achievement/image/218/PRO001-2.svg",
+      "nbr_of_success": null,
+      "users_url": "https://api.intra.42.fr/v2/achievements/218/users"
     }
   ],
   "titles": [],
@@ -2113,9 +2454,9 @@
         "name": "Français",
         "identifier": "fr",
         "created_at": "2014-11-02T16:43:38.466Z",
-        "updated_at": "2022-02-02T10:21:19.616Z"
+        "updated_at": "2022-03-07T15:31:57.076Z"
       },
-      "users_count": 2082,
+      "users_count": 2084,
       "vogsphere_id": 6,
       "country": "Morocco",
       "address": "Mail Central",
@@ -2140,4 +2481,3 @@
     }
   ]
 }
-

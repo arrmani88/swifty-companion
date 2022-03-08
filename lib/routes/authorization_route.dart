@@ -81,7 +81,7 @@ class _AuthorizationRouteState extends State<AuthorizationRoute> {
             ),
           ),
           if (_isLoadingPopUpDisplayed == true && _isErrorPopUpDisplayed == false)
-            LoadingPopUp(callParentSetState: closeLoadingPopUp),
+            const LoadingPopUp(),
           if (_isErrorPopUpDisplayed == true)
             ErrorPopUp(closePopUp: closeErrorPopUp, descriptionMessage: descriptionMessage)
         ],

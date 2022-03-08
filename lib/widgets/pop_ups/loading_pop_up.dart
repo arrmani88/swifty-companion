@@ -3,8 +3,7 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'dart:ui';
 
 class LoadingPopUp extends StatelessWidget {
-  final Function callParentSetState;
-  const LoadingPopUp({Key? key, required this.callParentSetState}) : super(key: key);
+  const LoadingPopUp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

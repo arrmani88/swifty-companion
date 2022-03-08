@@ -4,7 +4,7 @@ import 'package:swifty_companion/globals/globals.dart';
 
 validateAccessToken() async {
   try {
-    Response _response = await dio.get(
+    await dio.get(
       'https://api.intra.42.fr/oauth/token/info',
       options: Options(headers: {'Authorization': 'Bearer ' + accessToken})
     );
@@ -16,4 +16,5 @@ validateAccessToken() async {
     print('<<<<<<<- ERROR POINT #2 ->>>>>>>');
     rethrow;
   }
+  print('ACCESS TOKEN => <$accessToken>');
 }

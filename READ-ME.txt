@@ -1,9 +1,28 @@
 print('<<<<<<<- ERROR POINT #2 ->>>>>>>');
+14 <= c || 15 <= b <=39 || a >=40 || abdait-m
 
+notify when en exam is scheduled
+notify when any workstation is free
+notify when a targeted workstation is free
+show cluster
+show promo ranking
+onclick men cluster updati profile y ban fih user li cliquiti 3lih
+
+/****************/
+TODO LIST
 remove circle cursors from radar chart
 sync navbar when manual scroll on pageview
 f authorization_route blast men setstate bach t affichi popup, dir provider
 chi animation dial scroll
-
 ----------------------
+project mark box dir liha title chad lwidth kollo
+searched login to lowercase
+testi b thor
 
+
+Continue doing: [
+        tsena part1 w 2 w 3 men cluster > men be3d parsi data
+        https://api.flutter.dev/flutter/dart-async/Future/doWhile.html
+        https://stackoverflow.com/questions/47776045/is-there-a-good-way-to-write-wait-for-variables-to-change-in-darts-async-meth
+        append cluster part to cluster list o mn be3d parsi kolchi fchi Map<String, List<String>>
+    ]
