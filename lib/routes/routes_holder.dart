@@ -44,7 +44,7 @@ class _RoutesHolderState extends State<RoutesHolder> {
         child: Container(
           width: 500.0,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(50.0),
+            // borderRadius: BorderRadius.circular(50.0),
             color: Theme.of(context).secondaryHeaderColor,
           ),
           child: SalomonBottomBar(

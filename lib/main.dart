@@ -9,13 +9,14 @@ import 'routes/routes_holder.dart';
 import 'routes/projects_route.dart';
 import 'package:provider/provider.dart';
 import 'package:swifty_companion/providers/user_provider.dart';
-
+import 'package:swifty_companion/providers/cluster_provider.dart';
 
 void main() {
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(create: (_) => UserProvider()),
       ChangeNotifierProvider(create: (_) => PopUpProvider()),
+      ChangeNotifierProvider(create: (_) => ClustersProvider())
     ],
     child: SwiftyCompanion()
   ));
