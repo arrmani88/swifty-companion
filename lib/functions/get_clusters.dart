@@ -41,14 +41,6 @@ Future<void> getClusters(BuildContext context) async {
           options: Options(headers: {'Authorization': 'Bearer ' + accessToken}))
         .then((value) => context.read<ClustersProvider>()
         .addClusterPartToClustersList((value.data)))),
-
-      Future.delayed(const Duration(milliseconds: 2010))
-          .then((value) => dio.get(
-          getPath(pageNum: 4),
-          options: Options(headers: {'Authorization': 'Bearer ' + accessToken}))
-          .then((value) => context.read<ClustersProvider>()
-          .addClusterPartToClustersList((value.data)))),
-
     ]);
     context.read<ClustersProvider>().gotClusters();
   } catch (e) {

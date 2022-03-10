@@ -14,16 +14,7 @@ class ClustersRoute extends StatefulWidget {
   _ClustersRouteState createState() => _ClustersRouteState();
 }
 class _ClustersRouteState extends State<ClustersRoute> {
-
   late Future futureCluster;
-
-  Future<void> loadCluster(BuildContext context) async {
-    try {
-      return await getClusters(context);
-    } catch (e) {
-      rethrow ;
-    }
-  }
 
   @override
   void initState() {
