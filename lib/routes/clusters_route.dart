@@ -29,56 +29,28 @@ class _ClustersRouteState extends State<ClustersRoute> {
         height: kScreenHeight,
         width: kScreenWidth,
         decoration: BoxDecoration(gradient: RadialGradient(colors: [Theme.of(context).splashColor, Theme.of(context).scaffoldBackgroundColor], center: const Alignment(0, -0.05), radius: 0.8)),
-        child: (context.watch<ClustersProvider>().isClustersLoading == true)
-          ? const Padding(
-            padding: EdgeInsets.only(top: 60.0, left: 25.0, right: 25.0),
-            child: SizedBox(width: 500, child: LoadingPopUp()),
-          )
-          : const Center(
-          child: WorkStation(host: 'e2r6p5', userData: ['anel-bou', 'https://profile.intra.42.fr/users/anel-bou/photo'],),
+        child: SafeArea(
+          child: (context.watch<ClustersProvider>().isClustersLoading == true)
+            ? const Padding(
+              padding: EdgeInsets.only(top: 60.0, left: 25.0, right: 25.0),
+              child: SizedBox(width: 500, child: LoadingPopUp()),
+            )
+            : Center(
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Column(
+                  children: <Widget>[
+                    for (List<Widget> range in ((context.watch<ClustersProvider>().e1WidgetsList) as List<List<Widget>>))
+                      Row(children: range),
+                  ]
+                ),
+              ),
+            ),
+          ),
         ),
-      ),
     );
   }
 }
 
 
 
-
-
-/*
-VERSION DIAL FutureBuilder
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        height: kScreenHeight,
-        width: kScreenWidth,
-        decoration: BoxDecoration(gradient: RadialGradient(colors: [Theme.of(context).splashColor, Theme.of(context).scaffoldBackgroundColor], center: const Alignment(0, -0.05), radius: 0.8)),
-        child: FutureBuilder(
-          initialData: context.read<ClustersProvider>().didGetClusters,
-          future: futureCluster,
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.done) {
-            // if (context.read<ClustersProvider>().didGetClusters == true) {
-            // if (snapshot.hasData && snapshot.connectionState == ConnectionState.done) {
-              print(':::::::::::::::::::::::::::::::::::');
-              print(context.read<ClustersProvider>().clustersList);
-              print(':::::::::::::::::::::::::::::::::::');
-              return Row(
-                children: const [
-                  Center(child: Text('text')),
-                ],
-              );
-            }
-            return const Padding(
-              padding: EdgeInsets.only(top: 60.0, left: 25.0, right: 25.0),
-              child: SizedBox(width: 500, child: LoadingPopUp()),
-            );
-          }
-        ),
-      ),
-    );
-  }
-
-*/
