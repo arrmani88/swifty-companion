@@ -35,7 +35,7 @@ class _ClustersRouteState extends State<ClustersRoute> {
             child: SizedBox(width: 500, child: LoadingPopUp()),
           )
           : const Center(
-          child: WorkStation(isVacant: true),
+          child: WorkStation(host: 'e2r6p5', userData: ['anel-bou', 'https://profile.intra.42.fr/users/anel-bou/photo'],),
         ),
       ),
     );
