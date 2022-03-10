@@ -5,8 +5,8 @@ class ClustersProvider with ChangeNotifier {
   List clustersList = [];
   Map<String, List<String>?> e1 = {};
   Map<String, List<String>?> e2 = {};
-  List<List> e1WidgetsList = [[]];
-  List<List> e2WidgetsList = [[]];
+  List<List> e1WidgetsList = []; // {"e2r7p9": ["anel-bou", "photo.jpg"]}
+  List<List> e2WidgetsList = [];
   bool isClustersLoading = true;
 
   addClusterPartToClustersList(List clusterPart) => clustersList.addAll(clusterPart);
@@ -17,15 +17,27 @@ class ClustersProvider with ChangeNotifier {
     while (r <= 13) {
       p = 1;
       while (p <= 15) {
-        if (e1['e1r${r}p$p'] == null) {
-          e1WidgetsList[r-1].insert(0, '-vacant-');
+        if (p == 1) { // create an empty range at the beginning
+          e1WidgetsList.insert(0, []);
         }
-        else {
-          e1WidgetsList[r-1].insert(0, e1['e1r${r}p$p']![0]);
+        if (((r == 1 || (r >= 11 && r <= 13)) && p >= 6) || (r == 10 && p >= 6 && p<= 10)) { // non existing workstation in the grid
+          e1WidgetsList[0].insert(0, '__NULL__');
+        }
+        else { // else if the workstation exists in the cluster
+          if (e1['e1r${r}p$p'] == null) { // if the workstation is vacant
+            e1WidgetsList[0].insert(0, '-vacant-');
+          }
+          else {
+            e1WidgetsList[0].insert(0, e1['e1r${r}p$p']![0]);
+          }
         }
         p++;
       }
       r++;
+    }
+
+    for (List elem in e1WidgetsList) {
+      print(elem);
     }
   }
 

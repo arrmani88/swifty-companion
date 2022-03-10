@@ -4,8 +4,8 @@ import 'package:provider/provider.dart';
 import 'package:swifty_companion/constants/constants.dart';
 import 'package:swifty_companion/functions/get_clusters.dart';
 import 'package:swifty_companion/widgets/pop_ups/loading_pop_up.dart';
-import 'package:swifty_companion/globals/globals.dart';
 import '../providers/cluster_provider.dart';
+import 'package:swifty_companion/widgets/workstation.dart';
 
 class ClustersRoute extends StatefulWidget {
   const ClustersRoute({Key? key}) : super(key: key);
@@ -34,7 +34,9 @@ class _ClustersRouteState extends State<ClustersRoute> {
             padding: EdgeInsets.only(top: 60.0, left: 25.0, right: 25.0),
             child: SizedBox(width: 500, child: LoadingPopUp()),
           )
-          : const Center(child: Text('text')),
+          : const Center(
+          child: WorkStation(isVacant: true),
+        ),
       ),
     );
   }

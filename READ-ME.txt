@@ -21,8 +21,5 @@ testi b thor
 
 
 Continue doing: [
-        tsena part1 w 2 w 3 men cluster > men be3d parsi data
-        https://api.flutter.dev/flutter/dart-async/Future/doWhile.html
-        https://stackoverflow.com/questions/47776045/is-there-a-good-way-to-write-wait-for-variables-to-change-in-darts-async-meth
-        append cluster part to cluster list o mn be3d parsi kolchi fchi Map<String, List<String>>
+
     ]
