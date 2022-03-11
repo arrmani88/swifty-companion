@@ -19,37 +19,29 @@ String getPath({required int pageNum})  {
 
 Future<void> getClusters(BuildContext context) async {
   try {
+    context.read<ClustersProvider>().clearAllClustersData();
     await validateAccessToken();
     await Future.wait([
-      Future.delayed(const Duration(milliseconds: 1005))
+      Future.delayed(const Duration(milliseconds: 1000))
           .then((value) => dio.get(
           getPath(pageNum: 1),
           options: Options(headers: {'Authorization': 'Bearer ' + accessToken}))
           .then((value) => context.read<ClustersProvider>()
           .addClusterPartToClustersList((value.data)))),
 
-      Future.delayed(const Duration(milliseconds: 1005))
+      Future.delayed(const Duration(milliseconds: 1000))
         .then((value) => dio.get(
           getPath(pageNum: 2),
           options: Options(headers: {'Authorization': 'Bearer ' + accessToken}))
         .then((value) => context.read<ClustersProvider>()
         .addClusterPartToClustersList((value.data)))),
 
-      Future.delayed(const Duration(milliseconds: 2010))
+      Future.delayed(const Duration(milliseconds: 2000))
         .then((value) => dio.get(
           getPath(pageNum: 3),
           options: Options(headers: {'Authorization': 'Bearer ' + accessToken}))
         .then((value) => context.read<ClustersProvider>()
         .addClusterPartToClustersList((value.data)))),
-
-
-      Future.delayed(const Duration(milliseconds: 3010))
-          .then((value) => dio.get(
-          getPath(pageNum: 4),
-          options: Options(headers: {'Authorization': 'Bearer ' + accessToken}))
-          .then((value) => context.read<ClustersProvider>()
-          .addClusterPartToClustersList((value.data)))),
-
     ]);
     context.read<ClustersProvider>().gotClusters();
   } catch (e) {

@@ -62,16 +62,19 @@ class _RoutesHolderState extends State<RoutesHolder> {
                 icon: const Icon(Icons.account_box_sharp),
                 title: const Text('Porfile'),
                 selectedColor: Theme.of(context).splashColor,
+                unselectedColor: Theme.of(context).scaffoldBackgroundColor
               ),
               SalomonBottomBarItem(
                 icon:  const Icon(Icons.task_sharp),
                 title:  const Text('Projects'),
                 selectedColor: Theme.of(context).splashColor,
+                unselectedColor: Theme.of(context).scaffoldBackgroundColor
               ),
               SalomonBottomBarItem(
                 icon:  const Icon(Icons.computer),
                 title:  const Text('Clusters'),
                 selectedColor: Theme.of(context).splashColor,
+                unselectedColor: Theme.of(context).scaffoldBackgroundColor
               ),
             ],
           ),

@@ -10,11 +10,26 @@ class ClustersProvider with ChangeNotifier {
   List<List<Widget>> e1WidgetsList = []; // {"e2r7p9": ["anel-bou", "photo.jpg"]}
   List<List<Widget>> e2WidgetsList = [];
   bool isClustersLoading = true;
+  bool isE1Selected = true;
 
   List<List> e1Debug = [];
   List<List> e2Debug = [];
 
   addClusterPartToClustersList(List clusterPart) => clustersJsonList.addAll(clusterPart);
+
+  switchCluster() {
+    isE1Selected = !isE1Selected;
+    notifyListeners();
+  }
+
+  clearAllClustersData() {
+    clustersJsonList = [];
+    e1JsonList = {};
+    e2JsonList = {};
+    e1WidgetsList = [];
+    e2WidgetsList = [];
+    isClustersLoading = true;
+  }
 
   getClusterWidgetsList({required stageNumber, required stageWidgetsList, required stageJsonList}) {
     late var pushWorkStationTo;
@@ -27,7 +42,7 @@ class ClustersProvider with ChangeNotifier {
       stageWidgetsList.insert(0, <Widget>[]);
       while (p <= 15) {
         pushWorkStationTo = (p >= 6 && p <= 10 ? PushWorkStationTo.top : PushWorkStationTo.bottom);
-        isDoorFacing = (p == 2 || p == 4 || p == 7 || p == 9 || p == 12 || p == 14) ? true : false;
+        isDoorFacing = (p == 2 || p == 4 || p == 7 || p == 9 || p == 12 || p == 14);
         if (p == 6 || p == 11) {
           stageWidgetsList[0].insert(0, const SizedBox(width: 35,));
         }
@@ -59,7 +74,7 @@ class ClustersProvider with ChangeNotifier {
       host = (workStation['user'] as Map)['location'];
       login = (workStation['user'] as Map)['login'];
       image = (workStation['user'] as Map)['image_url'];
-      print('host:"${host}"\t["${login}", "${image}"]');
+      // print('host:"${host}"\t["${login}", "${image}"]');
       if (host != null) {
         if (host.startsWith('e1')) {
           e1JsonList[host] = [login, image];
@@ -75,10 +90,6 @@ class ClustersProvider with ChangeNotifier {
     getClusterWidgetsList(stageNumber: 1, stageWidgetsList: e1WidgetsList, stageJsonList: e1JsonList);
     getClusterWidgetsList(stageNumber: 2, stageWidgetsList: e2WidgetsList, stageJsonList: e2JsonList);
     isClustersLoading = false;
-
-    getClusterDebugList(stageNumber: 1, stageWidgetsList: e1Debug, stageJsonList: e1JsonList);
-    getClusterDebugList(stageNumber: 2, stageWidgetsList: e2Debug, stageJsonList: e2JsonList);
-
     notifyListeners();
   }
 
@@ -107,8 +118,7 @@ class ClustersProvider with ChangeNotifier {
       }
       r++;
     }
-    // print('');print(' ------------------- STAGE --------------------');for (List elem in stageWidgetsList) {print(elem);}
+    // getClusterDebugList(stageNumber: 1, stageWidgetsList: e1Debug, stageJsonList: e1JsonList);
+    // getClusterDebugList(stageNumber: 2, stageWidgetsList: e2Debug, stageJsonList: e2JsonList);
   }
-
-
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:swifty_companion/constants/constants.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:swifty_companion/widgets/item_project.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:searchable_listview/searchable_listview.dart';

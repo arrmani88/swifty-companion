@@ -15,8 +15,8 @@ class WorkStation extends StatelessWidget {
         padding: EdgeInsets.only(
           left: 1.0,
           right: 1.0,
-          bottom: (pushWorkStationTo == PushWorkStationTo.top && isDoorFacing == true ? 30.0 : 0.0),
-          top: (pushWorkStationTo == PushWorkStationTo.bottom && isDoorFacing == true ? 30.0 : 0.0),
+          bottom: (isDoorFacing == true ? 15.0 : 0.0),
+          top: (isDoorFacing == false ? 15.0 : 0.0),
         ),
         child: (host == null)
           ? const SizedBox(height: 55.0, width: 45.0,)
