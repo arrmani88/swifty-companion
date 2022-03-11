@@ -11,6 +11,7 @@ class ClustersProvider with ChangeNotifier {
   List<List<Widget>> e2WidgetsList = [];
   bool isClustersLoading = true;
   bool isE1Selected = true;
+  bool isClusterRotated = false;
 
   List<List> e1Debug = [];
   List<List> e2Debug = [];
@@ -19,6 +20,11 @@ class ClustersProvider with ChangeNotifier {
 
   switchCluster() {
     isE1Selected = !isE1Selected;
+    notifyListeners();
+  }
+
+  rotateCluster() {
+    isClusterRotated = !isClusterRotated;
     notifyListeners();
   }
 
