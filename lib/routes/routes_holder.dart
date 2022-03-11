@@ -31,6 +31,7 @@ class _RoutesHolderState extends State<RoutesHolder> {
         width: kScreenWidth,
         decoration: BoxDecoration(gradient: RadialGradient(colors: [Theme.of(context).splashColor, Theme.of(context).scaffoldBackgroundColor], center: const Alignment(0, -0.05), radius: 0.8)),
         child: PageView(
+          physics: const NeverScrollableScrollPhysics(),
           controller: _pageController,
           children: [
             ProfileRoute(),

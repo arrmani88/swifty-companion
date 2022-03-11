@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:swifty_companion/widgets/workstation.dart';
+import 'package:swifty_companion/globals/globals.dart';
 
 class ClustersProvider with ChangeNotifier {
 
@@ -16,33 +17,37 @@ class ClustersProvider with ChangeNotifier {
   addClusterPartToClustersList(List clusterPart) => clustersJsonList.addAll(clusterPart);
 
   getClusterWidgetsList({required stageNumber, required stageWidgetsList, required stageJsonList}) {
+    late var pushWorkStationTo;
+    late bool isDoorFacing;
     int r = 1;
     int p;
+
     while (r <= 13) {
       p = 1;
+      stageWidgetsList.insert(0, <Widget>[]);
       while (p <= 15) {
-        // create an empty range at the beginning
-        if (p == 1) {
-          stageWidgetsList.insert(0, <Widget>[]);
+        pushWorkStationTo = (p >= 6 && p <= 10 ? PushWorkStationTo.top : PushWorkStationTo.bottom);
+        isDoorFacing = (p == 2 || p == 4 || p == 7 || p == 9 || p == 12 || p == 14) ? true : false;
+        if (p == 6 || p == 11) {
+          stageWidgetsList[0].insert(0, const SizedBox(width: 35,));
         }
         // non existing workstation in the grid
         if (((r == 1 || (r >= 11 && r <= 13)) && p >= 6) || (r == 10 && p >= 6 && p<= 10)) {
-          stageWidgetsList[0].insert(0, const WorkStation());
+          stageWidgetsList[0].insert(0, WorkStation(pushWorkStationTo: pushWorkStationTo, isDoorFacing: isDoorFacing,));
         }
         // else if the workstation exists in the cluster
         else {
           if (stageJsonList['e${stageNumber}r${r}p$p'] == null) {
-            stageWidgetsList[0].insert(0, WorkStation(host: 'e${stageNumber}r${r}p$p',));
+            stageWidgetsList[0].insert(0, WorkStation(host: 'e${stageNumber}r${r}p$p', pushWorkStationTo: pushWorkStationTo, isDoorFacing: isDoorFacing));
           }
           else {
-            stageWidgetsList[0].insert(0, WorkStation(host: 'e${stageNumber}r${r}p$p', userData: stageJsonList['e${stageNumber}r${r}p$p'],));
+            stageWidgetsList[0].insert(0, WorkStation(host: 'e${stageNumber}r${r}p$p', userData: stageJsonList['e${stageNumber}r${r}p$p'], pushWorkStationTo: pushWorkStationTo, isDoorFacing: isDoorFacing));
           }
         }
         p++;
       }
       r++;
     }
-    print('');print(' ------------------- STAGE --------------------');for (List elem in stageWidgetsList) {print(elem);}
   }
 
   parseClusters(List list) {
@@ -53,7 +58,8 @@ class ClustersProvider with ChangeNotifier {
     for (Map<String, dynamic> workStation in list) {
       host = (workStation['user'] as Map)['location'];
       login = (workStation['user'] as Map)['login'];
-      image = (workStation['user'] as Map)['image'];
+      image = (workStation['user'] as Map)['image_url'];
+      print('host:"${host}"\t["${login}", "${image}"]');
       if (host != null) {
         if (host.startsWith('e1')) {
           e1JsonList[host] = [login, image];
@@ -70,15 +76,14 @@ class ClustersProvider with ChangeNotifier {
     getClusterWidgetsList(stageNumber: 2, stageWidgetsList: e2WidgetsList, stageJsonList: e2JsonList);
     isClustersLoading = false;
 
-    getClusterDebugList(stageNumber: 1, stageWidgetsList: e1WidgetsList, stageJsonList: e1JsonList);
-    getClusterDebugList(stageNumber: 2, stageWidgetsList: e2WidgetsList, stageJsonList: e2JsonList);
-
+    getClusterDebugList(stageNumber: 1, stageWidgetsList: e1Debug, stageJsonList: e1JsonList);
+    getClusterDebugList(stageNumber: 2, stageWidgetsList: e2Debug, stageJsonList: e2JsonList);
 
     notifyListeners();
   }
 
 
-  getClusterDebugList({required int stageNumber, required List<List> stageWidgetsList}) {
+  getClusterDebugList({required stageNumber, required stageWidgetsList, required stageJsonList}) {
     int r = 1;
     int p;
     while (r <= 13) {
@@ -91,21 +96,18 @@ class ClustersProvider with ChangeNotifier {
           stageWidgetsList[0].insert(0, '__NULL__');
         }
         else { // else if the workstation exists in the cluster
-          if (e1JsonList['e${stageNumber}r${r}p$p'] == null) { // if the workstation is vacant
+          if (stageJsonList['e${stageNumber}r${r}p$p'] == null) { // if the workstation is vacant
             stageWidgetsList[0].insert(0, '-vacant-');
           }
           else {
-            stageWidgetsList[0].insert(0, e1JsonList['e1r${r}p$p']![0]);
+            stageWidgetsList[0].insert(0, stageJsonList['e${stageNumber}r${r}p$p']![0]);
           }
         }
         p++;
       }
       r++;
     }
-
-    for (List elem in stageWidgetsList) {
-      print(elem);
-    }
+    // print('');print(' ------------------- STAGE --------------------');for (List elem in stageWidgetsList) {print(elem);}
   }
 
 

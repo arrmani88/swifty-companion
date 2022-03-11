@@ -12,9 +12,9 @@ String getPath({required int pageNum})  {
   '/v2/campus/16/locations'
     '?page[size]=100'
     '&page[number]=$pageNum'
-    '&range[host]=e1r1p1,e2r13p5'
+    '&range[host]=e1,e3'
     '&sort=host'
-    '&filter[active]=true';
+    '&filter[end]=false';
 }
 
 Future<void> getClusters(BuildContext context) async {
@@ -42,6 +42,13 @@ Future<void> getClusters(BuildContext context) async {
         .then((value) => context.read<ClustersProvider>()
         .addClusterPartToClustersList((value.data)))),
 
+
+      Future.delayed(const Duration(milliseconds: 3010))
+          .then((value) => dio.get(
+          getPath(pageNum: 4),
+          options: Options(headers: {'Authorization': 'Bearer ' + accessToken}))
+          .then((value) => context.read<ClustersProvider>()
+          .addClusterPartToClustersList((value.data)))),
 
     ]);
     context.read<ClustersProvider>().gotClusters();

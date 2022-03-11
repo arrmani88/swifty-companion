@@ -30,22 +30,22 @@ class _ClustersRouteState extends State<ClustersRoute> {
         width: kScreenWidth,
         decoration: BoxDecoration(gradient: RadialGradient(colors: [Theme.of(context).splashColor, Theme.of(context).scaffoldBackgroundColor], center: const Alignment(0, -0.05), radius: 0.8)),
         child: SafeArea(
-          child: (context.watch<ClustersProvider>().isClustersLoading == true)
-            ? const Padding(
-              padding: EdgeInsets.only(top: 60.0, left: 25.0, right: 25.0),
-              child: SizedBox(width: 500, child: LoadingPopUp()),
-            )
-            : Center(
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Column(
-                  children: <Widget>[
-                    for (List<Widget> range in ((context.watch<ClustersProvider>().e1WidgetsList) as List<List<Widget>>))
-                      Row(children: range),
-                  ]
-                ),
+          child: Padding(
+            padding: const EdgeInsets.only(top: 20.0, left: 15.0, right: 15.0),
+            child: (context.watch<ClustersProvider>().isClustersLoading == true)
+              ? const SizedBox(width: 500, child: LoadingPopUp())
+              : Center(
+                child: InteractiveViewer(
+                  constrained: false,
+                    child: Column(
+                      children: <Widget>[
+                        for (List<Widget> range in (context.watch<ClustersProvider>().e2WidgetsList))
+                          Row(children: range),
+                      ]
+                    ),
               ),
             ),
+          )
           ),
         ),
     );
