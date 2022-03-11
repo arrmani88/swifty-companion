@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:swifty_companion/functions/get_access_token.dart';
+import 'package:swifty_companion/functions/get_access_token_with_client_credentials_flow.dart';
 import 'package:swifty_companion/globals/globals.dart';
 
 validateAccessToken() async {
@@ -10,7 +10,7 @@ validateAccessToken() async {
     );
   } catch (e) {
     if (e is DioError && e.response?.statusCode == 401) {
-      await getAccessToken();
+      await getAccessTokenWithClientCredentialsFlow();
       return ;
     }
     print('<<<<<<<- ERROR POINT #2 ->>>>>>>');

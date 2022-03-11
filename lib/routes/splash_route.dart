@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:swifty_companion/constants/constants.dart';
-import 'package:swifty_companion/functions/get_access_token.dart';
+import 'package:swifty_companion/functions/get_access_token_with_client_credentials_flow.dart';
 import 'package:swifty_companion/functions/validate_access_token.dart';
 import 'package:swifty_companion/globals/globals.dart';
 
@@ -22,19 +22,17 @@ class _SplashRouteState extends State<SplashRoute> {
     try {
       String? tmpAccessToken = await storage.read(key: 'accessToken');
       if (tmpAccessToken == null) {
-        await getAccessToken();
+        await getAccessTokenWithClientCredentialsFlow();
       } else {
         accessToken = tmpAccessToken;
         await validateAccessToken();
       }
       Navigator.pushReplacementNamed(context, 'home_route');
     } catch (e) {
-      print('<<<<<<<- ERROR POINT #1');
       if (e is DioError)
         print(e.response);
       else
         print(e);
-      print('ERROR POINT #1 ->>>>>>>');
     }
   }
 

@@ -25,7 +25,17 @@ class FloatingButtons extends StatelessWidget {
               icon: Icon(Icons.refresh, size: 35.0, color: Theme.of(context).scaffoldBackgroundColor,),
             ),
           ),
-          const SizedBox(width: 10.0),
+          const SizedBox(width: 9.0),
+          Container(
+            height: 40.0,
+            width: 40.0,
+            color: Theme.of(context).secondaryHeaderColor,
+            child: IconButton(padding: const EdgeInsets.all(2.0),
+              onPressed: () => context.read<ClustersProvider>().rotateCluster(),
+              icon: Icon(Icons.rotate_90_degrees_ccw, size: 29.0, color: Theme.of(context).scaffoldBackgroundColor,),
+            ),
+          ),
+          const SizedBox(width: 9.0),
           Container(
             height: 40.0,
             color: Theme.of(context).secondaryHeaderColor,
@@ -34,30 +44,28 @@ class FloatingButtons extends StatelessWidget {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const Text('E1', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25.0),),
+                  const Padding(
+                    padding: EdgeInsets.only(top :3.0),
+                    child: Text('E1', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),),
+                  ),
                   const SizedBox(width: 2.0),
                   SwitcherButton(
-                    size: 50.0,
-                    value: context.watch<ClustersProvider>().isE1Selected,
+                    size: 40.0,
+                    value: !context.watch<ClustersProvider>().isE1Selected,
                     onColor: Colors.blueGrey,
                     offColor: Theme.of(context).scaffoldBackgroundColor,
                     onChange: (_) => context.read<ClustersProvider>().switchCluster(),
                   ),
                   const SizedBox(width: 8.0),
-                  const Text('E2', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25.0),),
+                  const Padding(
+                    padding: EdgeInsets.only(top: 3.0),
+                    child: Text('E2', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),),
+                  ),
                 ],
               ),
             ),
           ),
-          Container(
-            height: 40.0,
-            width: 40.0,
-            color: Theme.of(context).secondaryHeaderColor,
-            child: IconButton(padding: const EdgeInsets.all(2.0),
-              onPressed: () {},
-              icon: Icon(Icons.arrow, size: 35.0, color: Theme.of(context).scaffoldBackgroundColor,),
-            ),
-          ),
+
         ],
       ),
     );
@@ -97,16 +105,16 @@ class _ClustersRouteState extends State<ClustersRoute> {
               ? const SizedBox(width: 500, child: LoadingPopUp())
               : Center(
                 child: InteractiveViewer(
-                  boundaryMargin: const EdgeInsets.only(bottom: 60.0),
+                  boundaryMargin: const EdgeInsets.only(bottom: 80.0),
                   minScale: 0000.1,
                   maxScale: 8.0,
                   constrained: false,
                     child: Column(
                       children: <Widget>[
                         for (List<Widget> range
-                        in (context.watch<ClustersProvider>().isE1Selected == true
-                            ? (context.watch<ClustersProvider>().isClusterRotated ? context.read<ClustersProvider>().e2WidgetsList.reversed : context.read<ClustersProvider>().e2WidgetsList)
-                            : (context.watch<ClustersProvider>().isClusterRotated ? context.read<ClustersProvider>().e2WidgetsList.reversed : context.read<ClustersProvider>().e2WidgetsList)))
+                          in (context.watch<ClustersProvider>().isE1Selected == true
+                              ? (context.watch<ClustersProvider>().isClusterRotated ? context.read<ClustersProvider>().e1WidgetsList.reversed : context.read<ClustersProvider>().e1WidgetsList)
+                              : (context.watch<ClustersProvider>().isClusterRotated ? context.read<ClustersProvider>().e2WidgetsList.reversed : context.read<ClustersProvider>().e2WidgetsList)))
                           Row(children: context.watch<ClustersProvider>().isClusterRotated ? range.reversed.toList() : range),
                       ]
                     ),

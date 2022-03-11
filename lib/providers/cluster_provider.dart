@@ -10,7 +10,7 @@ class ClustersProvider with ChangeNotifier {
   List<List<Widget>> e1WidgetsList = []; // {"e2r7p9": ["anel-bou", "photo.jpg"]}
   List<List<Widget>> e2WidgetsList = [];
   bool isClustersLoading = true;
-  bool isE1Selected = true;
+  bool isE1Selected = false;
   bool isClusterRotated = false;
 
   List<List> e1Debug = [];

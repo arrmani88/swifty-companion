@@ -3,12 +3,12 @@ import 'package:dio/dio.dart';
 import 'package:swifty_companion/functions/save_token_to_local_storage.dart';
 import 'package:swifty_companion/globals/globals.dart';
 
-Future<Response> getAccessToken() async {
+Future<Response> getAccessTokenWithClientCredentialsFlow() async {
   Response? response;
 
   try {
      response = await dio.post(
-        kAuthorizationLink,
+        kClientCredentialsFlowAuthorizationLink,
         data: {
           'grant_type': 'client_credentials',
           'client_id': '30480b7ab0ff85a13ebca0ac0bd338f56dfaf0904ef8bc4866c3866930212be3',

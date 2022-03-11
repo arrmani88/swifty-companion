@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:swifty_companion/widgets/pop_ups/loading_pop_up.dart';
 import 'package:swifty_companion/widgets/pop_ups/error_pop_up.dart';
 import 'package:swifty_companion/functions/validate_access_token.dart';
+import 'package:swifty_companion/functions/get_access_token_with_authorization_code_flow.dart';
 
 class AuthorizationRoute extends StatefulWidget {
   AuthorizationRoute({Key? key}) : super(key: key);
@@ -31,7 +32,8 @@ class _AuthorizationRouteState extends State<AuthorizationRoute> {
     setState(() => _isLoadingPopUpDisplayed = true);
     try {
       await InternetAddress.lookup('api.intra.42.fr');
-      await validateAccessToken();
+      await getAccessTokenWithAuthorizationCodeFlow();
+      // await validateAccessToken();
       Navigator.pushNamed(context, 'home_route');
     } on SocketException catch (_) {
       describeTheError('Either your device isn\'t connected to the internet, or the server that you are looking for is down');
@@ -39,7 +41,7 @@ class _AuthorizationRouteState extends State<AuthorizationRoute> {
       if (e is DioError)
         {describeTheError((e.response?.data as Map<String, dynamic>)['error_description']);}
       else
-        {describeTheError('Try re-connecting the device with internet and restart the app');}
+        {describeTheError('An unknown error has occured, try re-connecting the device with internet and restart the app');}
     }
   }
 
