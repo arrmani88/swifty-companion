@@ -2,13 +2,13 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:swifty_companion/constants/constants.dart';
-import 'package:swifty_companion/functions/get_clusters.dart';
 import 'package:swifty_companion/widgets/pop_ups/loading_pop_up.dart';
 import '../providers/cluster_provider.dart';
 import 'package:switcher_button/switcher_button.dart';
 
 class FloatingButtons extends StatefulWidget {
-  const FloatingButtons({Key? key}) : super(key: key);
+  BuildContext parentContext;
+  FloatingButtons({Key? key, required this.parentContext}) : super(key: key);
 
   @override
   State<FloatingButtons> createState() => _FloatingButtonsState();
@@ -25,7 +25,7 @@ class _FloatingButtonsState extends State<FloatingButtons> {
             width: 40.0,
             color: Theme.of(context).secondaryHeaderColor,
             child: IconButton(padding: const EdgeInsets.all(2.0),
-              onPressed: () => context.read<ClustersProvider>().getClusters(context),
+              onPressed: () => context.read<ClustersProvider>().getClusters(widget.parentContext),
               icon: Icon(Icons.refresh, size: 35.0, color: Theme.of(context).scaffoldBackgroundColor,),
             ),
           ),
@@ -69,7 +69,6 @@ class _FloatingButtonsState extends State<FloatingButtons> {
               ),
             ),
           ),
-
         ],
       ),
     );
@@ -94,9 +93,10 @@ class _ClustersRouteState extends State<ClustersRoute> {
   @override
   Widget build(BuildContext context) {
     print('----------------- BUILDING WIDGET TREE -----------------');
+    print(context.watch<ClustersProvider>().areClustersLoading.toString());
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.startDocked,
-      floatingActionButton: const FloatingButtons(),
+      floatingActionButton: FloatingButtons(parentContext: context),
       body: Container(
         height: kScreenHeight,
         width: kScreenWidth,
@@ -104,7 +104,7 @@ class _ClustersRouteState extends State<ClustersRoute> {
         child: SafeArea(
           child: Padding(
             padding: const EdgeInsets.only(top: 20.0, left: 15.0, right: 15.0),
-            child: (context.watch<ClustersProvider>().isClustersLoading == true)
+            child: (context.watch<ClustersProvider>().areClustersLoading == true)
               ? const SizedBox(width: 500, child: LoadingPopUp())
               : Center(
                 child: InteractiveViewer(

@@ -12,7 +12,7 @@ class ClustersProvider with ChangeNotifier {
   Map<String, List<String>?> e2JsonList = {};
   List<List<Widget>> e1WidgetsList = []; // {"e2r7p9": ["anel-bou", "photo.jpg"]}
   List<List<Widget>> e2WidgetsList = [];
-  bool isClustersLoading = true;
+  bool areClustersLoading = true;
   bool isE1Selected = false;
   bool isClusterRotated = false;
 
@@ -29,15 +29,6 @@ class ClustersProvider with ChangeNotifier {
   rotateCluster() {
     isClusterRotated = !isClusterRotated;
     notifyListeners();
-  }
-
-  clearAllClustersData() {
-    clustersJsonList = [];
-    e1JsonList = {};
-    e2JsonList = {};
-    e1WidgetsList = [];
-    e2WidgetsList = [];
-    isClustersLoading = true;
   }
 
   getClusterWidgetsList({required stageNumber, required stageWidgetsList, required stageJsonList}) {
@@ -98,39 +89,10 @@ class ClustersProvider with ChangeNotifier {
     parseClusters(clustersJsonList);
     getClusterWidgetsList(stageNumber: 1, stageWidgetsList: e1WidgetsList, stageJsonList: e1JsonList);
     getClusterWidgetsList(stageNumber: 2, stageWidgetsList: e2WidgetsList, stageJsonList: e2JsonList);
-    isClustersLoading = false;
+    areClustersLoading = false;
+    print('gotClusters() => $areClustersLoading');
     notifyListeners();
   }
-
-
-  getClusterDebugList({required stageNumber, required stageWidgetsList, required stageJsonList}) {
-    int r = 1;
-    int p;
-    while (r <= 13) {
-      p = 1;
-      while (p <= 15) {
-        if (p == 1) { // create an empty range at the beginning
-          stageWidgetsList.insert(0, []);
-        }
-        if (((r == 1 || (r >= 11 && r <= 13)) && p >= 6) || (r == 10 && p >= 6 && p<= 10)) { // non existing workstation in the grid
-          stageWidgetsList[0].insert(0, '__NULL__');
-        }
-        else { // else if the workstation exists in the cluster
-          if (stageJsonList['e${stageNumber}r${r}p$p'] == null) { // if the workstation is vacant
-            stageWidgetsList[0].insert(0, '-vacant-');
-          }
-          else {
-            stageWidgetsList[0].insert(0, stageJsonList['e${stageNumber}r${r}p$p']![0]);
-          }
-        }
-        p++;
-      }
-      r++;
-    }
-    // getClusterDebugList(stageNumber: 1, stageWidgetsList: e1Debug, stageJsonList: e1JsonList);
-    // getClusterDebugList(stageNumber: 2, stageWidgetsList: e2Debug, stageJsonList: e2JsonList);
-  }
-
 
   Future<void> getClusters(BuildContext context) async {
     try {
@@ -150,7 +112,7 @@ class ClustersProvider with ChangeNotifier {
             options: Options(headers: {'Authorization': 'Bearer ' + accessToken}))
             .then((value) => addClusterPartToClustersList((value.data)))),
 
-        Future.delayed(const Duration(milliseconds: 2000))
+        Future.delayed(const Duration(milliseconds: 2010))
             .then((value) => dio.get(
             getPath(pageNum: 3),
             options: Options(headers: {'Authorization': 'Bearer ' + accessToken}))
@@ -163,14 +125,56 @@ class ClustersProvider with ChangeNotifier {
     }
   }
 
+  clearAllClustersData() {
+    areClustersLoading = true;
+    print('clearAllClustersData() => $areClustersLoading');
+    clustersJsonList = [];
+    e1JsonList = {};
+    e2JsonList = {};
+    e1WidgetsList = [];
+    e2WidgetsList = [];
+  }
+
 }
 
 String getPath({required int pageNum})  {
   return kHostname +
-      '/v2/campus/16/locations'
-          '?page[size]=100'
-          '&page[number]=$pageNum'
-          '&range[host]=e1,e3'
-          '&sort=host'
-          '&filter[end]=false';
+    '/v2/campus/16/locations'
+    '?page[size]=100'
+    '&page[number]=$pageNum'
+    '&range[host]=e1,e3'
+    '&sort=host'
+    '&filter[end]=false';
 }
+
+/*
+
+  // getClusterDebugList({required stageNumber, required stageWidgetsList, required stageJsonList}) {
+  //   int r = 1;
+  //   int p;
+  //   while (r <= 13) {
+  //     p = 1;
+  //     while (p <= 15) {
+  //       if (p == 1) { // create an empty range at the beginning
+  //         stageWidgetsList.insert(0, []);
+  //       }
+  //       if (((r == 1 || (r >= 11 && r <= 13)) && p >= 6) || (r == 10 && p >= 6 && p<= 10)) { // non existing workstation in the grid
+  //         stageWidgetsList[0].insert(0, '__NULL__');
+  //       }
+  //       else { // else if the workstation exists in the cluster
+  //         if (stageJsonList['e${stageNumber}r${r}p$p'] == null) { // if the workstation is vacant
+  //           stageWidgetsList[0].insert(0, '-vacant-');
+  //         }
+  //         else {
+  //           stageWidgetsList[0].insert(0, stageJsonList['e${stageNumber}r${r}p$p']![0]);
+  //         }
+  //       }
+  //       p++;
+  //     }
+  //     r++;
+  //   }
+  //   // getClusterDebugList(stageNumber: 1, stageWidgetsList: e1Debug, stageJsonList: e1JsonList);
+  //   // getClusterDebugList(stageNumber: 2, stageWidgetsList: e2Debug, stageJsonList: e2JsonList);
+  // }
+
+ */
