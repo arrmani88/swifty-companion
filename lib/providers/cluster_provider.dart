@@ -1,6 +1,9 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:swifty_companion/widgets/workstation.dart';
 import 'package:swifty_companion/globals/globals.dart';
+import 'package:swifty_companion/functions/validate_access_token.dart';
+import '../constants/constants.dart';
 
 class ClustersProvider with ChangeNotifier {
 
@@ -127,4 +130,47 @@ class ClustersProvider with ChangeNotifier {
     // getClusterDebugList(stageNumber: 1, stageWidgetsList: e1Debug, stageJsonList: e1JsonList);
     // getClusterDebugList(stageNumber: 2, stageWidgetsList: e2Debug, stageJsonList: e2JsonList);
   }
+
+
+  Future<void> getClusters(BuildContext context) async {
+    try {
+      clearAllClustersData();
+      await validateAccessToken();
+      await Future.wait([
+
+        Future.delayed(const Duration(milliseconds: 1000))
+            .then((value) => dio.get(
+            getPath(pageNum: 1),
+            options: Options(headers: {'Authorization': 'Bearer ' + accessToken}))
+            .then((value) => addClusterPartToClustersList((value.data)))),
+
+        Future.delayed(const Duration(milliseconds: 1000))
+            .then((value) => dio.get(
+            getPath(pageNum: 2),
+            options: Options(headers: {'Authorization': 'Bearer ' + accessToken}))
+            .then((value) => addClusterPartToClustersList((value.data)))),
+
+        Future.delayed(const Duration(milliseconds: 2000))
+            .then((value) => dio.get(
+            getPath(pageNum: 3),
+            options: Options(headers: {'Authorization': 'Bearer ' + accessToken}))
+            .then((value) => addClusterPartToClustersList((value.data)))),
+
+      ]);
+      gotClusters();
+    } catch (e) {
+      rethrow ;
+    }
+  }
+
+}
+
+String getPath({required int pageNum})  {
+  return kHostname +
+      '/v2/campus/16/locations'
+          '?page[size]=100'
+          '&page[number]=$pageNum'
+          '&range[host]=e1,e3'
+          '&sort=host'
+          '&filter[end]=false';
 }

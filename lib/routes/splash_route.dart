@@ -10,11 +10,11 @@ class SplashRoute extends StatefulWidget {
   @override State<SplashRoute> createState() => _SplashRouteState();
 }
 class _SplashRouteState extends State<SplashRoute> {
-
   late Future initAccessTokenVariable;
 
   @override
   initState () {
+    super.initState();
     initAccessTokenVariable = initAccessToken(context);
   }
 

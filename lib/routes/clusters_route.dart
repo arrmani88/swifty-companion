@@ -7,9 +7,13 @@ import 'package:swifty_companion/widgets/pop_ups/loading_pop_up.dart';
 import '../providers/cluster_provider.dart';
 import 'package:switcher_button/switcher_button.dart';
 
-class FloatingButtons extends StatelessWidget {
+class FloatingButtons extends StatefulWidget {
   const FloatingButtons({Key? key}) : super(key: key);
 
+  @override
+  State<FloatingButtons> createState() => _FloatingButtonsState();
+}
+class _FloatingButtonsState extends State<FloatingButtons> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -21,7 +25,7 @@ class FloatingButtons extends StatelessWidget {
             width: 40.0,
             color: Theme.of(context).secondaryHeaderColor,
             child: IconButton(padding: const EdgeInsets.all(2.0),
-              onPressed: () {},
+              onPressed: () => context.read<ClustersProvider>().getClusters(context),
               icon: Icon(Icons.refresh, size: 35.0, color: Theme.of(context).scaffoldBackgroundColor,),
             ),
           ),
@@ -80,19 +84,18 @@ class ClustersRoute extends StatefulWidget {
   _ClustersRouteState createState() => _ClustersRouteState();
 }
 class _ClustersRouteState extends State<ClustersRoute> {
-  late Future futureCluster;
 
   @override
   void initState() {
-    futureCluster = getClusters(context);
     super.initState();
+    context.read<ClustersProvider>().getClusters(context);
   }
 
   @override
   Widget build(BuildContext context) {
+    print('----------------- BUILDING WIDGET TREE -----------------');
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.startDocked,
-      // floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
       floatingActionButton: const FloatingButtons(),
       body: Container(
         height: kScreenHeight,
