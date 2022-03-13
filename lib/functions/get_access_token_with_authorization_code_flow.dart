@@ -1,18 +1,24 @@
-import 'package:swifty_companion/constants/constants.dart';
-import 'package:dio/dio.dart';
-import 'package:swifty_companion/globals/globals.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_web_auth/flutter_web_auth.dart';
 
 Future getAccessTokenWithAuthorizationCodeFlow() async {
+
+  String url = 'https://api.intra.42.fr/oauth/authorize'
+      '?client_id=30480b7ab0ff85a13ebca0ac0bd338f56dfaf0904ef8bc4866c3866930212be3'
+      '&redirect_uri=com.example.swifty_companion%3A%2F%2Fredirect'
+      '&response_type=code';
+      // 'https://api.intra.42.fr/oauth/authorize'
+      // '?client_id=30480b7ab0ff85a13ebca0ac0bd338f56dfaf0904ef8bc4866c3866930212be3'
+      // '&redirect_uri=com.example.swiftycompanion%3A%2F%2Fredirect_uri'
+      // '&response_type=code';
+
   try {
-    Response _rsp = await dio.get(
-      kAuthorizationCodeFlowAuthorizationLink +
-      '?response_type=code'
-      '&client_id=30480b7ab0ff85a13ebca0ac0bd338f56dfaf0904ef8bc4866c3866930212be3'
-      '&redirect_uri=https%3A%2F%www.google.com'
+    final String result = await FlutterWebAuth.authenticate(
+      url: url,
+      callbackUrlScheme: 'com.example.swifty_companion://redirect'
     );
-    print('----------- GETTING ACCSS TKN ----------');
+    final String? token = Uri.parse(result).queryParameters['token'];
   } catch (e) {
-    rethrow ;
+    print(e);
   }
 }
+

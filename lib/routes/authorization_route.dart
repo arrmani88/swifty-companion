@@ -40,8 +40,10 @@ class _AuthorizationRouteState extends State<AuthorizationRoute> {
     } catch (e) {
       if (e is DioError)
         {describeTheError((e.response?.data as Map<String, dynamic>)['error_description']);}
-      else
-        {describeTheError('An unknown error has occured, try re-connecting the device with internet and restart the app');}
+      else {
+        print(e);
+        describeTheError('An unknown error has occured, try re-connecting the device with internet and restart the app');
+      }
     }
   }
 
@@ -75,7 +77,7 @@ class _AuthorizationRouteState extends State<AuthorizationRoute> {
                         'You\'ll be redirected to the 42 Intra website to authorize the use of your account',
                         style: TextStyle(color: Color(0xffa3a3a3), fontSize: 16.5),
                         textAlign: TextAlign.center,
-                      )
+                      ),
                     ],
                   ),
                 ),
@@ -91,3 +93,4 @@ class _AuthorizationRouteState extends State<AuthorizationRoute> {
     );
   }
 }
+

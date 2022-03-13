@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:swifty_companion/globals/globals.dart';
+import 'package:swifty_companion/providers/cluster_provider.dart';
 
 class WorkStation extends StatelessWidget {
   final String? host;
@@ -15,8 +17,12 @@ class WorkStation extends StatelessWidget {
         padding: EdgeInsets.only(
           left: 1.0,
           right: 1.0,
-          bottom: (isDoorFacing == true ? 15.0 : 0.0),
-          top: (isDoorFacing == false ? 15.0 : 0.0),
+          bottom: ((isDoorFacing == true && context.watch<ClustersProvider>().isClusterRotated == false)
+              || (isDoorFacing == false && context.watch<ClustersProvider>().isClusterRotated == true)
+              ? 15.0 : 0.0),
+          top: (!((isDoorFacing == true && context.watch<ClustersProvider>().isClusterRotated == false)
+              || (isDoorFacing == false && context.watch<ClustersProvider>().isClusterRotated == true))
+              ? 15.0 : 0.0),
         ),
         child: (host == null)
           ? const SizedBox(height: 55.0, width: 45.0,)

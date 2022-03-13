@@ -11,6 +11,8 @@ Rate this app
 
 /****************/
 TODO LIST
+what are scopes
+clean pubspec.yaml
 remove circle cursors from radar chart
 sync navbar when manual scroll on pageview
 f authorization_route blast men setstate bach t affichi popup, dir provider
@@ -23,6 +25,5 @@ testi b thor
 
 
 Continue doing: [
-            sawb 'widgets/workstation.dart'
-            sawb list dial widget workstation
+
     ]
