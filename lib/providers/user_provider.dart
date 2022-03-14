@@ -11,12 +11,12 @@ import '../globals/globals.dart';
 
 class UserProvider with ChangeNotifier {
 
+  String? imageURL;
+  String? location;
   late String email;
   late String login;
   late String phone;
   late String displayName;
-  String? imageURL;
-  late String? location;
   late String etec;
   late String campus;
   late int correctionPoint;
@@ -31,6 +31,18 @@ class UserProvider with ChangeNotifier {
   late Response response;
   Map<String, int?> blackHoleAbsorption = {};
   bool isProfilePageLoading = true;
+  List<DropdownMenuItem<String>>? cursusesWidgetsList = [];
+
+  destroyUser() {
+    cursusNames = [];
+    cursusIds= {};
+    grade = {};
+    level = {};
+    skills = {};
+    projectsList = [];
+    blackHoleAbsorption = {};
+    cursusesWidgetsList = [];
+  }
 
   getThisUser(String userLogin) async {
     try {
@@ -42,8 +54,10 @@ class UserProvider with ChangeNotifier {
         options: Options(headers: {'Authorization': 'Bearer ' + accessToken}),
       );
       if (_response.statusCode! >= 200 && _response.statusCode! <= 299) {
+        destroyUser();
         parseUserConstantData(_response);
         parseUserVariableData();
+        notifyListeners();
         return ProfileSearchStatus.success;
       }
     } catch (e) {
@@ -71,7 +85,9 @@ class UserProvider with ChangeNotifier {
       cursusIds[(cursus['cursus'] as Map<String, dynamic>)['name']] = (cursus['cursus'] as Map<String, dynamic>)['id'];      (cursus['cursus'] as Map<String, dynamic>)['id'];
     }
     selectedCursus = cursusNames[cursusNames.length - 1];
-    notifyListeners();
+    for (String cursus in cursusNames) {
+      cursusesWidgetsList!.add(DropdownMenuItem(value: cursus, child: FittedBox(child: Text(cursus), fit: BoxFit.fitWidth,),));
+    }
   }
 
   parseUserVariableData() {
@@ -98,9 +114,6 @@ class UserProvider with ChangeNotifier {
         );
       }
     }
-    notifyListeners();
-    // user.imageURL = 'https://images.unsplash.com/photo-1526666923127-b2970f64b422?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3572&q=80.jpg';
-    // printUSerClass(user);
   }
 
   updateSelectedCursus(String newCursus) {

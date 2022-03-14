@@ -27,3 +27,5 @@ data types dial user (login email ...etc) redhom nullable
 Continue doing: [
 
     ]
+
+permission request: phone num + limit request per user not per app

@@ -6,6 +6,7 @@ import 'package:swifty_companion/routes/profile_route.dart';
 import 'package:swifty_companion/routes/projects_route.dart';
 import 'package:swifty_companion/routes/clusters_route.dart';
 import 'package:swifty_companion/routes/notifications_route.dart';
+import 'package:swifty_companion/routes/rankings_route.dart';
 import 'package:swifty_companion/widgets/keep_widget_alive.dart';
 import 'package:swifty_companion/globals/globals.dart';
 
@@ -38,6 +39,7 @@ class _RoutesHolderState extends State<RoutesHolder> {
             KeepWidgetAlive(child: const ProfileRoute()),
             KeepWidgetAlive(child: ProjectsRoute()),
             KeepWidgetAlive(child: const ClustersRoute()),
+            KeepWidgetAlive(child: const RankingsRoute()),
             KeepWidgetAlive(child: const NotificationsRoute()),
           ],
         ),
@@ -51,8 +53,7 @@ class _RoutesHolderState extends State<RoutesHolder> {
             color: Theme.of(context).secondaryHeaderColor,
           ),
           child: SalomonBottomBar(
-
-            margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 50.0),
+            margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 35.0),
             itemPadding: const EdgeInsets.symmetric(vertical: 3.0, horizontal: 10.0),
             currentIndex: selectedIndex,
             onTap: (i) => setState(() {
@@ -77,6 +78,12 @@ class _RoutesHolderState extends State<RoutesHolder> {
                 title:  const Text('Clusters'),
                 selectedColor: Theme.of(context).splashColor,
                 unselectedColor: Theme.of(context).scaffoldBackgroundColor
+              ),
+              SalomonBottomBarItem(
+                  icon:  const Icon(Icons.format_list_numbered_sharp),
+                  title:  const Text('Rankings'),
+                  selectedColor: Theme.of(context).splashColor,
+                  unselectedColor: Theme.of(context).scaffoldBackgroundColor
               ),
               SalomonBottomBarItem(
                   icon:  const Icon(Icons.notifications),

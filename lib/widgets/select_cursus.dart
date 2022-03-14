@@ -8,15 +8,6 @@ class SelectCursus extends StatefulWidget {
   @override _SelectCursusState createState() => _SelectCursusState();
 }
 class _SelectCursusState extends State<SelectCursus> {
-  List<DropdownMenuItem<String>>? cursuses = [];
-
-  @override
-  void initState() {
-    for (String cursus in context.read<UserProvider>().cursusNames) {
-      cursuses!.add(DropdownMenuItem(value: cursus, child: FittedBox(child: Text(cursus), fit: BoxFit.fitWidth,),));
-    }
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +34,7 @@ class _SelectCursusState extends State<SelectCursus> {
                 style: const TextStyle(color: Colors.white),
                 icon: const Icon(Icons.arrow_downward, color: Colors.white,),
                 value: context.watch<UserProvider>().selectedCursus,
-                items: cursuses,
+                items: context.watch<UserProvider>().cursusesWidgetsList,
                 onChanged: (newValue) => setState(() {
                   context.read<UserProvider>().updateSelectedCursus(newValue!);
                   context.read<UserProvider>().parseUserVariableData();
