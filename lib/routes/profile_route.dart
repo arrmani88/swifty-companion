@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:swifty_companion/constants/constants.dart';
 import 'package:swifty_companion/widgets/black_hole_absorption.dart';
 import 'package:swifty_companion/widgets/blur_container.dart';
+import 'package:swifty_companion/widgets/get_notified.dart';
 import 'package:swifty_companion/widgets/intra_info.dart';
 import 'package:swifty_companion/widgets/cover_and_profile_pictures.dart';
 import 'package:swifty_companion/widgets/personal_info.dart';
@@ -35,7 +36,17 @@ class _ProfileRouteState extends State<ProfileRoute> {
                   CoverAndProfilePictures(),
                   const SizedBox(height: 25.0),
                   Text(context.watch<UserProvider>().displayName, style: const TextStyle(color: Colors.white, fontSize: 40.0, fontWeight: FontWeight.bold), textAlign: TextAlign.center,),
-                  Text('@'+context.watch<UserProvider>().login, style: const TextStyle(color: Colors.white, fontSize: 25.0, fontWeight: FontWeight.bold)),
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text('@ '+context.watch<UserProvider>().login, style: const TextStyle(color: Colors.white, fontSize: 25.0, fontWeight: FontWeight.bold)),
+                      Container(margin: const EdgeInsets.symmetric(horizontal: 15.0),width: 2.0, height: 25.0, color: Colors.white),
+                      const Icon(Icons.computer, color: Colors.white,),
+                      const SizedBox(width: 10.0),
+                      Text((context.watch<UserProvider>().location ?? 'Unavailable'), style: const TextStyle(color: Colors.white, fontSize: 25.0, fontWeight: FontWeight.bold))
+                    ],
+                  ),
+                  const GetNotified(),
                   BlurContainer(
                     children: [
                       IntraInfo(title: 'Wallet', value: context.watch<UserProvider>().wallet.toString() + ' \$'),
@@ -48,11 +59,12 @@ class _ProfileRouteState extends State<ProfileRoute> {
                   ),
                   BlurContainer(
                     children: [
-                      PersonalInfo(icon: Icons.location_on, value: (context.watch<UserProvider>().location ?? 'Unavailable') + ', '+ context.watch<UserProvider>().campus,),
+                      // PersonalInfo(icon: Icons.location_on, value: (context.watch<UserProvider>().location ?? 'Unavailable') + ', '+ context.watch<UserProvider>().campus,),
+                      PersonalInfo(icon: Icons.location_on, value: context.watch<UserProvider>().campus,),
                       PersonalInfo(icon: Icons.alternate_email, value: context.watch<UserProvider>().email),
                       PersonalInfo(icon: Icons.local_phone, value: context.watch<UserProvider>().phone),
                       if (context.read<UserProvider>().blackHoleAbsorption[context.watch<UserProvider>().selectedCursus] != null)
-                        BlackHoleAbsorption(),
+                        const BlackHoleAbsorption(),
                       const SizedBox(height: 10.0),
                       LinearPercentIndicator(
                         progressColor: Theme.of(context).secondaryHeaderColor,

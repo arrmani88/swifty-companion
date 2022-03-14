@@ -80,16 +80,16 @@ class _RoutesHolderState extends State<RoutesHolder> {
                 unselectedColor: Theme.of(context).scaffoldBackgroundColor
               ),
               SalomonBottomBarItem(
-                  icon:  const Icon(Icons.format_list_numbered_sharp),
-                  title:  const Text('Rankings'),
-                  selectedColor: Theme.of(context).splashColor,
-                  unselectedColor: Theme.of(context).scaffoldBackgroundColor
+                icon:  const Icon(Icons.format_list_numbered_sharp),
+                title:  const Text('Rankings'),
+                selectedColor: Theme.of(context).splashColor,
+                unselectedColor: Theme.of(context).scaffoldBackgroundColor
               ),
               SalomonBottomBarItem(
-                  icon:  const Icon(Icons.notifications),
-                  title:  const Text('Notifs'),
-                  selectedColor: Theme.of(context).splashColor,
-                  unselectedColor: Theme.of(context).scaffoldBackgroundColor
+                icon:  const Icon(Icons.notifications),
+                title:  const Text('Notifs'),
+                selectedColor: Theme.of(context).splashColor,
+                unselectedColor: Theme.of(context).scaffoldBackgroundColor
               ),
             ],
           ),
@@ -106,14 +106,14 @@ Icons.task_sharp
 
 /*
 SlidingClippedNavBar(
-        iconSize: 25.0,
-        backgroundColor: Theme.of(context).secondaryHeaderColor,
-        onButtonPressed: (int index) {
-          setState(() => selectedIndex = index);
-          pageController.animateToPage(selectedIndex, duration: const Duration(milliseconds: 600), curve: Curves.easeOutQuad);
-        },
-        barItems: navBarItems,
-        activeColor: Theme.of(context).scaffoldBackgroundColor,
-        selectedIndex: selectedIndex,
+  iconSize: 25.0,
+  backgroundColor: Theme.of(context).secondaryHeaderColor,
+  onButtonPressed: (int index) {
+    setState(() => selectedIndex = index);
+    pageController.animateToPage(selectedIndex, duration: const Duration(milliseconds: 600), curve: Curves.easeOutQuad);
+  },
+  barItems: navBarItems,
+  activeColor: Theme.of(context).scaffoldBackgroundColor,
+  selectedIndex: selectedIndex,
       )
 * */

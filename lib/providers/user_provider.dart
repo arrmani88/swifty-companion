@@ -32,6 +32,7 @@ class UserProvider with ChangeNotifier {
   Map<String, int?> blackHoleAbsorption = {};
   bool isProfilePageLoading = true;
   List<DropdownMenuItem<String>>? cursusesWidgetsList = [];
+  bool isUserTargeted = false;
 
   destroyUser() {
     cursusNames = [];
