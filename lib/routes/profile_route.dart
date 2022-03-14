@@ -12,7 +12,6 @@ import 'package:swifty_companion/widgets/select_cursus.dart';
 import 'package:provider/provider.dart';
 import 'package:swifty_companion/providers/user_provider.dart';
 import 'package:swifty_companion/widgets/skills.dart';
-
 import '../providers/pop_up_provider.dart';
 
 class ProfileRoute extends StatefulWidget {

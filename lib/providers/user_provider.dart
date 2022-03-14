@@ -33,6 +33,25 @@ class UserProvider with ChangeNotifier {
   bool isProfilePageLoading = true;
   List<DropdownMenuItem<String>>? cursusesWidgetsList = [];
   bool isUserTargeted = false;
+  late int userId;
+
+  targetThisUser() {
+    isUserTargeted = true;
+    print('----------------------------------------');
+    print('before targeting =>>>' + targetedUsers.toString());
+    targetedUsers.add({userId: {login: location}});
+    print('after after targeting =>>>' + targetedUsers.toString());
+    notifyListeners();
+  }
+
+  detargetThisUser() {
+    isUserTargeted = false;
+    print('----------------------------------------');
+    print('before detargeting =>>>' + targetedUsers.toString());
+    targetedUsers.removeWhere((element) => element.keys.first == userId);
+    print('after after detargeting =>>>' + targetedUsers.toString());
+    notifyListeners();
+  }
 
   destroyUser() {
     cursusNames = [];
@@ -88,6 +107,15 @@ class UserProvider with ChangeNotifier {
     selectedCursus = cursusNames[cursusNames.length - 1];
     for (String cursus in cursusNames) {
       cursusesWidgetsList!.add(DropdownMenuItem(value: cursus, child: FittedBox(child: Text(cursus), fit: BoxFit.fitWidth,),));
+    }
+    userId = int.parse(((((response.data as Map<String, dynamic>)['campus_users'] as List<dynamic>)[0] as Map<String, dynamic>)['user_id']).toString());
+    print('--- GETTING USER DATA ----------');
+    print('user id = ' + userId.toString());
+    for (Map usr in targetedUsers) {
+      if (usr.containsKey(userId)) {
+        isUserTargeted = true;
+        break ;
+      }
     }
   }
 
