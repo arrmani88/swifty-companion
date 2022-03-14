@@ -90,7 +90,6 @@ class ClustersProvider with ChangeNotifier {
     getClusterWidgetsList(stageNumber: 1, stageWidgetsList: e1WidgetsList, stageJsonList: e1JsonList);
     getClusterWidgetsList(stageNumber: 2, stageWidgetsList: e2WidgetsList, stageJsonList: e2JsonList);
     areClustersLoading = false;
-    print('gotClusters() => $areClustersLoading');
     notifyListeners();
   }
 
@@ -127,14 +126,13 @@ class ClustersProvider with ChangeNotifier {
 
   clearAllClustersData() {
     areClustersLoading = true;
-    print('clearAllClustersData() => $areClustersLoading');
     clustersJsonList = [];
     e1JsonList = {};
     e2JsonList = {};
     e1WidgetsList = [];
     e2WidgetsList = [];
+    notifyListeners();
   }
-
 }
 
 String getPath({required int pageNum})  {
@@ -147,8 +145,9 @@ String getPath({required int pageNum})  {
     '&filter[end]=false';
 }
 
-/*
 
+
+/*
   // getClusterDebugList({required stageNumber, required stageWidgetsList, required stageJsonList}) {
   //   int r = 1;
   //   int p;

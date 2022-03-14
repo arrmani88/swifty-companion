@@ -20,8 +20,8 @@ chi animation dial scroll
 meli twark 3la chi 7ed men lmap y dir loading widget wast profile_route
 ----------------------
 project mark box dir liha title chad lwidth kollo
-searched login to lowercase
 testi b thor
+data types dial user (login email ...etc) redhom nullable
 
 
 Continue doing: [

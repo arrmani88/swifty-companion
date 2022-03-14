@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'dart:ui';
+import 'package:swifty_companion/providers/pop_up_provider.dart';
 
 class ErrorPopUp extends StatelessWidget {
   final Function closePopUp;
@@ -10,7 +12,10 @@ class ErrorPopUp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => closePopUp(),
+      onTap: () {
+        context.read<PopUpProvider>().hideAllPopUps();
+        closePopUp();
+      },
       child: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),

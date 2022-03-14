@@ -1,9 +1,13 @@
 import 'dart:collection';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:swifty_companion/classes/project.dart';
 import 'package:swifty_companion/functions/get_status_string_from_enum.dart';
 import 'package:dio/dio.dart';
 import 'package:swifty_companion/functions/get_black_hole_absorption.dart';
+import '../constants/constants.dart';
+import '../functions/validate_access_token.dart';
+import '../globals/globals.dart';
 
 class UserProvider with ChangeNotifier {
 
@@ -26,6 +30,32 @@ class UserProvider with ChangeNotifier {
   late String selectedCursus;
   late Response response;
   Map<String, int?> blackHoleAbsorption = {};
+  bool isProfilePageLoading = true;
+
+  getThisUser(String userLogin) async {
+    try {
+      await InternetAddress.lookup('api.intra.42.fr');
+      await validateAccessToken();
+      await Future.delayed(const Duration(seconds: 1));
+      Response _response = await dio.get(
+        kHostname + '/v2/users/' + userLogin.toLowerCase(),
+        options: Options(headers: {'Authorization': 'Bearer ' + accessToken}),
+      );
+      if (_response.statusCode! >= 200 && _response.statusCode! <= 299) {
+        parseUserConstantData(_response);
+        parseUserVariableData();
+        return ProfileSearchStatus.success;
+      }
+    } catch (e) {
+      if (e is SocketException) {
+        return ProfileSearchStatus.noInternet;
+      } if (e is DioError && e.response?.statusCode == 404) {
+        return ProfileSearchStatus.notFound;
+      } else {
+        rethrow ;
+      }
+    }
+  }
 
   parseUserConstantData(Response rsp) {
     response = rsp;

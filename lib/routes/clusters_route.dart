@@ -6,6 +6,63 @@ import 'package:swifty_companion/widgets/pop_ups/loading_pop_up.dart';
 import '../providers/cluster_provider.dart';
 import 'package:switcher_button/switcher_button.dart';
 
+class ClustersRoute extends StatefulWidget {
+  const ClustersRoute({Key? key}) : super(key: key);
+
+  @override
+  _ClustersRouteState createState() => _ClustersRouteState();
+}
+class _ClustersRouteState extends State<ClustersRoute> {
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance?.addPostFrameCallback((_){
+      context.read<ClustersProvider>().getClusters(context);
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.startDocked,
+      floatingActionButton: FloatingButtons(parentContext: context),
+      body: Container(
+        height: kScreenHeight,
+        width: kScreenWidth,
+        decoration: BoxDecoration(gradient: RadialGradient(colors: [Theme.of(context).splashColor, Theme.of(context).scaffoldBackgroundColor], center: const Alignment(0, -0.05), radius: 0.8)),
+        child: SafeArea(
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 20.0, left: 15.0, right: 15.0),
+              child: (context.watch<ClustersProvider>().areClustersLoading == true)
+                ? const SizedBox(width: 500, child: LoadingPopUp())
+                : Center(
+                  child: InteractiveViewer(
+                    boundaryMargin: const EdgeInsets.only(bottom: 80.0),
+                    minScale: 0000.1,
+                    maxScale: 8.0,
+                    constrained: false,
+                      child: Column(
+                        children: <Widget>[
+                          for (List<Widget> range
+                            in (context.watch<ClustersProvider>().isE1Selected == true
+                                ? (context.watch<ClustersProvider>().isClusterRotated ? context.read<ClustersProvider>().e1WidgetsList.reversed : context.read<ClustersProvider>().e1WidgetsList)
+                                : (context.watch<ClustersProvider>().isClusterRotated ? context.read<ClustersProvider>().e2WidgetsList.reversed : context.read<ClustersProvider>().e2WidgetsList)))
+                            Row(children: context.watch<ClustersProvider>().isClusterRotated ? range.reversed.toList() : range),
+                        ]
+                      ),
+                ),
+              ),
+            ),
+          )
+          ),
+        ),
+    );
+  }
+}
+
+
 class FloatingButtons extends StatefulWidget {
   BuildContext parentContext;
   FloatingButtons({Key? key, required this.parentContext}) : super(key: key);
@@ -74,61 +131,4 @@ class _FloatingButtonsState extends State<FloatingButtons> {
     );
   }
 }
-
-
-class ClustersRoute extends StatefulWidget {
-  const ClustersRoute({Key? key}) : super(key: key);
-
-  @override
-  _ClustersRouteState createState() => _ClustersRouteState();
-}
-class _ClustersRouteState extends State<ClustersRoute> {
-
-  @override
-  void initState() {
-    super.initState();
-    context.read<ClustersProvider>().getClusters(context);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    print('----------------- BUILDING WIDGET TREE -----------------');
-    print(context.watch<ClustersProvider>().areClustersLoading.toString());
-    return Scaffold(
-      floatingActionButtonLocation: FloatingActionButtonLocation.startDocked,
-      floatingActionButton: FloatingButtons(parentContext: context),
-      body: Container(
-        height: kScreenHeight,
-        width: kScreenWidth,
-        decoration: BoxDecoration(gradient: RadialGradient(colors: [Theme.of(context).splashColor, Theme.of(context).scaffoldBackgroundColor], center: const Alignment(0, -0.05), radius: 0.8)),
-        child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.only(top: 20.0, left: 15.0, right: 15.0),
-            child: (context.watch<ClustersProvider>().areClustersLoading == true)
-              ? const SizedBox(width: 500, child: LoadingPopUp())
-              : Center(
-                child: InteractiveViewer(
-                  boundaryMargin: const EdgeInsets.only(bottom: 80.0),
-                  minScale: 0000.1,
-                  maxScale: 8.0,
-                  constrained: false,
-                    child: Column(
-                      children: <Widget>[
-                        for (List<Widget> range
-                          in (context.watch<ClustersProvider>().isE1Selected == true
-                              ? (context.watch<ClustersProvider>().isClusterRotated ? context.read<ClustersProvider>().e1WidgetsList.reversed : context.read<ClustersProvider>().e1WidgetsList)
-                              : (context.watch<ClustersProvider>().isClusterRotated ? context.read<ClustersProvider>().e2WidgetsList.reversed : context.read<ClustersProvider>().e2WidgetsList)))
-                          Row(children: context.watch<ClustersProvider>().isClusterRotated ? range.reversed.toList() : range),
-                      ]
-                    ),
-              ),
-            ),
-          )
-          ),
-        ),
-    );
-  }
-}
-
-
 
