@@ -113,7 +113,7 @@ class _FloatingButtonsState extends State<FloatingButtons> {
                   SwitcherButton(
                     size: 40.0,
                     value: !context.watch<ClustersProvider>().isE1Selected,
-                    onColor: Colors.blueGrey,
+                    onColor: Theme.of(context).splashColor,
                     offColor: Theme.of(context).scaffoldBackgroundColor,
                     onChange: (_) => context.read<ClustersProvider>().switchCluster(),
                   ),

@@ -102,19 +102,19 @@ class ClustersProvider with ChangeNotifier {
         Future.delayed(const Duration(milliseconds: 1000))
             .then((value) => dio.get(
             getPath(pageNum: 1),
-            options: Options(headers: {'Authorization': 'Bearer ' + accessToken}))
+            options: Options(headers: {'Authorization': 'Bearer ' + accessToken!}))
             .then((value) => addClusterPartToClustersList((value.data)))),
 
         Future.delayed(const Duration(milliseconds: 1000))
             .then((value) => dio.get(
             getPath(pageNum: 2),
-            options: Options(headers: {'Authorization': 'Bearer ' + accessToken}))
+            options: Options(headers: {'Authorization': 'Bearer ' + accessToken!}))
             .then((value) => addClusterPartToClustersList((value.data)))),
 
-        Future.delayed(const Duration(milliseconds: 2010))
+        Future.delayed(const Duration(milliseconds: 3000))
             .then((value) => dio.get(
             getPath(pageNum: 3),
-            options: Options(headers: {'Authorization': 'Bearer ' + accessToken}))
+            options: Options(headers: {'Authorization': 'Bearer ' + accessToken!}))
             .then((value) => addClusterPartToClustersList((value.data)))),
 
       ]);

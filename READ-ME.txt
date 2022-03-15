@@ -11,6 +11,7 @@ Rate this app
 display all the users that subscribed to a specific project         >>>https://api.intra.42.fr/apidoc/2.0/projects_users.html
 show the resource owner profile                                     >>>https://api.intra.42.fr/apidoc/2.0/users/me.html
 notification for an exam                                            >>>https://api.intra.42.fr/apidoc/2.0/exams.html
+log user out
 
 /****************/
 TODO LIST
@@ -25,10 +26,13 @@ meli twark 3la chi 7ed men lmap y dir loading widget wast profile_route
 project mark box dir liha title chad lwidth kollo
 testi b thor
 data types dial user (login email ...etc) redhom nullable
-
+Hero animation dial logo f splash route
+dir loading widget non-hidable
+MOHIM BZF : GERER http 429 FACH KIJIB LCLUSTERS
 
 Continue doing: [
-
+            kemmel authorization code flow (ched lcode o jib bih access token)
+            workstations targetting button kat t activa 3la kolchi
     ]
 
 permission request: phone num + limit request per user not per app

@@ -17,7 +17,7 @@ class RoutesHolder extends StatefulWidget {
   State<RoutesHolder> createState() => _RoutesHolderState();
 }
 class _RoutesHolderState extends State<RoutesHolder> {
-  int selectedIndex = 0;
+  int selectedIndex = 4;
 
   @override
   void initState() {
@@ -48,10 +48,7 @@ class _RoutesHolderState extends State<RoutesHolder> {
         padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
         child: Container(
           width: 500.0,
-          decoration: BoxDecoration(
-            // borderRadius: BorderRadius.circular(50.0),
-            color: Theme.of(context).secondaryHeaderColor,
-          ),
+          decoration: BoxDecoration(color: Theme.of(context).secondaryHeaderColor,),
           child: SalomonBottomBar(
             margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 35.0),
             itemPadding: const EdgeInsets.symmetric(vertical: 3.0, horizontal: 10.0),

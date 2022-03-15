@@ -34,22 +34,24 @@ class UserProvider with ChangeNotifier {
   List<DropdownMenuItem<String>>? cursusesWidgetsList = [];
   bool isUserTargeted = false;
   late int userId;
-
-  targetThisUser() {
+  
+  targetThisHost() {}
+  
+  detargetThisHost() {}
+  
+  targetThisUser(String key) {
     isUserTargeted = true;
-    print('----------------------------------------');
-    print('before targeting =>>>' + targetedUsers.toString());
-    targetedUsers.add({userId: {login: location}});
-    print('after after targeting =>>>' + targetedUsers.toString());
+    targetedList[key]!.add({
+      'user_id': userId,
+      'login': login,
+      'host': location
+    });
     notifyListeners();
   }
 
-  detargetThisUser() {
+  detargetThisUser(String key) {
     isUserTargeted = false;
-    print('----------------------------------------');
-    print('before detargeting =>>>' + targetedUsers.toString());
-    targetedUsers.removeWhere((element) => element.keys.first == userId);
-    print('after after detargeting =>>>' + targetedUsers.toString());
+    targetedList[key]!.removeWhere((element) => element['user_id'] == userId);
     notifyListeners();
   }
 
@@ -62,6 +64,7 @@ class UserProvider with ChangeNotifier {
     projectsList = [];
     blackHoleAbsorption = {};
     cursusesWidgetsList = [];
+    isUserTargeted = false;
   }
 
   getThisUser(String userLogin) async {
@@ -71,20 +74,20 @@ class UserProvider with ChangeNotifier {
       await Future.delayed(const Duration(seconds: 1));
       Response _response = await dio.get(
         kHostname + '/v2/users/' + userLogin.toLowerCase(),
-        options: Options(headers: {'Authorization': 'Bearer ' + accessToken}),
+        options: Options(headers: {'Authorization': 'Bearer ' + accessToken!}),
       );
       if (_response.statusCode! >= 200 && _response.statusCode! <= 299) {
         destroyUser();
         parseUserConstantData(_response);
         parseUserVariableData();
         notifyListeners();
-        return ProfileSearchStatus.success;
+        return ConnectionStatus.success;
       }
     } catch (e) {
       if (e is SocketException) {
-        return ProfileSearchStatus.noInternet;
+        return ConnectionStatus.noInternet;
       } if (e is DioError && e.response?.statusCode == 404) {
-        return ProfileSearchStatus.notFound;
+        return ConnectionStatus.notFound;
       } else {
         rethrow ;
       }
@@ -109,14 +112,18 @@ class UserProvider with ChangeNotifier {
       cursusesWidgetsList!.add(DropdownMenuItem(value: cursus, child: FittedBox(child: Text(cursus), fit: BoxFit.fitWidth,),));
     }
     userId = int.parse(((((response.data as Map<String, dynamic>)['campus_users'] as List<dynamic>)[0] as Map<String, dynamic>)['user_id']).toString());
-    print('--- GETTING USER DATA ----------');
-    print('user id = ' + userId.toString());
-    for (Map usr in targetedUsers) {
-      if (usr.containsKey(userId)) {
-        isUserTargeted = true;
-        break ;
+    targetedList.forEach((key, value) {
+      for (Map usr in value) {
+        if(usr['user_id'] == userId) {
+          print('----------- targetting this user ... ------------');
+          print('user id : $userId');
+          print('list["user_id"] = ${usr['user_id']}');
+          print('-------------------------------------------------');
+          isUserTargeted = true;
+          break ;
+        }
       }
-    }
+    });
   }
 
   parseUserVariableData() {

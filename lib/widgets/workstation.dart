@@ -22,7 +22,7 @@ class WorkStation extends StatelessWidget {
           pageController.animateTo(0, duration: const Duration(seconds: 1), curve: Curves.easeOutQuint);
           var status = await context.read<UserProvider>().getThisUser(userData![0]);
           context.read<PopUpProvider>().hideAllPopUps();
-          if (status == ProfileSearchStatus.noInternet) {
+          if (status == ConnectionStatus.noInternet) {
             context.read<PopUpProvider>().displayNoInternetPopUp();
           }
         }

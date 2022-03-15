@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
+import 'package:swifty_companion/functions/validate_access_token.dart';
 import 'package:swifty_companion/globals/globals.dart';
 import 'package:provider/provider.dart';
 import 'package:swifty_companion/providers/user_provider.dart';
@@ -26,11 +27,11 @@ class _HomeRouteState extends State<HomeRoute> {
       _btnController.start();
       // var status = await context.read<UserProvider>().getThisUser(textController.text);
       var status = await context.read<UserProvider>().getThisUser('anel-bou');
-      if (status == ProfileSearchStatus.success) {
+      if (status == ConnectionStatus.success) {
         Navigator.pushNamed(context, 'routes_holder');
-      } else if (status == ProfileSearchStatus.notFound) {
+      } else if (status == ConnectionStatus.notFound) {
         context.read<PopUpProvider>().displayUserNotFoundPopUp();
-      } else if (status == ProfileSearchStatus.noInternet) {
+      } else if (status == ConnectionStatus.noInternet) {
         context.read<PopUpProvider>().displayNoInternetPopUp();
       }
     } catch (e) {

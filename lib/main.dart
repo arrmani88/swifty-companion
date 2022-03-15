@@ -57,4 +57,3 @@ class _SwiftyCompanionState extends State<SwiftyCompanion> {
     );
   }
 }
-

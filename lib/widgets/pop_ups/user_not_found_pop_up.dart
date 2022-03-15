@@ -12,7 +12,7 @@ class UserNotFoundPopUp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => context.read<PopUpProvider>().hideUserNotFoundPopUp(),
+      onTap: () => context.read<PopUpProvider>().hideAllPopUps(),
       child: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),

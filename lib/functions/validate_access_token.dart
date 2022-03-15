@@ -1,20 +1,15 @@
-import 'package:dio/dio.dart';
-import 'package:swifty_companion/functions/get_access_token_with_client_credentials_flow.dart';
 import 'package:swifty_companion/globals/globals.dart';
+import 'do_refresh_tokens.dart';
 
 validateAccessToken() async {
   try {
-    await dio.get(
-      'https://api.intra.42.fr/oauth/token/info',
-      options: Options(headers: {'Authorization': 'Bearer ' + accessToken})
-    );
-  } catch (e) {
-    if (e is DioError && e.response?.statusCode == 401) {
-      await getAccessTokenWithClientCredentialsFlow();
-      return ;
+    refreshToken = await storage.read(key: 'refreshToken');
+    if (accessTokenCreatedAt! + 7200 - 20 > (DateTime.now().millisecondsSinceEpoch / 1000).round()) { //if token still valid ---> (-20 seconds of interval to be sure that the token didn't expired during the flow)
+      accessToken = await storage.read(key: 'accessToken');
+    } else { // if the locally saved token expired
+      await doRefreshTokens();
     }
-    print('<<<<<<<- ERROR POINT #2 ->>>>>>>');
-    rethrow;
+  } catch (e) {
+    rethrow ;
   }
-  print('ACCESS TOKEN => <$accessToken>');
 }
