@@ -17,6 +17,7 @@ class WorkStation extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () async {
+
         if (userData != null) {
           context.read<PopUpProvider>().displayProfileLoadingPopUp();
           pageController.animateTo(0, duration: const Duration(seconds: 1), curve: Curves.easeOutQuint);

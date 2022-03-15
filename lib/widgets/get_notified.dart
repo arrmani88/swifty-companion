@@ -17,7 +17,7 @@ class _GetNotifiedState extends State<GetNotified> {
       padding: const EdgeInsets.only(top: 8.0, left: 20.0, right: 20.0),
       child: (context.watch<UserProvider>().isUserTargeted == false)
           ? InkWell(
-            onTap: () => context.read<UserProvider>().targetThisUser(targetKey),
+            onTap: () => context.read<UserProvider>().targetThis(targetKey),
             child: Container(
               width: 500.0,
               color: Colors.black.withOpacity(0.4),
@@ -43,7 +43,7 @@ class _GetNotifiedState extends State<GetNotified> {
             ),
           )
           : InkWell(
-              onTap: () => context.read<UserProvider>().detargetThisUser(targetKey),
+              onTap: () => context.read<UserProvider>().detargetThis(targetKey),
               child: Container(
                 width: 500.0,
                 color: Theme.of(context).secondaryHeaderColor,

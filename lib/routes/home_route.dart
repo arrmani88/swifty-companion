@@ -19,7 +19,7 @@ class _HomeRouteState extends State<HomeRoute> {
   final RoundedLoadingButtonController _btnController = RoundedLoadingButtonController();
   final OutlineInputBorder border = OutlineInputBorder(borderSide: const BorderSide(color: Colors.white), borderRadius: BorderRadius.circular(0.0));
   final TextEditingController textController = TextEditingController();
-  late String descriptionMessage;
+  String? descriptionMessage;
 
   void onSearchPressed (BuildContext context, RoundedLoadingButtonController _btnController) async {
     try {

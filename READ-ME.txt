@@ -31,8 +31,8 @@ dir loading widget non-hidable
 MOHIM BZF : GERER http 429 FACH KIJIB LCLUSTERS
 
 Continue doing: [
-            kemmel authorization code flow (ched lcode o jib bih access token)
-            workstations targetting button kat t activa 3la kolchi
+            store targeted users to local storage
+            notifications tab dir fiha sizetransition
     ]
 
 permission request: phone num + limit request per user not per app

@@ -35,11 +35,7 @@ class UserProvider with ChangeNotifier {
   bool isUserTargeted = false;
   late int userId;
   
-  targetThisHost() {}
-  
-  detargetThisHost() {}
-  
-  targetThisUser(String key) {
+  targetThis(String key) {
     isUserTargeted = true;
     targetedList[key]!.add({
       'user_id': userId,
@@ -49,7 +45,7 @@ class UserProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  detargetThisUser(String key) {
+  detargetThis(String key) {
     isUserTargeted = false;
     targetedList[key]!.removeWhere((element) => element['user_id'] == userId);
     notifyListeners();
@@ -115,10 +111,6 @@ class UserProvider with ChangeNotifier {
     targetedList.forEach((key, value) {
       for (Map usr in value) {
         if(usr['user_id'] == userId) {
-          print('----------- targetting this user ... ------------');
-          print('user id : $userId');
-          print('list["user_id"] = ${usr['user_id']}');
-          print('-------------------------------------------------');
           isUserTargeted = true;
           break ;
         }

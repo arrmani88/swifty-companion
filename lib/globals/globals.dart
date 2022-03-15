@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:hive/hive.dart';
 
 enum Status{waitingForCorrection, subscribed, validated, failed}
 enum PushWorkStationTo{bottom, top}
@@ -16,6 +17,7 @@ Map<String, List<Map<String, dynamic>>> targetedList = {
   'targeted_hosts': [],
   'targeted_users': []
 };
+var box = Hive.box('targetedList');
 
 
 
