@@ -34,7 +34,7 @@ targetedList = {
       'host': 'e2r7p8'
     },
   ],
-  'tergeted_users': [
+  'targeted_users': [
     {
       "user_id": 138775,
       "login": 'anel-bou',

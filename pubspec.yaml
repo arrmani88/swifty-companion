@@ -47,6 +47,7 @@ flutter:
     - assets/images/profile_picture.jpeg
     - assets/images/blank_profile_picture.png
     - assets/images/not_found.png
+    - assets/images/imac_image.png
     - assets/icons/lock_icon.png
     - assets/icons/broken_robot.png
     - assets/icons/black_hole.png

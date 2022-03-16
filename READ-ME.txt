@@ -1,5 +1,4 @@
-print('<<<<<<<- ERROR POINT #2 ->>>>>>>');
-14 <= c || 15 <= b <=39 || a >=40 || abdait-m
+
 
 notify when en exam is scheduled
 notify when any workstation is free
@@ -31,8 +30,8 @@ dir loading widget non-hidable
 MOHIM BZF : GERER http 429 FACH KIJIB LCLUSTERS
 
 Continue doing: [
-            store targeted users to local storage
-            notifications tab dir fiha sizetransition
-    ]
+            dir inkwell l dak tarro dial target
+        ]
+
 
 permission request: phone num + limit request per user not per app

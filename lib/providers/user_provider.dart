@@ -43,6 +43,7 @@ class UserProvider with ChangeNotifier {
       'host': location
     });
     targetedItemsBox.put(key, targetedItemsData[key]!);
+    print(targetedItemsData['targeted_hosts'].toString());
     notifyListeners();
   }
 
@@ -50,6 +51,7 @@ class UserProvider with ChangeNotifier {
     isUserTargeted = false;
     targetedItemsData[key]!.removeWhere((element) => element['user_id'] == userId);
     targetedItemsBox.put(key, targetedItemsData[key]!);
+    print(targetedItemsData['targeted_hosts'].toString());
     notifyListeners();
   }
 

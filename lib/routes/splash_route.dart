@@ -30,7 +30,7 @@ class _SplashRouteState extends State<SplashRoute> {
   Future<dynamic> initAccessToken (BuildContext context) async {
     // await getAccessTokenWithClientCredentialsFlow();        // client credential flow - oauth2
     // Navigator.pushReplacementNamed(context, 'home_route');  // client credential flow - oauth2
-    // try {
+    try {
       String? tmp;
       await InternetAddress.lookup('api.intra.42.fr');
       tmp = await storage.read(key: 'accessTokenCreatedAt');
@@ -44,19 +44,18 @@ class _SplashRouteState extends State<SplashRoute> {
         validateAccessToken();
         Navigator.pushReplacementNamed(context, 'home_route');
       }
-
-    // } on SocketException catch (_) {
-    //   context.read<PopUpProvider>().displayNoInternetPopUp();
-    // } catch (e) {
-    //   if (e is DioError) {
-    //     descriptionMessage = (e.response?.data as Map<String, dynamic>)['error_description'];
-    //     context.read<PopUpProvider>().displayUnknownErrorPopUp();
-    //   } else {
-    //     descriptionMessage = null;
-    //     context.read<PopUpProvider>().displayUnknownErrorPopUp();
-    //     print(e);
-    //   }
-    // }
+    } on SocketException catch (_) {
+      context.read<PopUpProvider>().displayNoInternetPopUp();
+    } catch (e) {
+      if (e is DioError) {
+        descriptionMessage = (e.response?.data as Map<String, dynamic>)['error_description'];
+        context.read<PopUpProvider>().displayUnknownErrorPopUp();
+      } else {
+        descriptionMessage = null;
+        context.read<PopUpProvider>().displayUnknownErrorPopUp();
+        print(e);
+      }
+    }
   }
 
   @override

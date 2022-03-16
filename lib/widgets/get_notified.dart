@@ -12,7 +12,7 @@ class _GetNotifiedState extends State<GetNotified> {
 
   @override
   Widget build(BuildContext context) {
-    String targetKey = context.watch<UserProvider>().location == null ? 'targeted_users' : 'targeted_hosts';
+    String targetKey = context.watch<UserProvider>().location != null ? 'targeted_users' : 'targeted_hosts';
     return Padding(
       padding: const EdgeInsets.only(top: 8.0, left: 20.0, right: 20.0),
       child: (context.watch<UserProvider>().isUserTargeted == false)

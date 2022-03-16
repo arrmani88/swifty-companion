@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:swifty_companion/globals/globals.dart';
 
 import '../widgets/targeted_item.dart';
 
-class NotificationTab extends StatefulWidget {
+class NotificationSection extends StatefulWidget {
   final String title;
-  const NotificationTab({Key? key, required this.title}) : super(key: key);
+  final List<Widget> children;
+  const NotificationSection({Key? key, required this.title, required this.children}) : super(key: key);
   @override
-  _NotificationTabState createState() => _NotificationTabState();
+  _NotificationSectionState createState() => _NotificationSectionState();
 }
-class _NotificationTabState extends State<NotificationTab> with SingleTickerProviderStateMixin {
+class _NotificationSectionState extends State<NotificationSection> with SingleTickerProviderStateMixin {
   late AnimationController controller;
   late Animation<double> animation;
   bool isOpened = false;
@@ -22,6 +24,7 @@ class _NotificationTabState extends State<NotificationTab> with SingleTickerProv
 
   @override
   Widget build(BuildContext context) {
+    print('${widget.key} ===> ${widget.children}');
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10.0),
       child: Column(
@@ -56,9 +59,7 @@ class _NotificationTabState extends State<NotificationTab> with SingleTickerProv
               axisAlignment: -1,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  TargetedItem(item: {'login': 'anel-bou'}),
-                ],
+                children: widget.children,
               ),
             )
           )
@@ -77,13 +78,21 @@ class NotificationsRoute extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15.0),
         child: Column(
-          children: const [
-            SizedBox(height: 15.0),
-            NotificationTab(title: 'Targeted users'),
-            NotificationTab(title: 'Targeted workstations')
+          children: [
+            const SizedBox(height: 15.0),
+            NotificationSection(title: 'Targeted users', children: getWidgetsList('targeted_users')),
+            NotificationSection(title: 'Targeted workstations', children: getWidgetsList('targeted_hosts'))
           ],
         ),
       ),
     );
   }
+}
+
+List<Widget> getWidgetsList(String key) {
+  List<Widget> ret = [];
+  for (Map<String, dynamic> item in targetedItemsData[key]!) {
+    ret.add(TargetedItem(item: item, targetedIsAUser: key == 'targeted_users' ? true : false));
+  }
+  return ret;
 }
