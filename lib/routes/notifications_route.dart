@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:swifty_companion/globals/globals.dart';
+import 'package:swifty_companion/providers/target_provider.dart';
 
 import '../widgets/targeted_item.dart';
 
@@ -72,6 +74,14 @@ class _NotificationSectionState extends State<NotificationSection> with SingleTi
 class NotificationsRoute extends StatelessWidget {
   const NotificationsRoute({Key? key}) : super(key: key);
 
+  List<Widget> getWidgetsList(BuildContext context, String key) {
+    List<Widget> ret = [];
+    for (Map<String, dynamic> item in context.watch<TargetProvider>().targetedItemsData[key]!) {
+      ret.add(TargetedItem(item: item, targetedIsAUser: key == 'targeted_users' ? true : false));
+    }
+    return ret;
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -80,19 +90,11 @@ class NotificationsRoute extends StatelessWidget {
         child: Column(
           children: [
             const SizedBox(height: 15.0),
-            NotificationSection(title: 'Targeted users', children: getWidgetsList('targeted_users')),
-            NotificationSection(title: 'Targeted workstations', children: getWidgetsList('targeted_hosts'))
+            NotificationSection(title: 'Targeted workstations', children: getWidgetsList(context, 'targeted_hosts')),
+            NotificationSection(title: 'Targeted users', children: getWidgetsList(context, 'targeted_users')),
           ],
         ),
       ),
     );
   }
-}
-
-List<Widget> getWidgetsList(String key) {
-  List<Widget> ret = [];
-  for (Map<String, dynamic> item in targetedItemsData[key]!) {
-    ret.add(TargetedItem(item: item, targetedIsAUser: key == 'targeted_users' ? true : false));
-  }
-  return ret;
 }

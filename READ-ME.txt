@@ -1,15 +1,13 @@
 
 
-notify when en exam is scheduled
+notify when en exam is scheduled                                    >>>https://api.intra.42.fr/apidoc/2.0/exams.html
 notify when any workstation is free
 notify when a targeted workstation is free
 show cluster
 show promo ranking
-onclick men cluster updati profile y ban fih user li cliquiti 3lih
 Rate this app
 display all the users that subscribed to a specific project         >>>https://api.intra.42.fr/apidoc/2.0/projects_users.html
 show the resource owner profile                                     >>>https://api.intra.42.fr/apidoc/2.0/users/me.html
-notification for an exam                                            >>>https://api.intra.42.fr/apidoc/2.0/exams.html
 log user out
 
 /****************/

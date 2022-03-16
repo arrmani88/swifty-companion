@@ -13,7 +13,7 @@ import 'package:swifty_companion/providers/user_provider.dart';
 import 'package:swifty_companion/providers/cluster_provider.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:path_provider/path_provider.dart';
+import 'providers/target_provider.dart';
 
 void main() async {
   await Hive.initFlutter();
@@ -22,7 +22,8 @@ void main() async {
     providers: [
       ChangeNotifierProvider(create: (_) => UserProvider()),
       ChangeNotifierProvider(create: (_) => PopUpProvider()),
-      ChangeNotifierProvider(create: (_) => ClustersProvider())
+      ChangeNotifierProvider(create: (_) => ClustersProvider()),
+      ChangeNotifierProvider(create: (_) => TargetProvider())
     ],
     child: SwiftyCompanion()
   ));

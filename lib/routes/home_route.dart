@@ -4,6 +4,7 @@ import 'package:rounded_loading_button/rounded_loading_button.dart';
 import 'package:swifty_companion/functions/validate_access_token.dart';
 import 'package:swifty_companion/globals/globals.dart';
 import 'package:provider/provider.dart';
+import 'package:swifty_companion/providers/target_provider.dart';
 import 'package:swifty_companion/providers/user_provider.dart';
 import 'package:swifty_companion/widgets/pop_ups/error_pop_up.dart';
 import 'package:swifty_companion/widgets/pop_ups/loading_pop_up.dart';
@@ -25,8 +26,8 @@ class _HomeRouteState extends State<HomeRoute> {
     try {
       FocusManager.instance.primaryFocus?.unfocus();
       _btnController.start();
-      // var status = await context.read<UserProvider>().getThisUser(textController.text);
-      var status = await context.read<UserProvider>().getThisUser('anel-bou');
+      var status = await context.read<UserProvider>().getThisUser(textController.text.isEmpty ? 'anel-bou' : textController.text, context.read<TargetProvider>().targetedItemsData);
+      // var status = await context.read<UserProvider>().getThisUser('anel-bou');
       if (status == ConnectionStatus.success) {
         Navigator.pushNamed(context, 'routes_holder');
       } else if (status == ConnectionStatus.notFound) {

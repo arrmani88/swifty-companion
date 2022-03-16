@@ -71,7 +71,7 @@ class _RoutesHolderState extends State<RoutesHolder> {
                 unselectedColor: Theme.of(context).scaffoldBackgroundColor
               ),
               SalomonBottomBarItem(
-                icon:  const ImageIcon(AssetImage('assets/icons/imac_icon.png'), size: 25.0,),
+                icon:  const ImageIcon(AssetImage('assets/icons/compass_icon.png'), size: 25.0,),
                 title:  const Text('Clusters'),
                 selectedColor: Theme.of(context).splashColor,
                 unselectedColor: Theme.of(context).scaffoldBackgroundColor

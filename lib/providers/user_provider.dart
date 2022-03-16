@@ -37,21 +37,11 @@ class UserProvider with ChangeNotifier {
   
   targetThis(String key) {
     isUserTargeted = true;
-    targetedItemsData[key]!.add({
-      'user_id': userId,
-      'login': login,
-      'host': location
-    });
-    targetedItemsBox.put(key, targetedItemsData[key]!);
-    print(targetedItemsData['targeted_hosts'].toString());
     notifyListeners();
   }
 
   detargetThis(String key) {
     isUserTargeted = false;
-    targetedItemsData[key]!.removeWhere((element) => element['user_id'] == userId);
-    targetedItemsBox.put(key, targetedItemsData[key]!);
-    print(targetedItemsData['targeted_hosts'].toString());
     notifyListeners();
   }
 
@@ -67,7 +57,7 @@ class UserProvider with ChangeNotifier {
     isUserTargeted = false;
   }
 
-  getThisUser(String userLogin) async {
+  getThisUser(String userLogin, Map<String, List<Map<String, dynamic>>> targetedItemsData) async {
     try {
       await InternetAddress.lookup('api.intra.42.fr');
       await validateAccessToken();
@@ -78,7 +68,7 @@ class UserProvider with ChangeNotifier {
       );
       if (_response.statusCode! >= 200 && _response.statusCode! <= 299) {
         destroyUser();
-        parseUserConstantData(_response);
+        parseUserConstantData(_response, targetedItemsData);
         parseUserVariableData();
         notifyListeners();
         return ConnectionStatus.success;
@@ -94,7 +84,7 @@ class UserProvider with ChangeNotifier {
     }
   }
 
-  parseUserConstantData(Response rsp) {
+  parseUserConstantData(Response rsp, Map<String, List<Map<String, dynamic>>> targetedItemsData) {
     response = rsp;
     email = (rsp.data as Map<String, dynamic>)['email'];
     login = (rsp.data as Map<String, dynamic>)['login'];

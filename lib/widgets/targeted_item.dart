@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:swifty_companion/providers/target_provider.dart';
+import 'package:swifty_companion/providers/user_provider.dart';
 
 class TargetedItem extends StatelessWidget {
   final Map<String, dynamic> item;
@@ -22,7 +25,7 @@ class TargetedItem extends StatelessWidget {
                     color: Colors.white,
                     padding: const EdgeInsets.all(2.0),
                     margin: const EdgeInsets.fromLTRB(20.0, 0, 15.0, 0),
-                    child: Container(
+                    child: SizedBox(
                         height: 50.0,
                         width: 50.0,
                         child: Image.network(
@@ -34,11 +37,20 @@ class TargetedItem extends StatelessWidget {
                         )
                     ),
                   )
-                  : Padding(child: Image.asset('assets/images/imac_image.png', width: 50.0), padding: const EdgeInsets.fromLTRB(20.0, 0, 15.0, 0),),
+                  : Padding(child: Image.asset('assets/images/imac_image.png', width: 50.0), padding: const EdgeInsets.fromLTRB(20.0, 0, 15.0, 0)),
                   Text(item[targetedIsAUser == true ? 'login' : 'host'], style: const TextStyle(color: Colors.white, fontSize: 20.0),)
                 ],
               ),
-              const Padding(child: Icon(Icons.delete_sharp, color: Colors.white), padding: EdgeInsets.only(right: 18.0),)
+              InkWell(
+                onTap: () {
+                  context.read<TargetProvider>().removeThisTargetFromList(
+                    targetedIsAUser ? 'targeted_users' : 'targeted_hosts',
+                    item['user_id'],
+                  );
+                  if (context.read<UserProvider>().userId == item['user_id']) context.read<UserProvider>().detargetThis(targetedIsAUser ? 'targeted_users' : 'targeted_hosts');
+                },
+                child: const Padding(child: Icon(Icons.delete_sharp, color: Colors.white), padding: EdgeInsets.only(right: 18.0),)
+              )
             ],
           ),
         ),

@@ -14,10 +14,6 @@ const String targetedItemsBoxName = 'targetedItems';
 const storage = FlutterSecureStorage();
 late Response response;
 late PageController pageController;
-Map<String, List<Map<String, dynamic>>> targetedItemsData = {
-  'targeted_hosts': [],
-  'targeted_users': []
-};
 var targetedItemsBox = Hive.box(targetedItemsBoxName);
 
 

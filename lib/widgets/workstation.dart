@@ -5,6 +5,8 @@ import 'package:swifty_companion/providers/cluster_provider.dart';
 import 'package:swifty_companion/providers/pop_up_provider.dart';
 import 'package:swifty_companion/providers/user_provider.dart';
 
+import '../providers/target_provider.dart';
+
 class WorkStation extends StatelessWidget {
   final String? host;
   final List? userData;
@@ -21,7 +23,7 @@ class WorkStation extends StatelessWidget {
         if (userData != null) {
           context.read<PopUpProvider>().displayProfileLoadingPopUp();
           pageController.animateTo(0, duration: const Duration(seconds: 1), curve: Curves.easeOutQuint);
-          var status = await context.read<UserProvider>().getThisUser(userData![0]);
+          var status = await context.read<UserProvider>().getThisUser(userData![0], context.read<TargetProvider>().targetedItemsData);
           context.read<PopUpProvider>().hideAllPopUps();
           if (status == ConnectionStatus.noInternet) {
             context.read<PopUpProvider>().displayNoInternetPopUp();

@@ -11,6 +11,7 @@ import 'package:swifty_companion/globals/globals.dart';
 import 'package:swifty_companion/functions/save_token_to_local_storage.dart';
 
 import '../providers/pop_up_provider.dart';
+import '../providers/target_provider.dart';
 import '../widgets/pop_ups/error_pop_up.dart';
 
 class SplashRoute extends StatefulWidget {
@@ -35,9 +36,8 @@ class _SplashRouteState extends State<SplashRoute> {
       await InternetAddress.lookup('api.intra.42.fr');
       tmp = await storage.read(key: 'accessTokenCreatedAt');
       if (tmp != null) accessTokenCreatedAt = int.parse(tmp);
-      targetedItemsData['targeted_hosts'] = (targetedItemsBox.get('targeted_hosts', defaultValue: []) as List).map((e) => Map<String, dynamic>.from(e)).toList();
-      targetedItemsData['targeted_users'] = (targetedItemsBox.get('targeted_users', defaultValue: []) as List).map((e) => Map<String, dynamic>.from(e)).toList();
-      print(targetedItemsData['targeted_hosts'].toString());
+      context.read<TargetProvider>().targetedItemsData['targeted_hosts'] = (targetedItemsBox.get('targeted_hosts', defaultValue: []) as List).map((e) => Map<String, dynamic>.from(e)).toList();
+      context.read<TargetProvider>().targetedItemsData['targeted_users'] = (targetedItemsBox.get('targeted_users', defaultValue: []) as List).map((e) => Map<String, dynamic>.from(e)).toList();
       if (accessTokenCreatedAt == null) { // if no token is   alocally saved
         Navigator.pushReplacementNamed(context, 'authorization_route');
       } else { // if a token was saved locally
