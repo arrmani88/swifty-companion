@@ -27,6 +27,8 @@ dependencies:
   url_launcher: ^6.0.20
   flutter_web_auth: ^0.4.1
   hive: ^2.0.6
+  hive_flutter: ^1.1.0
+#  path_provider: ^2.0.9
 
 
 dev_dependencies:
@@ -43,12 +45,13 @@ flutter:
     - assets/images/app_logo.jpeg
     - assets/images/cover.jpg
     - assets/images/profile_picture.jpeg
-    - assets/icons/lock_icon.png
-    - assets/icons/broken_robot.png
     - assets/images/blank_profile_picture.png
     - assets/images/not_found.png
+    - assets/icons/lock_icon.png
+    - assets/icons/broken_robot.png
     - assets/icons/black_hole.png
     - assets/icons/change_arrows.png
+    - assets/icons/imac_icon.png
 
   fonts:
     - family: weiss

@@ -37,17 +37,19 @@ class UserProvider with ChangeNotifier {
   
   targetThis(String key) {
     isUserTargeted = true;
-    targetedList[key]!.add({
+    targetedItemsData[key]!.add({
       'user_id': userId,
       'login': login,
       'host': location
     });
+    targetedItemsBox.put(key, targetedItemsData[key]!);
     notifyListeners();
   }
 
   detargetThis(String key) {
     isUserTargeted = false;
-    targetedList[key]!.removeWhere((element) => element['user_id'] == userId);
+    targetedItemsData[key]!.removeWhere((element) => element['user_id'] == userId);
+    targetedItemsBox.put(key, targetedItemsData[key]!);
     notifyListeners();
   }
 
@@ -108,8 +110,8 @@ class UserProvider with ChangeNotifier {
       cursusesWidgetsList!.add(DropdownMenuItem(value: cursus, child: FittedBox(child: Text(cursus), fit: BoxFit.fitWidth,),));
     }
     userId = int.parse(((((response.data as Map<String, dynamic>)['campus_users'] as List<dynamic>)[0] as Map<String, dynamic>)['user_id']).toString());
-    targetedList.forEach((key, value) {
-      for (Map usr in value) {
+    targetedItemsData.forEach((key, value) {
+      for (Map<String, dynamic> usr in value) {
         if(usr['user_id'] == userId) {
           isUserTargeted = true;
           break ;

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/targeted_item.dart';
+
 class NotificationTab extends StatefulWidget {
   final String title;
   const NotificationTab({Key? key, required this.title}) : super(key: key);
@@ -38,7 +40,7 @@ class _NotificationTabState extends State<NotificationTab> with SingleTickerProv
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(widget.title, style: const TextStyle(fontSize: 27.0)),
+                    Text(widget.title, style: const TextStyle(fontSize: 30.0)),
                     (isOpened == false) ? const Icon(Icons.arrow_downward) : const Icon(Icons.arrow_upward)
                   ],
                 ),
@@ -55,13 +57,7 @@ class _NotificationTabState extends State<NotificationTab> with SingleTickerProv
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text('text 1'),
-                  Text('text'),
-                  Text('text'),
-                  Text('text'),
-                  Text('text'),
-                  Text('text'),
-                  Text('text'),
+                  TargetedItem(item: {'login': 'anel-bou'}),
                 ],
               ),
             )

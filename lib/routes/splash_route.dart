@@ -30,29 +30,33 @@ class _SplashRouteState extends State<SplashRoute> {
   Future<dynamic> initAccessToken (BuildContext context) async {
     // await getAccessTokenWithClientCredentialsFlow();        // client credential flow - oauth2
     // Navigator.pushReplacementNamed(context, 'home_route');  // client credential flow - oauth2
-    try {
+    // try {
       String? tmp;
       await InternetAddress.lookup('api.intra.42.fr');
       tmp = await storage.read(key: 'accessTokenCreatedAt');
       if (tmp != null) accessTokenCreatedAt = int.parse(tmp);
-      if (accessTokenCreatedAt == null) { // if no token is locally saved
+      targetedItemsData['targeted_hosts'] = (targetedItemsBox.get('targeted_hosts', defaultValue: []) as List).map((e) => Map<String, dynamic>.from(e)).toList();
+      targetedItemsData['targeted_users'] = (targetedItemsBox.get('targeted_users', defaultValue: []) as List).map((e) => Map<String, dynamic>.from(e)).toList();
+      print(targetedItemsData['targeted_hosts'].toString());
+      if (accessTokenCreatedAt == null) { // if no token is   alocally saved
         Navigator.pushReplacementNamed(context, 'authorization_route');
       } else { // if a token was saved locally
         validateAccessToken();
         Navigator.pushReplacementNamed(context, 'home_route');
       }
-    } on SocketException catch (_) {
-      context.read<PopUpProvider>().displayNoInternetPopUp();
-    } catch (e) {
-      if (e is DioError) {
-        descriptionMessage = (e.response?.data as Map<String, dynamic>)['error_description'];
-        context.read<PopUpProvider>().displayUnknownErrorPopUp();
-      } else {
-        descriptionMessage = null;
-        context.read<PopUpProvider>().displayUnknownErrorPopUp();
-        print(e);
-      }
-    }
+
+    // } on SocketException catch (_) {
+    //   context.read<PopUpProvider>().displayNoInternetPopUp();
+    // } catch (e) {
+    //   if (e is DioError) {
+    //     descriptionMessage = (e.response?.data as Map<String, dynamic>)['error_description'];
+    //     context.read<PopUpProvider>().displayUnknownErrorPopUp();
+    //   } else {
+    //     descriptionMessage = null;
+    //     context.read<PopUpProvider>().displayUnknownErrorPopUp();
+    //     print(e);
+    //   }
+    // }
   }
 
   @override

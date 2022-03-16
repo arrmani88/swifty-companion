@@ -10,14 +10,15 @@ String? accessToken;
 String? refreshToken;
 int? accessTokenCreatedAt;
 Dio dio = Dio();
+const String targetedItemsBoxName = 'targetedItems';
 const storage = FlutterSecureStorage();
 late Response response;
 late PageController pageController;
-Map<String, List<Map<String, dynamic>>> targetedList = {
+Map<String, List<Map<String, dynamic>>> targetedItemsData = {
   'targeted_hosts': [],
   'targeted_users': []
 };
-var box = Hive.box('targetedList');
+var targetedItemsBox = Hive.box(targetedItemsBoxName);
 
 
 

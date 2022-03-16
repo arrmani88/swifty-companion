@@ -4,14 +4,20 @@ import 'package:swifty_companion/routes/home_route.dart';
 import 'package:swifty_companion/routes/authorization_route.dart';
 import 'package:swifty_companion/routes/profile_route.dart';
 import 'package:swifty_companion/constants/constants.dart';
+import 'globals/globals.dart';
 import 'routes/splash_route.dart';
 import 'routes/routes_holder.dart';
 import 'routes/projects_route.dart';
 import 'package:provider/provider.dart';
 import 'package:swifty_companion/providers/user_provider.dart';
 import 'package:swifty_companion/providers/cluster_provider.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:path_provider/path_provider.dart';
 
-void main() {
+void main() async {
+  await Hive.initFlutter();
+  await Hive.openBox(targetedItemsBoxName);
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(create: (_) => UserProvider()),
@@ -21,13 +27,13 @@ void main() {
     child: SwiftyCompanion()
   ));
 }
+
 class SwiftyCompanion extends StatefulWidget {
   const SwiftyCompanion({Key? key}) : super(key: key);
   @override
   State<SwiftyCompanion> createState() => _SwiftyCompanionState();
 }
 class _SwiftyCompanionState extends State<SwiftyCompanion> {
-
   @override
   void initState() {
     super.initState();
