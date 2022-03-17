@@ -2,10 +2,21 @@ import 'package:flutter/cupertino.dart';
 import '../globals/globals.dart';
 
 class TargetProvider with ChangeNotifier {
+  bool areAllWorkstationsTargeted = false;
   Map<String, List<Map<String, dynamic>>> targetedItemsData = {
     'targeted_hosts': [],
     'targeted_users': []
   };
+
+  detargetAllWorkstations() {
+    areAllWorkstationsTargeted = false;
+    notifyListeners();
+  }
+
+  targetAllWorkstations() {
+    areAllWorkstationsTargeted = true;
+    notifyListeners();
+  }
 
   addThisTargetToList(String key, int userId, String login, String? location) {
     targetedItemsData[key]!.add({

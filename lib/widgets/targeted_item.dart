@@ -22,10 +22,10 @@ class TargetedItem extends StatelessWidget {
                 children: [
                   (targetedIsAUser == true)
                     ? Container(
-                    color: Colors.white,
-                    padding: const EdgeInsets.all(2.0),
-                    margin: const EdgeInsets.fromLTRB(20.0, 0, 15.0, 0),
-                    child: SizedBox(
+                      color: Colors.white,
+                      padding: const EdgeInsets.all(2.0),
+                      margin: const EdgeInsets.fromLTRB(20.0, 0, 15.0, 0),
+                      child: SizedBox(
                         height: 50.0,
                         width: 50.0,
                         child: Image.network(

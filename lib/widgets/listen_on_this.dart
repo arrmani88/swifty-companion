@@ -3,13 +3,13 @@ import 'package:provider/provider.dart';
 import '../providers/target_provider.dart';
 import '../providers/user_provider.dart';
 
-class GetNotified extends StatefulWidget {
-  const GetNotified({Key? key}) : super(key: key);
+class ListenOnThis extends StatefulWidget {
+  const ListenOnThis({Key? key}) : super(key: key);
 
   @override
-  _GetNotifiedState createState() => _GetNotifiedState();
+  _ListenOnThisState createState() => _ListenOnThisState();
 }
-class _GetNotifiedState extends State<GetNotified> {
+class _ListenOnThisState extends State<ListenOnThis> {
 
   @override
   Widget build(BuildContext context) {

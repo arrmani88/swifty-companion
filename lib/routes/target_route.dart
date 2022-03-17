@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notifier_42/widgets/ListenOnAllWorkstations.dart';
 import 'package:provider/provider.dart';
 import 'package:notifier_42/globals/globals.dart';
 import 'package:notifier_42/providers/target_provider.dart';
@@ -26,7 +27,7 @@ class _TargetSectionState extends State<TargetSection> with SingleTickerProvider
 
   @override
   Widget build(BuildContext context) {
-    print('${widget.key} ===> ${widget.children}');
+    print('${widget.title} ===> ${widget.children}');
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10.0),
       child: Column(
@@ -61,7 +62,18 @@ class _TargetSectionState extends State<TargetSection> with SingleTickerProvider
               axisAlignment: -1,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
-                children: widget.children,
+                children: widget.children.isEmpty
+                  ? [
+                      Center(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 20.0),
+                          child: Container(
+                            child: Text(widget.title == 'Targeted users' ? 'No user is targeted' : 'No workstation is targeted', style: const TextStyle(color: Colors.white, fontSize: 20.0))
+                          )
+                        )
+                      )
+                    ]
+                  : widget.children,
               ),
             )
           )
@@ -77,7 +89,7 @@ class TargetRoute extends StatelessWidget {
   List<Widget> getWidgetsList(BuildContext context, String key) {
     List<Widget> ret = [];
     for (Map<String, dynamic> item in context.watch<TargetProvider>().targetedItemsData[key]!) {
-      ret.add(TargetedItem(item: item, targetedIsAUser: key == 'targeted_users' ? true : false));
+      ret.add(TargetedItem(item: item, targetedIsAUser: (key == 'targeted_users' ? true : false)));
     }
     return ret;
   }
@@ -90,6 +102,7 @@ class TargetRoute extends StatelessWidget {
         child: Column(
           children: [
             const SizedBox(height: 15.0),
+            const ListenOnAllWorkstations(),
             TargetSection(title: 'Targeted workstations', children: getWidgetsList(context, 'targeted_hosts')),
             TargetSection(title: 'Targeted users', children: getWidgetsList(context, 'targeted_users')),
           ],

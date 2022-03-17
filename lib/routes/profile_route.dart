@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:notifier_42/constants/constants.dart';
 import 'package:notifier_42/widgets/black_hole_absorption.dart';
 import 'package:notifier_42/widgets/blur_container.dart';
-import 'package:notifier_42/widgets/get_notified.dart';
+import 'package:notifier_42/widgets/listen_on_this.dart';
 import 'package:notifier_42/widgets/intra_info.dart';
 import 'package:notifier_42/widgets/cover_and_profile_pictures.dart';
 import 'package:notifier_42/widgets/personal_info.dart';
@@ -45,7 +45,7 @@ class _ProfileRouteState extends State<ProfileRoute> {
                       Text((context.watch<UserProvider>().location ?? 'Unavailable'), style: const TextStyle(color: Colors.white, fontSize: 25.0, fontWeight: FontWeight.bold))
                     ],
                   ),
-                  const GetNotified(),
+                  const ListenOnThis(),
                   BlurContainer(
                     children: [
                       IntraInfo(title: 'Wallet', value: context.watch<UserProvider>().wallet.toString() + ' \$'),
