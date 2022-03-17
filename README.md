@@ -1,4 +1,4 @@
-# swifty_companion
+# notifier_42
 
 A new Flutter project.
 

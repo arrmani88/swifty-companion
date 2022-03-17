@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:swifty_companion/globals/globals.dart';
-import 'package:swifty_companion/providers/target_provider.dart';
+import 'package:notifier_42/globals/globals.dart';
+import 'package:notifier_42/providers/target_provider.dart';
 
 import '../widgets/targeted_item.dart';
 

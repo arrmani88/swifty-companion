@@ -1,9 +1,9 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
-import 'package:swifty_companion/widgets/pop_ups/loading_pop_up.dart';
-import 'package:swifty_companion/widgets/pop_ups/error_pop_up.dart';
-import 'package:swifty_companion/functions/get_access_token_with_authorization_code_flow.dart';
+import 'package:notifier_42/widgets/pop_ups/loading_pop_up.dart';
+import 'package:notifier_42/widgets/pop_ups/error_pop_up.dart';
+import 'package:notifier_42/functions/get_access_token_with_authorization_code_flow.dart';
 
 class AuthorizationRoute extends StatefulWidget {
   AuthorizationRoute({Key? key}) : super(key: key);
@@ -61,7 +61,7 @@ class _AuthorizationRouteState extends State<AuthorizationRoute> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Text(
-                        'Click on the lock to allow Swifty Companion use your 42 Intra account',
+                        'Click on the lock to allow 42 Notifier use your 42 Intra account',
                         textAlign: TextAlign.center,
                         style: TextStyle(color: Colors.white, fontSize: 25.0),
                       ),

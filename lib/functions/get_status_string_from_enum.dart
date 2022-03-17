@@ -1,4 +1,4 @@
-import 'package:swifty_companion/globals/globals.dart';
+import 'package:notifier_42/globals/globals.dart';
 
 getStatusStringFromEnum(String str, bool isValidated){
   if (str == 'finished' && isValidated == true) return Status.validated;

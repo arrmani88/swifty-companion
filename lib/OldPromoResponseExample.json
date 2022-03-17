@@ -300,8 +300,8 @@
       "current_team_id": 4034280,
       "project": {
         "id": 1395,
-        "name": "swifty-companion",
-        "slug": "42cursus-swifty-companion",
+        "name": "42-notifier",
+        "slug": "42cursus-42-notifier",
         "parent_id": null
       },
       "cursus_ids": [

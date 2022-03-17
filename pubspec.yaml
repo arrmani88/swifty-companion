@@ -1,4 +1,4 @@
-name: swifty_companion
+name: notifier_42
 description: A new Flutter project.
 
 publish_to: 'none'
@@ -28,7 +28,6 @@ dependencies:
   flutter_web_auth: ^0.4.1
   hive: ^2.0.6
   hive_flutter: ^1.1.0
-#  path_provider: ^2.0.9
 
 
 dev_dependencies:

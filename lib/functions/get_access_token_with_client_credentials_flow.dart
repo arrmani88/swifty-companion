@@ -1,7 +1,7 @@
-import 'package:swifty_companion/constants/constants.dart';
+import 'package:notifier_42/constants/constants.dart';
 import 'package:dio/dio.dart';
-import 'package:swifty_companion/functions/save_token_to_local_storage.dart';
-import 'package:swifty_companion/globals/globals.dart';
+import 'package:notifier_42/functions/save_token_to_local_storage.dart';
+import 'package:notifier_42/globals/globals.dart';
 
 Future getAccessTokenWithClientCredentialsFlow() async {
   try {

@@ -1,4 +1,4 @@
-import 'package:swifty_companion/globals/globals.dart';
+import 'package:notifier_42/globals/globals.dart';
 import 'package:dio/dio.dart';
 
 saveTokenToLocalStorage(Response rsp) async {

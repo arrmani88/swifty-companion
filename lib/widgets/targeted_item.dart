@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:swifty_companion/providers/target_provider.dart';
-import 'package:swifty_companion/providers/user_provider.dart';
+import 'package:notifier_42/providers/target_provider.dart';
+import 'package:notifier_42/providers/user_provider.dart';
 
 class TargetedItem extends StatelessWidget {
   final Map<String, dynamic> item;

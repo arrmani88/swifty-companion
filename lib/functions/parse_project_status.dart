@@ -1,4 +1,4 @@
-import 'package:swifty_companion/globals/globals.dart';
+import 'package:notifier_42/globals/globals.dart';
 
 String parseProjectStatus(var status) {
   switch (status) {

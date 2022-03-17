@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:swifty_companion/globals/globals.dart';
-import 'package:swifty_companion/providers/cluster_provider.dart';
-import 'package:swifty_companion/providers/pop_up_provider.dart';
-import 'package:swifty_companion/providers/user_provider.dart';
+import 'package:notifier_42/globals/globals.dart';
+import 'package:notifier_42/providers/cluster_provider.dart';
+import 'package:notifier_42/providers/pop_up_provider.dart';
+import 'package:notifier_42/providers/user_provider.dart';
 
 import '../providers/target_provider.dart';
 

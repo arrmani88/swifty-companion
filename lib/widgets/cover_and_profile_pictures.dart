@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:swifty_companion/constants/constants.dart';
-import 'package:swifty_companion/globals/globals.dart';
+import 'package:notifier_42/constants/constants.dart';
+import 'package:notifier_42/globals/globals.dart';
 import 'package:provider/provider.dart';
-import 'package:swifty_companion/providers/user_provider.dart';
+import 'package:notifier_42/providers/user_provider.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class CoverAndProfilePictures extends StatelessWidget {

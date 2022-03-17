@@ -1,15 +1,15 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
-import 'package:swifty_companion/functions/validate_access_token.dart';
-import 'package:swifty_companion/globals/globals.dart';
+import 'package:notifier_42/functions/validate_access_token.dart';
+import 'package:notifier_42/globals/globals.dart';
 import 'package:provider/provider.dart';
-import 'package:swifty_companion/providers/target_provider.dart';
-import 'package:swifty_companion/providers/user_provider.dart';
-import 'package:swifty_companion/widgets/pop_ups/error_pop_up.dart';
-import 'package:swifty_companion/widgets/pop_ups/loading_pop_up.dart';
-import 'package:swifty_companion/widgets/pop_ups/user_not_found_pop_up.dart';
-import 'package:swifty_companion/providers/pop_up_provider.dart';
+import 'package:notifier_42/providers/target_provider.dart';
+import 'package:notifier_42/providers/user_provider.dart';
+import 'package:notifier_42/widgets/pop_ups/error_pop_up.dart';
+import 'package:notifier_42/widgets/pop_ups/loading_pop_up.dart';
+import 'package:notifier_42/widgets/pop_ups/user_not_found_pop_up.dart';
+import 'package:notifier_42/providers/pop_up_provider.dart';
 
 class HomeRoute extends StatefulWidget {
   HomeRoute({Key? key}) : super(key: key);

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:swifty_companion/constants/constants.dart';
-import 'package:swifty_companion/widgets/item_project.dart';
+import 'package:notifier_42/constants/constants.dart';
+import 'package:notifier_42/widgets/item_project.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:searchable_listview/searchable_listview.dart';
-import 'package:swifty_companion/globals/globals.dart';
-import 'package:swifty_companion/classes/project.dart';
+import 'package:notifier_42/globals/globals.dart';
+import 'package:notifier_42/classes/project.dart';
 import 'package:provider/provider.dart';
-import 'package:swifty_companion/providers/user_provider.dart';
+import 'package:notifier_42/providers/user_provider.dart';
 
 class ProjectsRoute extends StatelessWidget {
   ProjectsRoute({Key? key}) : super(key: key);

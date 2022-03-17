@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
-import 'package:swifty_companion/constants/constants.dart';
-import 'package:swifty_companion/routes/profile_route.dart';
-import 'package:swifty_companion/routes/projects_route.dart';
-import 'package:swifty_companion/routes/clusters_route.dart';
-import 'package:swifty_companion/routes/target_route.dart';
-import 'package:swifty_companion/routes/rankings_route.dart';
-import 'package:swifty_companion/widgets/keep_widget_alive.dart';
-import 'package:swifty_companion/globals/globals.dart';
-import 'package:swifty_companion/routes/notifications_route.dart';
+import 'package:notifier_42/constants/constants.dart';
+import 'package:notifier_42/routes/profile_route.dart';
+import 'package:notifier_42/routes/projects_route.dart';
+import 'package:notifier_42/routes/clusters_route.dart';
+import 'package:notifier_42/routes/target_route.dart';
+import 'package:notifier_42/routes/rankings_route.dart';
+import 'package:notifier_42/widgets/keep_widget_alive.dart';
+import 'package:notifier_42/globals/globals.dart';
+import 'package:notifier_42/routes/notifications_route.dart';
 
 class RoutesHolder extends StatefulWidget {
   const RoutesHolder({Key? key}) : super(key: key);

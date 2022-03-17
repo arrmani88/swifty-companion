@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:swifty_companion/widgets/workstation.dart';
-import 'package:swifty_companion/globals/globals.dart';
-import 'package:swifty_companion/functions/validate_access_token.dart';
+import 'package:notifier_42/widgets/workstation.dart';
+import 'package:notifier_42/globals/globals.dart';
+import 'package:notifier_42/functions/validate_access_token.dart';
 import '../constants/constants.dart';
 
 class ClustersProvider with ChangeNotifier {
@@ -144,36 +144,3 @@ String getPath({required int pageNum})  {
     '&sort=host'
     '&filter[end]=false';
 }
-
-
-
-/*
-  // getClusterDebugList({required stageNumber, required stageWidgetsList, required stageJsonList}) {
-  //   int r = 1;
-  //   int p;
-  //   while (r <= 13) {
-  //     p = 1;
-  //     while (p <= 15) {
-  //       if (p == 1) { // create an empty range at the beginning
-  //         stageWidgetsList.insert(0, []);
-  //       }
-  //       if (((r == 1 || (r >= 11 && r <= 13)) && p >= 6) || (r == 10 && p >= 6 && p<= 10)) { // non existing workstation in the grid
-  //         stageWidgetsList[0].insert(0, '__NULL__');
-  //       }
-  //       else { // else if the workstation exists in the cluster
-  //         if (stageJsonList['e${stageNumber}r${r}p$p'] == null) { // if the workstation is vacant
-  //           stageWidgetsList[0].insert(0, '-vacant-');
-  //         }
-  //         else {
-  //           stageWidgetsList[0].insert(0, stageJsonList['e${stageNumber}r${r}p$p']![0]);
-  //         }
-  //       }
-  //       p++;
-  //     }
-  //     r++;
-  //   }
-  //   // getClusterDebugList(stageNumber: 1, stageWidgetsList: e1Debug, stageJsonList: e1JsonList);
-  //   // getClusterDebugList(stageNumber: 2, stageWidgetsList: e2Debug, stageJsonList: e2JsonList);
-  // }
-
- */

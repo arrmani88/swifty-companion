@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:swifty_companion/providers/user_provider.dart';
+import 'package:notifier_42/providers/user_provider.dart';
 
 class SelectCursus extends StatefulWidget {
   const SelectCursus({Key? key}) : super(key: key);

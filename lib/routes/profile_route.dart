@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:swifty_companion/constants/constants.dart';
-import 'package:swifty_companion/widgets/black_hole_absorption.dart';
-import 'package:swifty_companion/widgets/blur_container.dart';
-import 'package:swifty_companion/widgets/get_notified.dart';
-import 'package:swifty_companion/widgets/intra_info.dart';
-import 'package:swifty_companion/widgets/cover_and_profile_pictures.dart';
-import 'package:swifty_companion/widgets/personal_info.dart';
+import 'package:notifier_42/constants/constants.dart';
+import 'package:notifier_42/widgets/black_hole_absorption.dart';
+import 'package:notifier_42/widgets/blur_container.dart';
+import 'package:notifier_42/widgets/get_notified.dart';
+import 'package:notifier_42/widgets/intra_info.dart';
+import 'package:notifier_42/widgets/cover_and_profile_pictures.dart';
+import 'package:notifier_42/widgets/personal_info.dart';
 import 'package:percent_indicator/percent_indicator.dart';
-import 'package:swifty_companion/widgets/pop_ups/loading_pop_up.dart';
-import 'package:swifty_companion/widgets/select_cursus.dart';
+import 'package:notifier_42/widgets/pop_ups/loading_pop_up.dart';
+import 'package:notifier_42/widgets/select_cursus.dart';
 import 'package:provider/provider.dart';
-import 'package:swifty_companion/providers/user_provider.dart';
-import 'package:swifty_companion/widgets/skills.dart';
+import 'package:notifier_42/providers/user_provider.dart';
+import 'package:notifier_42/widgets/skills.dart';
 import '../providers/pop_up_provider.dart';
 
 class ProfileRoute extends StatefulWidget {

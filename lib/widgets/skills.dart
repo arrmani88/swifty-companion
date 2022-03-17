@@ -1,9 +1,9 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
-import 'package:swifty_companion/globals/globals.dart';
+import 'package:notifier_42/globals/globals.dart';
 import 'package:provider/provider.dart';
-import 'package:swifty_companion/providers/user_provider.dart';
+import 'package:notifier_42/providers/user_provider.dart';
 
 class Skills extends StatefulWidget {
   const Skills({Key? key}) : super(key: key);

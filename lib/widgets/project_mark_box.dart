@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:swifty_companion/globals/globals.dart';
-import 'package:swifty_companion/classes/project.dart';
-import 'package:swifty_companion/constants/constants.dart';
+import 'package:notifier_42/globals/globals.dart';
+import 'package:notifier_42/classes/project.dart';
+import 'package:notifier_42/constants/constants.dart';
 
 class ProjectMarkBox extends StatelessWidget {
   Project project;

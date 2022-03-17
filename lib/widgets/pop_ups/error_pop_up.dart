@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'dart:ui';
-import 'package:swifty_companion/providers/pop_up_provider.dart';
+import 'package:notifier_42/providers/pop_up_provider.dart';
 
 class ErrorPopUp extends StatelessWidget {
   final Function closePopUp;

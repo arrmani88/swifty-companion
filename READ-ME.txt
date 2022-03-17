@@ -32,4 +32,4 @@ Continue doing: [
         ]
 
 
-permission request: phone num + limit request per user not per app
+permission request: phoneSwifty num + limit request per user not per app

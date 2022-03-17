@@ -1,10 +1,10 @@
 import 'dart:collection';
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:swifty_companion/classes/project.dart';
-import 'package:swifty_companion/functions/get_status_string_from_enum.dart';
+import 'package:notifier_42/classes/project.dart';
+import 'package:notifier_42/functions/get_status_string_from_enum.dart';
 import 'package:dio/dio.dart';
-import 'package:swifty_companion/functions/get_black_hole_absorption.dart';
+import 'package:notifier_42/functions/get_black_hole_absorption.dart';
 import '../constants/constants.dart';
 import '../functions/validate_access_token.dart';
 import '../globals/globals.dart';

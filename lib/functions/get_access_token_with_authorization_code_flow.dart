@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_web_auth/flutter_web_auth.dart';
-import 'package:swifty_companion/constants/constants.dart';
+import 'package:notifier_42/constants/constants.dart';
 
 import '../globals/globals.dart';
 
@@ -8,12 +8,12 @@ Future getAccessTokenWithAuthorizationCodeFlow() async {
 
   String url = 'https://api.intra.42.fr/oauth/authorize'
       '?client_id=30480b7ab0ff85a13ebca0ac0bd338f56dfaf0904ef8bc4866c3866930212be3'
-      '&redirect_uri=com.example.swiftycompanion%3A%2F%2Fredirect'
+      '&redirect_uri=com.example.notifier42%3A%2F%2Fredirect'
       '&response_type=code';
   try {
     final String result = await FlutterWebAuth.authenticate(
       url: url,
-      callbackUrlScheme: 'com.example.swiftycompanion'
+      callbackUrlScheme: 'com.example.notifier42'
     );
     final String code = Uri.parse(result).queryParameters['code']!;
     Response _rsp = await dio.post(
@@ -23,7 +23,7 @@ Future getAccessTokenWithAuthorizationCodeFlow() async {
         'client_id': '30480b7ab0ff85a13ebca0ac0bd338f56dfaf0904ef8bc4866c3866930212be3',
         'client_secret': 'f60c5403a51a62eade9f61d99eca07a7cbac9adec3ce329756aae7a487e9cb8e',
         'code': code,
-        "redirect_uri": 'com.example.swiftycompanion://redirect'
+        "redirect_uri": 'com.example.notifier42://redirect'
       }
     );
     print('code===>$code<');

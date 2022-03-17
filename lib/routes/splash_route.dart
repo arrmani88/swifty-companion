@@ -3,12 +3,12 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:swifty_companion/constants/constants.dart';
-import 'package:swifty_companion/functions/do_refresh_tokens.dart';
-import 'package:swifty_companion/functions/get_access_token_with_client_credentials_flow.dart';
-import 'package:swifty_companion/functions/validate_access_token.dart';
-import 'package:swifty_companion/globals/globals.dart';
-import 'package:swifty_companion/functions/save_token_to_local_storage.dart';
+import 'package:notifier_42/constants/constants.dart';
+import 'package:notifier_42/functions/do_refresh_tokens.dart';
+import 'package:notifier_42/functions/get_access_token_with_client_credentials_flow.dart';
+import 'package:notifier_42/functions/validate_access_token.dart';
+import 'package:notifier_42/globals/globals.dart';
+import 'package:notifier_42/functions/save_token_to_local_storage.dart';
 
 import '../providers/pop_up_provider.dart';
 import '../providers/target_provider.dart';

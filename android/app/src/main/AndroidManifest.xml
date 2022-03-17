@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.swiftycompanion">
+    package="com.example.notifier42">
    <application
-        android:label="swifty_companion"
+        android:label="notifier_42"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
@@ -28,7 +28,7 @@
                <action android:name="android.intent.action.VIEW" />
                <category android:name="android.intent.category.DEFAULT" />
                <category android:name="android.intent.category.BROWSABLE" />
-               <data android:scheme="com.example.swiftycompanion" />
+               <data android:scheme="com.example.notifier42" />
            </intent-filter>
        </activity>
         <!-- Don't delete the meta-data below.

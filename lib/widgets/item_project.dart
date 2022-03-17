@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:swifty_companion/classes/project.dart';
-import 'package:swifty_companion/functions/parse_project_status.dart';
-import 'package:swifty_companion/widgets/project_mark_box.dart';
-import 'package:swifty_companion/widgets/marquee_widget.dart';
+import 'package:notifier_42/classes/project.dart';
+import 'package:notifier_42/functions/parse_project_status.dart';
+import 'package:notifier_42/widgets/project_mark_box.dart';
+import 'package:notifier_42/widgets/marquee_widget.dart';
 
 class ItemProject extends StatefulWidget {
   Project project;

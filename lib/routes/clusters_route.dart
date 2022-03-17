@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:swifty_companion/constants/constants.dart';
-import 'package:swifty_companion/widgets/pop_ups/loading_pop_up.dart';
+import 'package:notifier_42/constants/constants.dart';
+import 'package:notifier_42/widgets/pop_ups/loading_pop_up.dart';
 import '../providers/cluster_provider.dart';
 import 'package:switcher_button/switcher_button.dart';
 
