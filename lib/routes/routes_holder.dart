@@ -5,10 +5,11 @@ import 'package:swifty_companion/constants/constants.dart';
 import 'package:swifty_companion/routes/profile_route.dart';
 import 'package:swifty_companion/routes/projects_route.dart';
 import 'package:swifty_companion/routes/clusters_route.dart';
-import 'package:swifty_companion/routes/notifications_route.dart';
+import 'package:swifty_companion/routes/target_route.dart';
 import 'package:swifty_companion/routes/rankings_route.dart';
 import 'package:swifty_companion/widgets/keep_widget_alive.dart';
 import 'package:swifty_companion/globals/globals.dart';
+import 'package:swifty_companion/routes/notifications_route.dart';
 
 class RoutesHolder extends StatefulWidget {
   const RoutesHolder({Key? key}) : super(key: key);
@@ -40,7 +41,8 @@ class _RoutesHolderState extends State<RoutesHolder> {
             KeepWidgetAlive(child: ProjectsRoute()),
             KeepWidgetAlive(child: const ClustersRoute()),
             KeepWidgetAlive(child: const RankingsRoute()),
-            KeepWidgetAlive(child: const NotificationsRoute()),
+            KeepWidgetAlive(child: const TargetRoute()),
+            KeepWidgetAlive(child: const NotificationsRoute())
           ],
         ),
       ),
@@ -50,7 +52,7 @@ class _RoutesHolderState extends State<RoutesHolder> {
           width: 500.0,
           decoration: BoxDecoration(color: Theme.of(context).secondaryHeaderColor,),
           child: SalomonBottomBar(
-            margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 35.0),
+            margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
             itemPadding: const EdgeInsets.symmetric(vertical: 3.0, horizontal: 10.0),
             currentIndex: selectedIndex,
             onTap: (i) => setState(() {
@@ -83,10 +85,16 @@ class _RoutesHolderState extends State<RoutesHolder> {
                 unselectedColor: Theme.of(context).scaffoldBackgroundColor
               ),
               SalomonBottomBarItem(
-                icon:  const Icon(Icons.notifications),
-                title:  const Text('Notifs'),
-                selectedColor: Theme.of(context).splashColor,
-                unselectedColor: Theme.of(context).scaffoldBackgroundColor
+                  icon:  const ImageIcon(AssetImage('assets/icons/target_icon.png'), size: 25.0,),
+                  title:  const Text('Target'),
+                  selectedColor: Theme.of(context).splashColor,
+                  unselectedColor: Theme.of(context).scaffoldBackgroundColor
+              ),
+              SalomonBottomBarItem(
+                  icon:  const Icon(Icons.notifications),
+                  title:  const Text('Notifs'),
+                  selectedColor: Theme.of(context).splashColor,
+                  unselectedColor: Theme.of(context).scaffoldBackgroundColor
               ),
             ],
           ),

@@ -53,6 +53,7 @@ flutter:
     - assets/icons/black_hole.png
     - assets/icons/change_arrows.png
     - assets/icons/compass_icon.png
+    - assets/icons/target_icon.png
 
   fonts:
     - family: weiss
