@@ -97,28 +97,16 @@ class ClustersProvider with ChangeNotifier {
   }
 
   Future<void> getClusters(BuildContext context) async {
+    Options options = Options(headers: {'Authorization': 'Bearer ' + accessToken!});
     try {
       clearAllClustersData();
       await validateAccessToken();
+      // get clusters
       await Future.wait([
-
-        Future.delayed(const Duration(milliseconds: 1000))
-            .then((value) => dio.get(
-            getPath(pageNum: 1),
-            options: Options(headers: {'Authorization': 'Bearer ' + accessToken!}))
-            .then((value) => addClusterPartToClustersList((value.data)))),
-
-        Future.delayed(const Duration(milliseconds: 1000))
-            .then((value) => dio.get(
-            getPath(pageNum: 2),
-            options: Options(headers: {'Authorization': 'Bearer ' + accessToken!}))
-            .then((value) => addClusterPartToClustersList((value.data)))),
-
-        Future.delayed(const Duration(milliseconds: 3000))
-            .then((value) => dio.get(
-            getPath(pageNum: 3),
-            options: Options(headers: {'Authorization': 'Bearer ' + accessToken!}))
-            .then((value) => addClusterPartToClustersList((value.data)))),
+        for (int pageNum = 1, interval = 1000; pageNum <= 3; pageNum++, interval += 500)
+          Future.delayed(Duration(milliseconds: interval))
+            .then((value) => dio.get(_getPath(pageNum: pageNum), options: options)
+            .then((value) => addClusterPartToClustersList(value.data))),
       ]);
       gotClusters();
     } catch (e) {
@@ -135,14 +123,16 @@ class ClustersProvider with ChangeNotifier {
     e2WidgetsList = [];
     notifyListeners();
   }
+
+  String _getPath({required int pageNum})  {
+    return kHostname +
+      '/v2/campus/16/locations'
+      '?page[size]=100'
+      '&page[number]=$pageNum'
+      '&range[host]=e1,e3'
+      '&sort=host'
+      '&filter[end]=false';
+  }
+
 }
 
-String getPath({required int pageNum})  {
-  return kHostname +
-    '/v2/campus/16/locations'
-    '?page[size]=100'
-    '&page[number]=$pageNum'
-    '&range[host]=e1,e3'
-    '&sort=host'
-    '&filter[end]=false';
-}

@@ -34,6 +34,7 @@ class UserProvider with ChangeNotifier {
   List<DropdownMenuItem<String>>? cursusesWidgetsList = [];
   bool isUserTargeted = false;
   late int userId;
+  late int campusId;
   
   targetThis(String key) {
     isUserTargeted = true;
@@ -102,6 +103,8 @@ class UserProvider with ChangeNotifier {
       cursusesWidgetsList!.add(DropdownMenuItem(value: cursus, child: FittedBox(child: Text(cursus), fit: BoxFit.fitWidth,),));
     }
     userId = int.parse(((((response.data as Map<String, dynamic>)['campus_users'] as List<dynamic>)[0] as Map<String, dynamic>)['user_id']).toString());
+    campusId = int.parse(((((response.data as Map<String, dynamic>)['campus_users'] as List<dynamic>)[0] as Map<String, dynamic>)['campus_id']).toString());
+    userCampusId = int.parse(((((response.data as Map<String, dynamic>)['campus_users'] as List<dynamic>)[0] as Map<String, dynamic>)['campus_id']).toString());
     targetedItemsData.forEach((key, value) {
       for (Map<String, dynamic> usr in value) {
         if(usr['user_id'] == userId) {

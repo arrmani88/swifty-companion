@@ -15,6 +15,7 @@ const storage = FlutterSecureStorage();
 late Response response;
 late PageController pageController;
 var targetedItemsBox = Hive.box(targetedItemsBoxName);
+late int userCampusId;
 
 
 

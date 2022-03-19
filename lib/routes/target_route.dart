@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:notifier_42/widgets/ListenOnAllWorkstations.dart';
+import 'package:notifier_42/widgets/listen_on_all_workstations.dart';
 import 'package:provider/provider.dart';
 import 'package:notifier_42/globals/globals.dart';
 import 'package:notifier_42/providers/target_provider.dart';

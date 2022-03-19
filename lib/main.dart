@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:notifier_42/providers/pop_up_provider.dart';
+import 'package:notifier_42/providers/ranking_provider.dart';
 import 'package:notifier_42/routes/home_route.dart';
 import 'package:notifier_42/routes/authorization_route.dart';
 import 'package:notifier_42/routes/profile_route.dart';
@@ -23,7 +24,8 @@ void main() async {
       ChangeNotifierProvider(create: (_) => UserProvider()),
       ChangeNotifierProvider(create: (_) => PopUpProvider()),
       ChangeNotifierProvider(create: (_) => ClustersProvider()),
-      ChangeNotifierProvider(create: (_) => TargetProvider())
+      ChangeNotifierProvider(create: (_) => TargetProvider()),
+      ChangeNotifierProvider(create: (_) => RankingProvider())
     ],
     child: Notifier42()
   ));
