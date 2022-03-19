@@ -43,18 +43,21 @@ class ClustersProvider with ChangeNotifier {
       while (p <= 15) {
         pushWorkStationTo = (p >= 6 && p <= 10 ? PushWorkStationTo.top : PushWorkStationTo.bottom);
         isDoorFacing = (p == 2 || p == 4 || p == 7 || p == 9 || p == 12 || p == 14);
+        // some blank space between every 5 workstations
         if (p == 6 || p == 11) {
           stageWidgetsList[0].insert(0, const SizedBox(width: 35,));
         }
-        // non existing workstation in the grid
+        // if the workstation doesn't exist in the cluster
         if (((r == 1 || (r >= 11 && r <= 13)) && p >= 6) || (r == 10 && p >= 6 && p<= 10)) {
           stageWidgetsList[0].insert(0, WorkStation(pushWorkStationTo: pushWorkStationTo, isDoorFacing: isDoorFacing,));
         }
         // else if the workstation exists in the cluster
         else {
+          // if the workstation is vacant
           if (stageJsonList['e${stageNumber}r${r}p$p'] == null) {
             stageWidgetsList[0].insert(0, WorkStation(host: 'e${stageNumber}r${r}p$p', pushWorkStationTo: pushWorkStationTo, isDoorFacing: isDoorFacing));
           }
+          // if the workstation is occupied
           else {
             stageWidgetsList[0].insert(0, WorkStation(host: 'e${stageNumber}r${r}p$p', userData: stageJsonList['e${stageNumber}r${r}p$p'], pushWorkStationTo: pushWorkStationTo, isDoorFacing: isDoorFacing));
           }
@@ -116,7 +119,6 @@ class ClustersProvider with ChangeNotifier {
             getPath(pageNum: 3),
             options: Options(headers: {'Authorization': 'Bearer ' + accessToken!}))
             .then((value) => addClusterPartToClustersList((value.data)))),
-
       ]);
       gotClusters();
     } catch (e) {

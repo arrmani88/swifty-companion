@@ -5,20 +5,25 @@ notify when any workstation is free
 notify when a targeted workstation is free
 show cluster
 show promo ranking
+show users with the same targeted project                           >>>https://api.intra.42.fr/apidoc/2.0/projects_users.html
+get location stats of a user                                        >>>https://api.intra.42.fr/apidoc/2.0/users/locations_stats.html
 Rate this app
 display all the users that subscribed to a specific project         >>>https://api.intra.42.fr/apidoc/2.0/projects_users.html
 show the resource owner profile                                     >>>https://api.intra.42.fr/apidoc/2.0/users/me.html
 log user out
 
+
 /****************/
 TODO LIST
+---------- suggestions ----------
 what are scopes
+f authorization_route blast men setstate bach t affichi popup, dir provider
 clean pubspec.yaml
+chi animation dial scroll
 remove circle cursors from radar chart
 sync navbar when manual scroll on pageview
-f authorization_route blast men setstate bach t affichi popup, dir provider
-chi animation dial scroll
-meli twark 3la chi 7ed men lmap y dir loading widget wast profile_route
+---------------------------------
+click to show profile picture full screen
 ----------------------
 project mark box dir liha title chad lwidth kollo
 testi b thor
@@ -28,7 +33,7 @@ dir loading widget non-hidable
 MOHIM BZF : GERER http 429 FACH KIJIB LCLUSTERS
 
 Continue doing: [
-            dir inkwell l dak tarro dial target
+
         ]
 
 

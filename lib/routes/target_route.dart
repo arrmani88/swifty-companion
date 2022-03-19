@@ -102,7 +102,7 @@ class TargetRoute extends StatelessWidget {
         child: Column(
           children: [
             const SizedBox(height: 15.0),
-            const ListenOnAllWorkstations(),
+            // const ListenOnAllWorkstations(),
             TargetSection(title: 'Targeted workstations', children: getWidgetsList(context, 'targeted_hosts')),
             TargetSection(title: 'Targeted users', children: getWidgetsList(context, 'targeted_users')),
           ],
