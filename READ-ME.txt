@@ -35,8 +35,7 @@ MOHIM BZF : GERER http 429 FACH KIJIB LCLUSTERS o ranking
 MOHIM BZF : fch kt wrrk joj merrat 3la search button fel home_page.dart ki loadi page joj mrrat donc ki sft request 2 mrrt
 
 Continue doing: [
-            sawb ranking
-            sawbi ranking_provider.dart
+            sawbi ranking route
         ]
 
 

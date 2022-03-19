@@ -33,17 +33,19 @@ class _RoutesHolderState extends State<RoutesHolder> {
         height: kScreenHeight,
         width: kScreenWidth,
         decoration: BoxDecoration(gradient: RadialGradient(colors: [Theme.of(context).splashColor, Theme.of(context).scaffoldBackgroundColor], center: const Alignment(0, -0.05), radius: 0.8)),
-        child: PageView(
-          physics: const NeverScrollableScrollPhysics(),
-          controller: pageController,
-          children: [
-            KeepWidgetAlive(child: const ProfileRoute()),
-            KeepWidgetAlive(child: ProjectsRoute()),
-            KeepWidgetAlive(child: const ClustersRoute()),
-            KeepWidgetAlive(child: const RankingsRoute()),
-            KeepWidgetAlive(child: const TargetRoute()),
-            KeepWidgetAlive(child: const NotificationsRoute())
-          ],
+        child: SafeArea(
+          child: PageView(
+            physics: const NeverScrollableScrollPhysics(),
+            controller: pageController,
+            children: [
+              KeepWidgetAlive(child: const ProfileRoute()),
+              KeepWidgetAlive(child: ProjectsRoute()),
+              KeepWidgetAlive(child: const ClustersRoute()),
+              KeepWidgetAlive(child: const RankingsRoute()),
+              KeepWidgetAlive(child: const TargetRoute()),
+              KeepWidgetAlive(child: const NotificationsRoute())
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: Padding(
