@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:notifier_42/providers/ranking_provider.dart';
+import 'package:provider/provider.dart';
 
 class SelectGeneration extends StatefulWidget {
   const SelectGeneration({Key? key}) : super(key: key);
@@ -34,12 +36,11 @@ class _SelectGenerationState extends State<SelectGeneration> {
                   underline: Container(height: 2, color: Theme.of(context).secondaryHeaderColor,),
                   style: const TextStyle(color: Colors.white),
                   icon: const Icon(Icons.arrow_downward, color: Colors.white,),
-                  value: '2018 March',
-                  items: const [
-                    DropdownMenuItem(value: '2018 March', child: Text('2018 March')),
-                    DropdownMenuItem(value: 'text2', child: Text('text2'))
-                  ],
-                  onChanged: (newValue) => setState(() {}),
+                  value: context.watch<RankingProvider>().selectedGeneration,
+                  items: context.read<RankingProvider>().dropDownList,
+                  onChanged: (newValue) => setState(() {
+                    context.read<RankingProvider>().updateSelectedGeneration(newValue!);
+                  }),
                 ),
               )
           ),

@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 
 class RankingItem extends StatelessWidget {
   final int rank;
-  const RankingItem({Key? key, required this.rank}) : super(key: key);
+  final String login;
+  final double level;
+  const RankingItem({Key? key, required this.rank, required this.login, required this.level}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,10 +18,14 @@ class RankingItem extends StatelessWidget {
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const SizedBox(width: 20.0),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20.0),
-                    child: Text(rank.toString(), style: TextStyle(height: 0.8, fontSize: 70.0, fontWeight: FontWeight.bold, color: Theme.of(context).secondaryHeaderColor)),
+                  const SizedBox(width: 10.0),
+                  Container(
+                    alignment: Alignment.centerRight,
+                    width: 68.0,
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 13.0),
+                      child: Text(rank.toString(), style: TextStyle(height: 0.8, fontSize: 40.0, fontWeight: FontWeight.bold, color: Theme.of(context).secondaryHeaderColor)),
+                    ),
                   ),
                   Container(
                     color: Colors.white,
@@ -29,7 +35,7 @@ class RankingItem extends StatelessWidget {
                         height: 50.0,
                         width: 50.0,
                         child: Image.network(
-                          'https://cdn.intra.42.fr/users/anel-bou.jpg',
+                          'https://cdn.intra.42.fr/users/$login.jpg',
                           fit: BoxFit.fitWidth,
                           errorBuilder: (context, exception, stackTrace) {
                             return Image.asset('assets/images/blank_profile_picture.png');
@@ -37,17 +43,17 @@ class RankingItem extends StatelessWidget {
                         )
                     ),
                   ),
-                  Text('anel-bou', style: const TextStyle(color: Colors.white, fontSize: 20.0),)
+                  Text(login, style: const TextStyle(color: Colors.white, fontSize: 20.0),)
                 ],
               ),
               InkWell(
                   onTap: () {},
-                  child: const Padding(child: Text('18.89', style: TextStyle(color: Colors.white, fontSize: 18.0),), padding: EdgeInsets.only(right: 50.0),)
+                  child: Padding(child: Text(level.toStringAsFixed(2), style: const TextStyle(color: Colors.white, fontSize: 18.0),), padding: EdgeInsets.only(right: 50.0),)
               )
             ],
           ),
         ),
-        Padding(child: Divider(color: Theme.of(context).splashColor, height: 0), padding: const EdgeInsets.symmetric(horizontal: 40.0),)
+        SizedBox(width: 150.0, child: Divider(color: Theme.of(context).splashColor, height: 0))
       ],
     );
   }

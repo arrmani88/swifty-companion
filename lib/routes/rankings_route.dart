@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:notifier_42/providers/ranking_provider.dart';
-import 'package:notifier_42/widgets/ranking_item.dart';
 import 'package:provider/provider.dart';
 import '../widgets/pop_ups/loading_pop_up.dart';
 import '../widgets/select_generations.dart';
@@ -17,7 +16,7 @@ class _RankingsRouteState extends State<RankingsRoute> {
   void initState() {
     super.initState();
     WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
-      context.read<RankingProvider>().getRanking();
+      context.read<RankingProvider>().setRanking();
     });
   }
 
@@ -27,11 +26,17 @@ class _RankingsRouteState extends State<RankingsRoute> {
       child: (context.watch<RankingProvider>().isLoading == true)
         ? const SizedBox(width: 500, child: LoadingPopUp())
         : Column(
-        children: const [
-          SelectGeneration(),
-          RankingItem(rank: 1,)
-        ],
-      ),
+          children: [
+            const SelectGeneration(),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: context.read<RankingProvider>().widgetsList[context.watch<RankingProvider>().selectedGeneration]!,
+                ),
+              ),
+            ),
+          ],
+        ),
     );
   }
 }
