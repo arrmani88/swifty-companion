@@ -17,11 +17,14 @@ class RankingItem extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   const SizedBox(width: 20.0),
-                  Text(rank.toString(), style: TextStyle(fontSize: 80.0, fontWeight: FontWeight.bold, color: Theme.of(context).secondaryHeaderColor)),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20.0),
+                    child: Text(rank.toString(), style: TextStyle(height: 0.8, fontSize: 70.0, fontWeight: FontWeight.bold, color: Theme.of(context).secondaryHeaderColor)),
+                  ),
                   Container(
                     color: Colors.white,
                     padding: const EdgeInsets.all(2.0),
-                    margin: const EdgeInsets.fromLTRB(20.0, 0, 15.0, 0),
+                    margin: const EdgeInsets.fromLTRB(7.0, 0, 15.0, 0),
                     child: SizedBox(
                         height: 50.0,
                         width: 50.0,
