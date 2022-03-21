@@ -15,7 +15,6 @@ class RankingProvider with ChangeNotifier {
   Map<String, int> generationsStudentsNumber = {};
   late String selectedGeneration;
   bool isLoading = true;
-  int tmp = 0;
 
   getAllGenerations() async {
     Options options = Options(headers: {'Authorization': 'Bearer ' + accessToken!});

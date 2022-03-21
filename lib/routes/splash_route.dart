@@ -41,7 +41,7 @@ class _SplashRouteState extends State<SplashRoute> {
       if (accessTokenCreatedAt == null) { // if no token is   alocally saved
         Navigator.pushReplacementNamed(context, 'authorization_route');
       } else { // if a token was saved locally
-        await validateAccessToken();
+        await validateAccessToken(context);
         print('------ ACCESS TOKEN= <$accessToken>');
         Navigator.pushReplacementNamed(context, 'home_route');
       }

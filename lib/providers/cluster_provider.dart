@@ -100,7 +100,7 @@ class ClustersProvider with ChangeNotifier {
     Options options = Options(headers: {'Authorization': 'Bearer ' + accessToken!});
     try {
       clearAllClustersData();
-      await validateAccessToken();
+      await validateAccessToken(null);
       // get clusters
       await Future.wait([
         for (int pageNum = 1, interval = 1000; pageNum <= 3; pageNum++, interval += 500)
