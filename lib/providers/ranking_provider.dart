@@ -111,7 +111,7 @@ class RankingProvider with ChangeNotifier {
 
   setDropDownList() {
     generationsBeginDates[userCampusId]!.forEach((genTitle, _) {
-      dropDownList.add(DropdownMenuItem(value: genTitle, child: Text(genTitle)));
+      dropDownList.add(DropdownMenuItem(value: genTitle, child: FittedBox(fit: BoxFit.fitWidth, child: Text(genTitle))));
     });
   }
 
