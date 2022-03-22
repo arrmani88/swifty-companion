@@ -10,14 +10,13 @@ import 'package:notifier_42/extensions/splay_tree_map_extensions.dart';
 
 class RankingProvider with ChangeNotifier {
   // FOR THE DOCUMENTATIONS SEE THE COMMENTS BELOW
-  SplayTreeMap<String ,SplayTreeMap<double, List<String>>> generationsMap = SplayTreeMap<String ,SplayTreeMap<double, List<String>>>();
-  Map<String, List<Widget>> widgetsList = {};
+  SplayTreeMap<double, List<String>> generationStudents = SplayTreeMap<double, List<String>>();
+  List<Widget> widgetsList = [];
   List<DropdownMenuItem<String>> dropDownList = <DropdownMenuItem<String>>[];
   // list that contains the number of students of each gen
   Map<String, int> generationsStudentsNumber = {};
   // selectedGeneration has a value of the last generation title
-  // String selectedGeneration = generationsBeginDates[userCampusId]!.keys.toList()[generationsBeginDates[userCampusId]!.keys.length - 1];
-  String selectedGeneration = '2019 March';
+  String selectedGeneration = generationsBeginDates[userCampusId]!.keys.toList()[generationsBeginDates[userCampusId]!.keys.length - 1];
   bool isLoading = true;
 
   /*
@@ -70,7 +69,7 @@ class RankingProvider with ChangeNotifier {
       (generationsStudentsNumber[generationBeginDate] ??= 0);
       generationsStudentsNumber[generationBeginDate] = generationsStudentsNumber[generationBeginDate]! + 1;
       if (!isStaff && generationBeginDate.isNotEmpty) {
-        (generationsMap[generationBeginDate] ??= SplayTreeMap<double, List<String>>()).addStudent(level, login);
+        generationStudents.addStudent(level, login);
       }
     }
     return false;
@@ -79,18 +78,17 @@ class RankingProvider with ChangeNotifier {
   setWidgetsList() {
     int totalRanks;
 
-    generationsMap.forEach((genTitle, gen) {
-      totalRanks = generationsStudentsNumber[genTitle]!;
-      gen.forEach((level, loginsList) {
-        for (String login in loginsList) {
-          (widgetsList[genTitle] ??= <RankingItem>[]).insert(0, RankingItem(rank: totalRanks--, login: login, level: level));
-        }
-      });
+    totalRanks = generationsStudentsNumber[selectedGeneration]!;
+    generationStudents.forEach((level, loginsList) {
+      for (String login in loginsList) {
+        widgetsList.insert(0, RankingItem(rank: totalRanks--, login: login, level: level));
+      }
     });
   }
 
   setRanking() async {
     try {
+      clearPreviousData();
       await getGeneration();
       setWidgetsList();
       isLoading = false;
@@ -106,7 +104,9 @@ class RankingProvider with ChangeNotifier {
 // ******************************************************************************
 
   clearPreviousData() {
-
+    generationsStudentsNumber.clear();
+    generationStudents.clear();
+    widgetsList.clear();
   }
 
   setDropDownList() {
@@ -152,15 +152,9 @@ class RankingProvider with ChangeNotifier {
 
 
 // ******************* generationsMap ******************
-// {
-//   "Generation 1" : {
+//   {
 //     14.9: ["flane", "usrWithSameLevel"]
 //     14.5: ["fertellane", "usrWithSameLevel"]
-//   } ,
-//   "Generation 2": {
-//     9.87: ["benfertellan", "usrWithSameLevel"]
-//     9.07: ["korrete", "usrWithSameLevel"]
 //   }
-// }
 
 

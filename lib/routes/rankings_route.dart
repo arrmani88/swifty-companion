@@ -32,8 +32,7 @@ class _RankingsRouteState extends State<RankingsRoute> {
               Expanded(
                 child: SingleChildScrollView(
                   child: Column(
-                    children: context.read<RankingProvider>().widgetsList
-                        [context.watch<RankingProvider>().selectedGeneration]!,
+                    children: context.read<RankingProvider>().widgetsList,
                   ),
                 ),
               ),
