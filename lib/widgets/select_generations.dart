@@ -26,7 +26,7 @@ class _SelectGenerationState extends State<SelectGeneration> {
           ),
           const SizedBox(width: 7.0),
           Expanded(
-            flex: 4,
+            flex: 5,
               child: SizedBox(
                 width: 1,
                 child: DropdownButton<String>(
@@ -40,6 +40,7 @@ class _SelectGenerationState extends State<SelectGeneration> {
                   items: context.read<RankingProvider>().dropDownList,
                   onChanged: (newValue) => setState(() {
                     context.read<RankingProvider>().updateSelectedGeneration(newValue!);
+                    context.read<RankingProvider>().setRanking();
                   }),
                 ),
               )

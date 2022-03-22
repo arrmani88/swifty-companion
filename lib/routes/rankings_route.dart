@@ -15,7 +15,8 @@ class _RankingsRouteState extends State<RankingsRoute> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance!.addPostFrameCallback((_) {
+      context.read<RankingProvider>().setDropDownList();
       context.read<RankingProvider>().setRanking();
     });
   }
@@ -24,19 +25,20 @@ class _RankingsRouteState extends State<RankingsRoute> {
   Widget build(BuildContext context) {
     return Center(
       child: (context.watch<RankingProvider>().isLoading == true)
-        ? const SizedBox(width: 500, child: LoadingPopUp())
-        : Column(
-          children: [
-            const SelectGeneration(),
-            Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  children: context.read<RankingProvider>().widgetsList[context.watch<RankingProvider>().selectedGeneration]!,
+          ? const SizedBox(width: 500, child: LoadingPopUp())
+          : Column(
+            children: [
+              const SelectGeneration(),
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: context.read<RankingProvider>().widgetsList
+                        [context.watch<RankingProvider>().selectedGeneration]!,
+                  ),
                 ),
               ),
-            ),
-          ],
-        ),
+            ],
+      )
     );
   }
 }

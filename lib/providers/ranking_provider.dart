@@ -2,6 +2,7 @@ import 'dart:collection';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import '../constants/constants.dart';
+import '../functions/validate_access_token.dart';
 import '../globals/globals.dart';
 import 'package:notifier_42/constants/campus_relative_data.dart';
 import 'package:notifier_42/widgets/ranking_item.dart';
@@ -12,22 +13,46 @@ class RankingProvider with ChangeNotifier {
   SplayTreeMap<String ,SplayTreeMap<double, List<String>>> generationsMap = SplayTreeMap<String ,SplayTreeMap<double, List<String>>>();
   Map<String, List<Widget>> widgetsList = {};
   List<DropdownMenuItem<String>> dropDownList = <DropdownMenuItem<String>>[];
+  // list that contains the number of students of each gen
   Map<String, int> generationsStudentsNumber = {};
-  late String selectedGeneration;
+  // selectedGeneration has a value of the last generation title
+  // String selectedGeneration = generationsBeginDates[userCampusId]!.keys.toList()[generationsBeginDates[userCampusId]!.keys.length - 1];
+  String selectedGeneration = '2019 March';
   bool isLoading = true;
 
-  getAllGenerations() async {
-    Options options = Options(headers: {'Authorization': 'Bearer ' + accessToken!});
+  /*
     await Future.wait([
-      for (int requestNb = 1, interval = 1000; requestNb <= 8; requestNb++, interval += 700)
-        Future.delayed(Duration(milliseconds: interval))
-          .then((value) => dio.get(_getPath(pageNum: requestNb), options: options)
-          .then((value) => parseUsers(value.data))),
+    for (int requestNb = 1, interval = 1000; requestNb <= 3; requestNb++, interval += 700)
+      Future.delayed(Duration(milliseconds: interval))
+        .then((value) => dio.get(_getPath(pageNum: requestNb), options: options)
+        .then((value) => parseUsers(value.data))),
     ]);
-    selectedGeneration = generationsMap.keys.elementAt(0);
+   */
+
+  getGeneration() async {
+    Options options = Options(headers: {'Authorization': 'Bearer ' + accessToken!});
+    int gotAllPages = 1;
+    try {
+      // while gotAllPages != -1, send (repeated) times the request and wait for the (repeated) responses
+      // and then check if one of them is empty to finish the operation
+      for (int pageNumber = 1; gotAllPages != -1; pageNumber += 3) {
+        await Future.wait([
+          // send (repeated) times the request and then check if one of the (repeated) requests is empty to finish the operation
+          for (int repeated = 0, interval = 1000; repeated < 3; repeated++, interval += 650)
+            Future.delayed(Duration(milliseconds: interval)).then((value) => dio.get(_getPath(pageNum: pageNumber + repeated), options: options)
+              .then((value) {
+                // if the app got all parts, the operation finishes here
+                if (parseUsers(value.data) == true) gotAllPages = -1;
+            })),
+        ]);
+      }
+    } catch (e) {
+      rethrow;
+    }
   }
 
   bool parseUsers(List response) {
+    // if the app got all parts, it returns true , else it returns false
     String generationBeginDate;
     String login;
     double level;
@@ -35,7 +60,7 @@ class RankingProvider with ChangeNotifier {
 
     if (response.isEmpty) {
       print('------- EMPTY RESPONSE ---------');
-      return false;
+      return true;
     }
     for (Map student in response) {
       level = student['level'];
@@ -48,7 +73,7 @@ class RankingProvider with ChangeNotifier {
         (generationsMap[generationBeginDate] ??= SplayTreeMap<double, List<String>>()).addStudent(level, login);
       }
     }
-    return true;
+    return false;
   }
 
   setWidgetsList() {
@@ -56,7 +81,6 @@ class RankingProvider with ChangeNotifier {
 
     generationsMap.forEach((genTitle, gen) {
       totalRanks = generationsStudentsNumber[genTitle]!;
-      dropDownList.add(DropdownMenuItem(value: genTitle, child: Text(genTitle)));
       gen.forEach((level, loginsList) {
         for (String login in loginsList) {
           (widgetsList[genTitle] ??= <RankingItem>[]).insert(0, RankingItem(rank: totalRanks--, login: login, level: level));
@@ -66,14 +90,33 @@ class RankingProvider with ChangeNotifier {
   }
 
   setRanking() async {
-    await getAllGenerations();
-    setWidgetsList();
-    isLoading = false;
-    notifyListeners();
+    try {
+      await getGeneration();
+      setWidgetsList();
+      isLoading = false;
+      notifyListeners();
+    } catch (e) {
+      if (e is DioError && e.response!.statusCode == 403) {
+        validateAccessToken();
+        setRanking();
+      }
+    }
   }
 
 // ******************************************************************************
+
+  clearPreviousData() {
+
+  }
+
+  setDropDownList() {
+    generationsBeginDates[userCampusId]!.forEach((genTitle, _) {
+      dropDownList.add(DropdownMenuItem(value: genTitle, child: Text(genTitle)));
+    });
+  }
+
   updateSelectedGeneration(String gen) {
+    isLoading = true;
     selectedGeneration = gen;
     notifyListeners();
   }
@@ -93,12 +136,16 @@ class RankingProvider with ChangeNotifier {
   }
 
   String _getPath({required int pageNum})  {
+    String begin = generationsRanges[userCampusId]![selectedGeneration]![0];
+    String end = generationsRanges[userCampusId]![selectedGeneration]![1];
+
     return kHostname +
       '/v2/cursus/21/cursus_users'
         '?page[size]=100'
         '&sort=begin_at'
         '&filter[campus_id]=16'
-        '&page[number]=$pageNum';
+        '&page[number]=$pageNum'
+        '&range[begin_at]=$begin,$end';
   }
 
 }

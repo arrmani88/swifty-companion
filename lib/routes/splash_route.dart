@@ -41,14 +41,16 @@ class _SplashRouteState extends State<SplashRoute> {
       if (accessTokenCreatedAt == null) { // if no token is   alocally saved
         Navigator.pushReplacementNamed(context, 'authorization_route');
       } else { // if a token was saved locally
-        await validateAccessToken(context);
+        await validateAccessToken();
         print('------ ACCESS TOKEN= <$accessToken>');
         Navigator.pushReplacementNamed(context, 'home_route');
       }
     } on SocketException catch (_) {
       context.read<PopUpProvider>().displayNoInternetPopUp();
     } catch (e) {
-      if (e is DioError) {
+      if (e is DioError && e.response!.statusCode == 401) { // if the locally saved refresh token isn't valid
+        Navigator.pushReplacementNamed(context, 'authorization_route');
+      } else if (e is DioError) {
         descriptionMessage = (e.response?.data as Map<String, dynamic>)['error_description'];
         context.read<PopUpProvider>().displayUnknownErrorPopUp();
       } else {

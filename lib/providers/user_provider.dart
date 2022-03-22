@@ -61,7 +61,7 @@ class UserProvider with ChangeNotifier {
   getThisUser(String userLogin, Map<String, List<Map<String, dynamic>>> targetedItemsData) async {
     try {
       await InternetAddress.lookup('api.intra.42.fr');
-      await validateAccessToken(null);
+      await validateAccessToken();
       await Future.delayed(const Duration(seconds: 1));
       Response _response = await dio.get(
         kHostname + '/v2/users/' + userLogin.toLowerCase(),

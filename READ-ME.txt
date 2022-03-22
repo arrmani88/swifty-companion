@@ -14,8 +14,7 @@ log user out
 
 
 /****************/
-TODO LIST
----------- suggestions ----------
+--------------------
 what are scopes
 f authorization_route blast men setstate bach t affichi popup, dir provider
 clean pubspec.yaml
@@ -25,6 +24,7 @@ sync navbar when manual scroll on pageview
 ---------------------------------
 click to show profile picture full screen
 search for profile using name part
+click on user from ranking list to show his profile
 ----------------------
 project mark box dir liha title chad lwidth kollo
 testi b thor
