@@ -77,7 +77,6 @@ class ClustersProvider with ChangeNotifier {
       host = (workStation['user'] as Map)['location'];
       login = (workStation['user'] as Map)['login'];
       image = (workStation['user'] as Map)['image_url'];
-      // print('host:"${host}"\t["${login}", "${image}"]');
       if (host != null) {
         if (host.startsWith('e1')) {
           e1JsonList[host] = [login, image];
@@ -110,7 +109,12 @@ class ClustersProvider with ChangeNotifier {
       ]);
       gotClusters();
     } catch (e) {
-      rethrow ;
+      if (e is DioError && e.response!.statusCode == 403) {
+        await validateAccessToken();
+        await getClusters(context);
+      } else {
+        rethrow;
+      }
     }
   }
 

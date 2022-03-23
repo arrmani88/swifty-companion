@@ -2,11 +2,12 @@ import 'package:flutter/cupertino.dart';
 import '../globals/globals.dart';
 
 class TargetProvider with ChangeNotifier {
-  bool areAllWorkstationsTargeted = false;
+  // SEE THE DOCUMENTATIONS BELOW
   Map<String, List<Map<String, dynamic>>> targetedItemsData = {
     'targeted_hosts': [],
     'targeted_users': []
   };
+  bool areAllWorkstationsTargeted = false;
 
   detargetAllWorkstations() {
     areAllWorkstationsTargeted = false;
@@ -33,5 +34,24 @@ class TargetProvider with ChangeNotifier {
     targetedItemsBox.put(key, targetedItemsData[key]!);
     notifyListeners();
   }
-
 }
+
+// EXPLANATION OF THE STRUCTURE OF THE VARIABLES
+
+//  targetedItemsData =
+//  {
+//    'targeted_hosts': [ // list if the targeted item is a workstation
+//      {
+//        'user_id': '123456',
+//        'login': 'anel-bou',
+//        'host': 'e2r9p7', // or 'null' if the user isn't logged in (means if the targeted item is
+//                              a user, so in 'targeted_hosts', the field 'host' shouldn't be null
+//      },
+//      {
+//        (...)
+//      }
+//    ],
+//    'targeted_users': [
+//      same as targeted_hosts except that 'host' field should be null because the targeted user isn't logged in
+//    ]
+//  }

@@ -15,7 +15,7 @@ class IntraInfo extends StatelessWidget {
           Expanded(
             child: Align(
               alignment: Alignment.centerRight,
-              child: Text(title, style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Theme.of(context).secondaryHeaderColor)),
+              child: FittedBox(fit: BoxFit.fitWidth, child: Text(title, style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Theme.of(context).secondaryHeaderColor))),
             ),
           ),
           const SizedBox(width: 7.0),

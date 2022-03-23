@@ -95,8 +95,10 @@ class RankingProvider with ChangeNotifier {
       notifyListeners();
     } catch (e) {
       if (e is DioError && e.response!.statusCode == 403) {
-        validateAccessToken();
-        setRanking();
+        await validateAccessToken();
+        await setRanking();
+      } else {
+        rethrow ;
       }
     }
   }

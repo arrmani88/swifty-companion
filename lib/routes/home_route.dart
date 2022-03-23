@@ -11,6 +11,8 @@ import 'package:notifier_42/widgets/pop_ups/loading_pop_up.dart';
 import 'package:notifier_42/widgets/pop_ups/user_not_found_pop_up.dart';
 import 'package:notifier_42/providers/pop_up_provider.dart';
 
+import '../constants/constants.dart';
+
 class HomeRoute extends StatefulWidget {
   HomeRoute({Key? key}) : super(key: key);
   @override
@@ -23,7 +25,7 @@ class _HomeRouteState extends State<HomeRoute> {
   String? descriptionMessage;
 
   void onSearchPressed (BuildContext context, RoundedLoadingButtonController _btnController) async {
-    // try {
+    try {
       FocusManager.instance.primaryFocus?.unfocus();
       _btnController.start();
       var status = await context.read<UserProvider>().getThisUser(textController.text.isEmpty ? 'anel-bou' : textController.text, context.read<TargetProvider>().targetedItemsData);
@@ -35,15 +37,15 @@ class _HomeRouteState extends State<HomeRoute> {
       } else if (status == ConnectionStatus.noInternet) {
         context.read<PopUpProvider>().displayNoInternetPopUp();
       }
-    // } catch (e) {
-    //   if (e is DioError) {
-    //     context.read<PopUpProvider>().displayUnknownErrorPopUp();
-    //     descriptionMessage = (e.response?.data as Map<String, dynamic>)['error_description'];
-    //   } else {
-    //     context.read<PopUpProvider>().displayUnknownErrorPopUp();
-    //     descriptionMessage = e.toString();
-    //   }
-    // }
+    } catch (e) {
+      if (e is DioError) {
+        context.read<PopUpProvider>().displayUnknownErrorPopUp();
+        descriptionMessage = (e.response?.data as Map<String, dynamic>)['error_description'];
+      } else {
+        context.read<PopUpProvider>().displayUnknownErrorPopUp();
+        descriptionMessage = e.toString();
+      }
+    }
     textController.clear();
     _btnController.reset();
   }
@@ -73,7 +75,7 @@ class _HomeRouteState extends State<HomeRoute> {
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Padding(child: Hero(tag: 'app_logo', child: Image.asset('assets/images/app_logo.jpeg')), padding: const EdgeInsets.symmetric(horizontal: 60.0),),
+                            Hero(tag: 'app_logo', child: Image.asset('assets/images/app_logo.jpeg', width: kScreenWidth > 500 ? 250.0 : kScreenWidth / 2.2,)),
                             const SizedBox(height: 30.0),
                             TextField(
                               controller: textController,

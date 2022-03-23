@@ -22,25 +22,28 @@ class ProjectsRoute extends StatelessWidget {
           decoration: BoxDecoration(gradient: RadialGradient(colors: [Theme.of(context).splashColor, Theme.of(context).scaffoldBackgroundColor], center: const Alignment(0, -0.05), radius: 0.8)),
           child: Padding(
             padding: const EdgeInsets.only(left: 30.0, right: 30, top: 30.0),
-            child: Column(
-              children: [
-                Expanded(
-                  child: SearchableList<Project>(
-                    initialList: context.watch<UserProvider>().projectsList,
-                    builder: (dynamic project) => ItemProject(project: project),
-                    filter: (search) {
-                      return context.read<UserProvider>().projectsList.where((element) {
-                        return element.title.toLowerCase().contains(search) || element.status.toString().contains(search);
-                      }).toList();
-                    },
-                    inputDecoration: InputDecoration(
-                      label: const Text('Enter login', style: TextStyle(color: Colors.white)),
-                      enabledBorder: border,
-                      focusedBorder: border,
+            child: SizedBox(
+              width: 500.0,
+              child: Column(
+                children: [
+                  Expanded(
+                    child: SearchableList<Project>(
+                      initialList: context.watch<UserProvider>().projectsList,
+                      builder: (dynamic project) => ItemProject(project: project),
+                      filter: (search) {
+                        return context.read<UserProvider>().projectsList.where((element) {
+                          return element.title.toLowerCase().contains(search) || element.status.toString().contains(search);
+                        }).toList();
+                      },
+                      inputDecoration: InputDecoration(
+                        label: const Text('Enter project name', style: TextStyle(color: Colors.white)),
+                        enabledBorder: border,
+                        focusedBorder: border,
+                      ),
                     ),
-                  ),
-                )
-              ],
+                  )
+                ],
+              ),
             ),
           ),
         ),

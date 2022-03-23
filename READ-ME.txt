@@ -21,10 +21,11 @@ clean pubspec.yaml
 chi animation dial scroll
 remove circle cursors from radar chart
 sync navbar when manual scroll on pageview
+search 3la chi user f wast ranking list + scroll to top + scroll to bottom
+activi ListenOnAllWorkstations(), f rankings route
 ---------------------------------
 click to show profile picture full screen
 search for profile using name part
-click on user from ranking list to show his profile
 ----------------------
 project mark box dir liha title chad lwidth kollo
 testi b thor
@@ -35,7 +36,6 @@ MOHIM BZF : GERER http 429 FACH KIJIB LCLUSTERS o ranking
 MOHIM BZF : fch kt wrrk joj merrat 3la search button fel home_page.dart ki loadi page joj mrrat donc ki sft request 2 mrrt
 
 Continue doing: [
-            diri search 3la chi user f wast liste + scroll to top + scroll to bottom
             diri cluster iji b loop
             double click 3la search fel home_route ki dir lcall joj marat
         ]

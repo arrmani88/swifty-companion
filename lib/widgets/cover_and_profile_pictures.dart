@@ -41,7 +41,7 @@ class CoverAndProfilePictures extends StatelessWidget {
                       children: [
                         LoadingAnimationWidget.dotsTriangle(color: Colors.white, size: 100.0),
                         const SizedBox(height: 20.0),
-                        const Text('Loading ...', style: TextStyle(color: Colors.white, fontSize: 25.0)),
+                        const FittedBox(fit: BoxFit.fitWidth, child: Text('Loading ...', style: TextStyle(color: Colors.white, fontSize: 25.0))),
                       ],
                     ),
                   );

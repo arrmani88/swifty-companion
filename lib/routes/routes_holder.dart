@@ -18,7 +18,7 @@ class RoutesHolder extends StatefulWidget {
   State<RoutesHolder> createState() => _RoutesHolderState();
 }
 class _RoutesHolderState extends State<RoutesHolder> {
-  int selectedIndex = 3;
+  int selectedIndex = 2;
 
   @override
   void initState() {
@@ -41,9 +41,9 @@ class _RoutesHolderState extends State<RoutesHolder> {
               KeepWidgetAlive(child: const ProfileRoute()),
               KeepWidgetAlive(child: ProjectsRoute()),
               KeepWidgetAlive(child: const ClustersRoute()),
-              KeepWidgetAlive(child: const RankingsRoute()),
-              KeepWidgetAlive(child: const TargetRoute()),
-              KeepWidgetAlive(child: const NotificationsRoute())
+              // KeepWidgetAlive(child: const RankingsRoute()),
+              // KeepWidgetAlive(child: const TargetRoute()),
+              // KeepWidgetAlive(child: const NotificationsRoute())
             ],
           ),
         ),
@@ -80,24 +80,24 @@ class _RoutesHolderState extends State<RoutesHolder> {
                 selectedColor: Theme.of(context).splashColor,
                 unselectedColor: Theme.of(context).scaffoldBackgroundColor
               ),
-              SalomonBottomBarItem(
-                icon:  const Icon(Icons.format_list_numbered_sharp),
-                title:  const Text('Rankings'),
-                selectedColor: Theme.of(context).splashColor,
-                unselectedColor: Theme.of(context).scaffoldBackgroundColor
-              ),
-              SalomonBottomBarItem(
-                  icon:  const ImageIcon(AssetImage('assets/icons/target_icon.png'), size: 25.0,),
-                  title:  const Text('Target'),
-                  selectedColor: Theme.of(context).splashColor,
-                  unselectedColor: Theme.of(context).scaffoldBackgroundColor
-              ),
-              SalomonBottomBarItem(
-                  icon:  const Icon(Icons.notifications),
-                  title:  const Text('Notifs'),
-                  selectedColor: Theme.of(context).splashColor,
-                  unselectedColor: Theme.of(context).scaffoldBackgroundColor
-              ),
+              // SalomonBottomBarItem(
+              //   icon:  const Icon(Icons.format_list_numbered_sharp),
+              //   title:  const Text('Rankings'),
+              //   selectedColor: Theme.of(context).splashColor,
+              //   unselectedColor: Theme.of(context).scaffoldBackgroundColor
+              // ),
+              // SalomonBottomBarItem(
+              //     icon:  const ImageIcon(AssetImage('assets/icons/target_icon.png'), size: 25.0,),
+              //     title:  const Text('Target'),
+              //     selectedColor: Theme.of(context).splashColor,
+              //     unselectedColor: Theme.of(context).scaffoldBackgroundColor
+              // ),
+              // SalomonBottomBarItem(
+              //     icon:  const Icon(Icons.notifications),
+              //     title:  const Text('Notifs'),
+              //     selectedColor: Theme.of(context).splashColor,
+              //     unselectedColor: Theme.of(context).scaffoldBackgroundColor
+              // ),
             ],
           ),
         ),
