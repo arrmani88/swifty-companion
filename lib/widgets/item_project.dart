@@ -26,19 +26,20 @@ class _ItemProjectState extends State<ItemProject> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
 
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
+            Flexible(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
 
-                SizedBox(
-                  width: 50.0,
-                  child: MarqueeWidget(child: Text(widget.project.title, style: const TextStyle(color: Colors.white, fontSize: 25),))
-                ),
-                Text(parseProjectStatus(widget.project.status), style: const TextStyle(color: Colors.white60))
+                  MarqueeWidget(child: Text(widget.project.title, style: const TextStyle(color: Colors.white, fontSize: 25),)),
+                  Text(parseProjectStatus(widget.project.status), style: const TextStyle(color: Colors.white60))
 
-              ],
+                ],
+              ),
             ),
+            const SizedBox(width: 10.0),
             ProjectMarkBox(project: widget.project)
 
           ],

@@ -36,15 +36,19 @@ class _ListenOnThisState extends State<ListenOnThis> {
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Icon(Icons.notifications_off_outlined, color: Colors.white,),
-                    const SizedBox(width: 5.0),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 4.0),
-                      child: Text(
-                        (context.watch<UserProvider>().location != null)
-                            ? 'Click to get notified when this workstation is free'
-                            : 'Click to get notified when this user logs in',
-                        style: TextStyle(color: Theme.of(context).secondaryHeaderColor, fontSize: 15.0),),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Icon(Icons.notifications_off_outlined, color: Colors.white,),
+                    ),
+                    Flexible(
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 4.0),
+                        child: Text(
+                          (context.watch<UserProvider>().location != null)
+                              ? 'Click to get notified when this workstation is free'
+                              : 'Click to get notified when this user logs in',
+                          style: TextStyle(color: Theme.of(context).secondaryHeaderColor, fontSize: 15.0),),
+                      ),
                     ),
                   ],
                 ),
@@ -65,15 +69,19 @@ class _ListenOnThisState extends State<ListenOnThis> {
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(Icons.notifications_active_sharp, color: Colors.black.withOpacity(0.4),),
-                      const SizedBox(width: 5.0),
                       Padding(
-                        padding: const EdgeInsets.only(top: 4.0),
-                        child: Text(
-                          (context.watch<UserProvider>().location != null)
-                              ? 'Click to cancel notification for this workstation'
-                              : 'Click to cancel notification for this user',
-                          style: TextStyle(color: Colors.black.withOpacity(0.4), fontWeight: FontWeight.w800, fontSize: 15.0),),
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        child: Icon(Icons.notifications_active_sharp, color: Colors.black.withOpacity(0.4),),
+                      ),
+                      Flexible(
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 4.0),
+                          child: Text(
+                            (context.watch<UserProvider>().location != null)
+                                ? 'Click to cancel notification for this workstation'
+                                : 'Click to cancel notification for this user',
+                            style: TextStyle(color: Colors.black.withOpacity(0.4), fontWeight: FontWeight.w800, fontSize: 15.0),),
+                        ),
                       )
                     ],
                   ),

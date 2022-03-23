@@ -23,13 +23,11 @@ class _ProfileRouteState extends State<ProfileRoute> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          Container(
-            height: kScreenHeight,
-            width: kScreenWidth,
-            decoration: BoxDecoration(gradient: RadialGradient(colors: [Theme.of(context).splashColor, Theme.of(context).scaffoldBackgroundColor], center: const Alignment(0, -0.05), radius: 0.8)),
-            child: SingleChildScrollView(
+      body: Container(
+        decoration: BoxDecoration(gradient: RadialGradient(colors: [Theme.of(context).splashColor, Theme.of(context).scaffoldBackgroundColor], center: const Alignment(0, -0.05), radius: 0.8)),
+        child: Stack(
+          children: [
+            SingleChildScrollView(
               child: Column(
                 children: [
                   CoverAndProfilePictures(),
@@ -85,9 +83,9 @@ class _ProfileRouteState extends State<ProfileRoute> {
                 ],
               ),
             ),
-          ),
-          if (context.watch<PopUpProvider>().isProfileLoadingPopUpDisplayed) const LoadingPopUp(),
-        ],
+            if (context.watch<PopUpProvider>().isProfileLoadingPopUpDisplayed) const LoadingPopUp(),
+          ],
+        ),
       ),
     );
   }

@@ -17,7 +17,6 @@ class MarqueeWidget extends StatefulWidget {
   @override
   _MarqueeWidgetState createState() => _MarqueeWidgetState();
 }
-
 class _MarqueeWidgetState extends State<MarqueeWidget> {
   late ScrollController scrollController;
 

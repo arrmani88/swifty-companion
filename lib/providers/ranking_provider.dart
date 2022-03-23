@@ -57,10 +57,7 @@ class RankingProvider with ChangeNotifier {
     double level;
     bool isStaff;
 
-    if (response.isEmpty) {
-      print('------- EMPTY RESPONSE ---------');
-      return true;
-    }
+    if (response.isEmpty) return true;
     for (Map student in response) {
       level = student['level'];
       generationBeginDate = getGenerationTitle(student['begin_at']);
@@ -102,8 +99,6 @@ class RankingProvider with ChangeNotifier {
       }
     }
   }
-
-// ******************************************************************************
 
   clearPreviousData() {
     generationsStudentsNumber.clear();
