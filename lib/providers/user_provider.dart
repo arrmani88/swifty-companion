@@ -132,10 +132,12 @@ class UserProvider with ChangeNotifier {
     projectsList.clear();
     for (Map<String, dynamic> project in (response.data as Map<String, dynamic>)['projects_users']) {
       if ((project['cursus_ids'] as List).contains(cursusIds[selectedCursus])) {
-        projectsList.add(Project(
-          title: (project['project'] as Map<String, dynamic>)['slug'],
-          status: getStatusStringFromEnum(project['status'], project['validated?']),
-          finalMark: project['final_mark'])
+        projectsList.add(
+          Project(
+            title: (project['project'] as Map<String, dynamic>)['slug'],
+            status: getStatusStringFromEnum(project['status'], project['validated?']),
+            finalMark: project['final_mark']
+          )
         );
       }
     }

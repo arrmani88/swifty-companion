@@ -1,7 +1,7 @@
 class Project {
   String title;
   var status;
-  int finalMark;
+  int? finalMark;
 
   Project({
     required this.title,

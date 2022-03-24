@@ -25,7 +25,7 @@ class _HomeRouteState extends State<HomeRoute> {
   String? descriptionMessage;
 
   void onSearchPressed (BuildContext context, RoundedLoadingButtonController _btnController) async {
-    try {
+    // try {
       FocusManager.instance.primaryFocus?.unfocus();
       _btnController.start();
       var status = await context.read<UserProvider>().getThisUser(textController.text.isEmpty ? 'anel-bou' : textController.text, context.read<TargetProvider>().targetedItemsData);
@@ -37,15 +37,15 @@ class _HomeRouteState extends State<HomeRoute> {
       } else if (status == ConnectionStatus.noInternet) {
         context.read<PopUpProvider>().displayNoInternetPopUp();
       }
-    } catch (e) {
-      if (e is DioError) {
-        context.read<PopUpProvider>().displayUnknownErrorPopUp();
-        descriptionMessage = (e.response?.data as Map<String, dynamic>)['error_description'];
-      } else {
-        context.read<PopUpProvider>().displayUnknownErrorPopUp();
-        descriptionMessage = e.toString();
-      }
-    }
+    // } catch (e) {
+    //   if (e is DioError) {
+    //     context.read<PopUpProvider>().displayUnknownErrorPopUp();
+    //     descriptionMessage = (e.response?.data as Map<String, dynamic>)['error_description'];
+    //   } else {
+    //     context.read<PopUpProvider>().displayUnknownErrorPopUp();
+    //     descriptionMessage = e.toString();
+    //   }
+    // }
     textController.clear();
     _btnController.reset();
   }

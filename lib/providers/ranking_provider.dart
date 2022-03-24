@@ -81,6 +81,7 @@ class RankingProvider with ChangeNotifier {
         widgetsList.insert(0, RankingItem(rank: totalRanks--, login: login, level: level));
       }
     });
+    widgetsList.add(const SizedBox(height: 40.0));
   }
 
   setRanking() async {

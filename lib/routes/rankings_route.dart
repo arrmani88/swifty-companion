@@ -16,17 +16,17 @@ class _RankingsRouteState extends State<RankingsRoute> with TickerProviderStateM
   bool isScrollToBottomDisplayed = true;
 
   scrollToTop() => scrollController.animateTo(0, duration: const Duration(milliseconds: 500), curve: Curves.easeInOut);
-
+  scrollToBottom() => scrollController.animateTo(scrollController.position.maxScrollExtent,  duration: const Duration(milliseconds: 500), curve: Curves.easeInOut);
   @override
   void initState() {
     scrollController = ScrollController()
       ..addListener(() => setState(() {
-        if (scrollController.offset >= 400) {
-          isScrollToTopDisplayed = true;
-        } else {
-          isScrollToTopDisplayed = false;
+          print('...${scrollController.offset}...');
+          print(scrollController.position.maxScrollExtent);
+          isScrollToTopDisplayed = scrollController.offset >= 600 ? true : false;
+          isScrollToBottomDisplayed = scrollController.position.maxScrollExtent - 600 > scrollController.offset ? true : false;
         }
-      }));
+      ));
     super.initState();
     WidgetsBinding.instance!.addPostFrameCallback((_) {
       context.read<RankingProvider>().setDropDownList();
@@ -37,9 +37,36 @@ class _RankingsRouteState extends State<RankingsRoute> with TickerProviderStateM
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: Row(children: [
-        FloatingActionButton(onPressed: scrollToTop, child: const Icon(Icons.arrow_upward),)
-      ],),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 0.0, vertical: 0),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            const SizedBox(width: 15.0),
+            // if (isScrollToTopDisplayed == true)
+              Container(
+              height: 40.0,
+              width: 40.0,
+              color: Theme.of(context).secondaryHeaderColor,
+              child: IconButton(padding: const EdgeInsets.all(2.0),
+                onPressed: scrollToTop,
+                icon: Icon(Icons.arrow_upward, size: 35.0, color: Theme.of(context).scaffoldBackgroundColor,),
+              ),
+            ),
+            const SizedBox(width: 5.0),
+            // if (isScrollToBottomDisplayed == true)
+              Container(
+              height: 40.0,
+              width: 40.0,
+              color: Theme.of(context).secondaryHeaderColor,
+              child: IconButton(padding: const EdgeInsets.all(2.0),
+                onPressed: scrollToBottom,
+                icon: Icon(Icons.arrow_downward, size: 29.0, color: Theme.of(context).scaffoldBackgroundColor,),
+              ),
+            ),
+        ],),
+      ),
       body: Container(
         decoration: BoxDecoration(gradient: RadialGradient(colors: [Theme.of(context).splashColor, Theme.of(context).scaffoldBackgroundColor], center: const Alignment(0, -0.05), radius: 0.8)),
         child: Center(
@@ -70,3 +97,4 @@ class _RankingsRouteState extends State<RankingsRoute> with TickerProviderStateM
   }
 
 }
+
