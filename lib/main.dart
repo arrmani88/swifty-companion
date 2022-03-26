@@ -15,6 +15,7 @@ import 'package:notifier_42/providers/cluster_provider.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'providers/target_provider.dart';
+import 'providers/processes_organizer_provider.dart';
 
 void main() async {
   await Hive.initFlutter();
@@ -25,7 +26,8 @@ void main() async {
       ChangeNotifierProvider(create: (_) => PopUpProvider()),
       ChangeNotifierProvider(create: (_) => ClustersProvider()),
       ChangeNotifierProvider(create: (_) => TargetProvider()),
-      ChangeNotifierProvider(create: (_) => RankingProvider())
+      ChangeNotifierProvider(create: (_) => RankingProvider()),
+      ChangeNotifierProvider(create: (_) => ProcessesOrganizerProvider())
     ],
     child: Notifier42()
   ));

@@ -63,16 +63,12 @@ class _TargetSectionState extends State<TargetSection> with SingleTickerProvider
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: widget.children.isEmpty
-                  ? [
-                      Center(
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 20.0),
-                          child: Container(
-                            child: Text(widget.title == 'Targeted users' ? 'No user is targeted' : 'No workstation is targeted', style: const TextStyle(color: Colors.white, fontSize: 20.0))
-                          )
-                        )
-                      )
-                    ]
+                  ? [Center(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 20.0),
+                      child: Text(widget.title == 'Targeted users' ? 'No user is targeted' : 'No workstation is targeted', style: const TextStyle(color: Colors.white, fontSize: 20.0))
+                    )
+                  )]
                   : widget.children,
               ),
             )

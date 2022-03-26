@@ -40,7 +40,7 @@ class _SelectGenerationState extends State<SelectGeneration> {
                   items: context.read<RankingProvider>().dropDownList,
                   onChanged: (newValue) => setState(() {
                     context.read<RankingProvider>().updateSelectedGeneration(newValue!);
-                    context.read<RankingProvider>().setRanking();
+                    context.read<RankingProvider>().setRanking(context);
                   }),
                 ),
               )

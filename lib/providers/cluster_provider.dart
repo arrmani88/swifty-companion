@@ -4,6 +4,8 @@ import 'package:notifier_42/widgets/workstation.dart';
 import 'package:notifier_42/globals/globals.dart';
 import 'package:notifier_42/functions/validate_access_token.dart';
 import '../constants/constants.dart';
+import 'package:notifier_42/providers/processes_organizer_provider.dart';
+import 'package:provider/provider.dart';
 
 class ClustersProvider with ChangeNotifier {
 
@@ -15,11 +17,15 @@ class ClustersProvider with ChangeNotifier {
   bool areClustersLoading = true;
   bool isE1Selected = false;
   bool isClusterRotated = false;
-
   List<List> e1Debug = [];
   List<List> e2Debug = [];
+  final int processId = 3;
 
-  addClusterPartToClustersList(List clusterPart) => clustersJsonList.addAll(clusterPart);
+  bool addClusterPartToClustersList(List clusterPart) {
+    if (clusterPart.isEmpty) return false;
+    clustersJsonList.addAll(clusterPart);
+    return true;
+  }
 
   switchCluster() {
     isE1Selected = !isE1Selected;
@@ -87,29 +93,48 @@ class ClustersProvider with ChangeNotifier {
     }
   }
 
-  gotClusters() {
-    parseClusters(clustersJsonList);
-    getClusterWidgetsList(stageNumber: 1, stageWidgetsList: e1WidgetsList, stageJsonList: e1JsonList);
-    getClusterWidgetsList(stageNumber: 2, stageWidgetsList: e2WidgetsList, stageJsonList: e2JsonList);
-    areClustersLoading = false;
-    notifyListeners();
+  getMap(BuildContext context) async {
+    try {
+      await getClusters(context);
+      parseClusters(clustersJsonList);
+      getClusterWidgetsList(stageNumber: 1, stageWidgetsList: e1WidgetsList, stageJsonList: e1JsonList);
+      getClusterWidgetsList(stageNumber: 2, stageWidgetsList: e2WidgetsList, stageJsonList: e2JsonList);
+      areClustersLoading = false;
+      notifyListeners();
+    } catch (e) {
+      rethrow ;
+    }
   }
 
   Future<void> getClusters(BuildContext context) async {
     Options options = Options(headers: {'Authorization': 'Bearer ' + accessToken!});
+    int gotAllPages = -1;
     try {
       clearAllClustersData();
       await validateAccessToken();
-      // get clusters
-      await Future.wait([
-        for (int pageNum = 1, interval = 1000; pageNum <= 3; pageNum++, interval += 500)
-          Future.delayed(Duration(milliseconds: interval))
-            .then((value) => dio.get(_getPath(pageNum: pageNum), options: options)
-            .then((value) => addClusterPartToClustersList(value.data))),
-      ]);
-      gotClusters();
+
+      if (await context.read<ProcessesOrganizerProvider>().canIRunThisProcess(processId) == true) {
+        context.read<ProcessesOrganizerProvider>().runThisProcess(processId);
+        // print('<debug>:runProcess(CLUSTER)');
+        // while gotAllPages != 1, send (repeated) times the request and wait for the (repeated) responses
+        // and then check if one of them is empty to finish the operation
+        for (int pageNumber = 1; gotAllPages != 1; pageNumber += 3) {
+          await Future.wait([
+            // send (repeated) times the request and then check if one of the (repeated) requests is empty to finish the operation
+            for (int repeated = 0, interval = 1000; repeated < 3; repeated++, interval += 700)
+              Future.delayed(Duration(milliseconds: interval))
+                .then((value) => dio.get(_getPath(pageNum: pageNumber + repeated), options: options)
+                .then((value) {
+                // if the app got all parts, the operation finishes here
+                if (addClusterPartToClustersList(value.data) == false) gotAllPages = 1;
+              })),
+          ]);
+        }
+        context.read<ProcessesOrganizerProvider>().finishThisProcess(processId);
+        // print('<debug>:finishProcess(CLUSTER)');
+      }
     } catch (e) {
-      if (e is DioError && e.response!.statusCode == 403) {
+      if (e is DioError && (e.response!.statusCode == 403 || e.response!.statusCode == 401)) {
         await validateAccessToken();
         await getClusters(context);
       } else {

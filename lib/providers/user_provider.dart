@@ -5,6 +5,8 @@ import 'package:notifier_42/classes/project.dart';
 import 'package:notifier_42/functions/get_status_string_from_enum.dart';
 import 'package:dio/dio.dart';
 import 'package:notifier_42/functions/get_black_hole_absorption.dart';
+import 'package:notifier_42/providers/processes_organizer_provider.dart';
+import 'package:provider/provider.dart';
 import '../constants/constants.dart';
 import '../functions/validate_access_token.dart';
 import '../globals/globals.dart';
@@ -35,6 +37,7 @@ class UserProvider with ChangeNotifier {
   bool isUserTargeted = false;
   late int userId;
   late int campusId;
+  final int processId = 4;
   
   targetThis(String key) {
     isUserTargeted = true;
@@ -58,8 +61,41 @@ class UserProvider with ChangeNotifier {
     isUserTargeted = false;
   }
 
-  getThisUser(String userLogin, Map<String, List<Map<String, dynamic>>> targetedItemsData) async {
+  getThisUser(BuildContext context, String userLogin, Map<String, List<Map<String, dynamic>>> targetedItemsData) async {
     try {
+      if (await context.read<ProcessesOrganizerProvider>().canIRunThisProcess(processId) == true) {
+        context.read<ProcessesOrganizerProvider>().runThisProcess(processId);
+        print('<debug>:runProcess(user)');
+        await InternetAddress.lookup('api.intra.42.fr');
+        await validateAccessToken();
+        await Future.delayed(const Duration(seconds: 1));
+        Response _response = await dio.get(
+          kHostname + '/v2/users/' + userLogin.toLowerCase(),
+          options: Options(headers: {'Authorization': 'Bearer ' + accessToken!}),
+        );
+        if (_response.statusCode! >= 200 && _response.statusCode! <= 299) {
+          destroyUser();
+          parseUserConstantData(_response, targetedItemsData);
+          parseUserVariableData();
+          notifyListeners();
+          context.read<ProcessesOrganizerProvider>().finishThisProcess(processId);
+          print('<debug>:finishProcess(user)');
+          return ConnectionStatus.success;
+        }
+        context.read<ProcessesOrganizerProvider>().finishThisProcess(processId);
+        print('<debug>:finishProcess(user)');
+      }
+    } catch (e) {
+      if (e is SocketException) {
+        return ConnectionStatus.noInternet;
+      } if (e is DioError && e.response?.statusCode == 404) {
+        return ConnectionStatus.notFound;
+      } else {
+        rethrow ;
+      }
+    }
+  }
+/*
       await InternetAddress.lookup('api.intra.42.fr');
       await validateAccessToken();
       await Future.delayed(const Duration(seconds: 1));
@@ -74,17 +110,7 @@ class UserProvider with ChangeNotifier {
         notifyListeners();
         return ConnectionStatus.success;
       }
-    } catch (e) {
-      if (e is SocketException) {
-        return ConnectionStatus.noInternet;
-      } if (e is DioError && e.response?.statusCode == 404) {
-        return ConnectionStatus.notFound;
-      } else {
-        rethrow ;
-      }
-    }
-  }
-
+ */
   parseUserConstantData(Response rsp, Map<String, List<Map<String, dynamic>>> targetedItemsData) {
     response = rsp;
     email = (rsp.data as Map<String, dynamic>)['email'];

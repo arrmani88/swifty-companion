@@ -18,7 +18,7 @@ class _ClustersRouteState extends State<ClustersRoute> {
   void initState() {
     super.initState();
     WidgetsBinding.instance?.addPostFrameCallback((_){
-      context.read<ClustersProvider>().getClusters(context);
+      context.read<ClustersProvider>().getMap(context);
     });
   }
 
@@ -26,7 +26,7 @@ class _ClustersRouteState extends State<ClustersRoute> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.startDocked,
-      floatingActionButton: FloatingButtons(parentContext: context),
+      floatingActionButton: FloatingButtons(),
       body: Container(
         height: kScreenHeight,
         width: kScreenWidth,
@@ -64,8 +64,7 @@ class _ClustersRouteState extends State<ClustersRoute> {
 
 
 class FloatingButtons extends StatefulWidget {
-  BuildContext parentContext;
-  FloatingButtons({Key? key, required this.parentContext}) : super(key: key);
+  const FloatingButtons({Key? key}) : super(key: key);
 
   @override
   State<FloatingButtons> createState() => _FloatingButtonsState();
@@ -82,7 +81,7 @@ class _FloatingButtonsState extends State<FloatingButtons> {
             width: 40.0,
             color: Theme.of(context).secondaryHeaderColor,
             child: IconButton(padding: const EdgeInsets.all(2.0),
-              onPressed: () => context.read<ClustersProvider>().getClusters(widget.parentContext),
+              onPressed: () => context.read<ClustersProvider>().getMap(context),
               icon: Icon(Icons.refresh, size: 35.0, color: Theme.of(context).scaffoldBackgroundColor,),
             ),
           ),

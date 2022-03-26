@@ -23,7 +23,7 @@ class WorkStation extends StatelessWidget {
         if (userData != null) {
           context.read<PopUpProvider>().displayProfileLoadingPopUp();
           pageController.animateTo(0, duration: const Duration(seconds: 1), curve: Curves.easeOutQuint);
-          var status = await context.read<UserProvider>().getThisUser(userData![0], context.read<TargetProvider>().targetedItemsData);
+          var status = await context.read<UserProvider>().getThisUser(context, userData![0], context.read<TargetProvider>().targetedItemsData);
           context.read<PopUpProvider>().hideAllPopUps();
           if (status == ConnectionStatus.noInternet) {
             context.read<PopUpProvider>().displayNoInternetPopUp();

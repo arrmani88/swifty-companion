@@ -1,12 +1,14 @@
 import 'dart:collection';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../constants/constants.dart';
 import '../functions/validate_access_token.dart';
 import '../globals/globals.dart';
 import 'package:notifier_42/constants/campus_relative_data.dart';
 import 'package:notifier_42/widgets/ranking_item.dart';
 import 'package:notifier_42/extensions/splay_tree_map_extensions.dart';
+import 'package:notifier_42/providers/processes_organizer_provider.dart';
 
 class RankingProvider with ChangeNotifier {
   // FOR THE DOCUMENTATIONS SEE THE COMMENTS BELOW
@@ -16,34 +18,34 @@ class RankingProvider with ChangeNotifier {
   // list that contains the number of students of each gen
   Map<String, int> generationsStudentsNumber = {};
   // selectedGeneration has a value of the last generation title
-  String selectedGeneration = generationsBeginDates[userCampusId]!.keys.toList()[generationsBeginDates[userCampusId]!.keys.length - 1];
+  // String selectedGeneration = generationsBeginDates[userCampusId]!.keys.toList()[generationsBeginDates[userCampusId]!.keys.length - 1];
+  String selectedGeneration = '2019 March';
   bool isLoading = true;
+  final int processId = 2;
 
-  /*
-    await Future.wait([
-    for (int requestNb = 1, interval = 1000; requestNb <= 3; requestNb++, interval += 700)
-      Future.delayed(Duration(milliseconds: interval))
-        .then((value) => dio.get(_getPath(pageNum: requestNb), options: options)
-        .then((value) => parseUsers(value.data))),
-    ]);
-   */
-
-  getGeneration() async {
+  getGeneration(BuildContext context) async {
     Options options = Options(headers: {'Authorization': 'Bearer ' + accessToken!});
-    int gotAllPages = 1;
+    int gotAllPages = -1;
     try {
-      // while gotAllPages != -1, send (repeated) times the request and wait for the (repeated) responses
-      // and then check if one of them is empty to finish the operation
-      for (int pageNumber = 1; gotAllPages != -1; pageNumber += 3) {
-        await Future.wait([
-          // send (repeated) times the request and then check if one of the (repeated) requests is empty to finish the operation
-          for (int repeated = 0, interval = 1000; repeated < 3; repeated++, interval += 650)
-            Future.delayed(Duration(milliseconds: interval)).then((value) => dio.get(_getPath(pageNum: pageNumber + repeated), options: options)
-              .then((value) {
+      if (await context.read<ProcessesOrganizerProvider>().canIRunThisProcess(processId) == true) {
+        context.read<ProcessesOrganizerProvider>().runThisProcess(processId);
+        // print('<debug>:runProcess(ranking)');
+        // while gotAllPages != 1, send (repeated) times the request and wait for the (repeated) responses
+        // and then check if one of them is empty to finish the operation
+        for (int pageNumber = 1; gotAllPages != 1; pageNumber += 3) {
+          await Future.wait([
+            // send (repeated) times the request and then check if one of the (repeated) requests is empty to finish the operation
+            for (int repeated = 0, interval = 1000; repeated < 3; repeated++, interval += 700)
+              Future.delayed(Duration(milliseconds: interval))
+                .then((value) => dio.get(_getPath(pageNum: pageNumber + repeated), options: options)
+                .then((value) {
                 // if the app got all parts, the operation finishes here
-                if (parseUsers(value.data) == true) gotAllPages = -1;
-            })),
-        ]);
+                if (parseUsers(value.data) == false) gotAllPages = 1;
+              })),
+          ]);
+        }
+        context.read<ProcessesOrganizerProvider>().finishThisProcess(processId);
+        // print('<debug>:finishProcess(ranking)');
       }
     } catch (e) {
       rethrow;
@@ -51,13 +53,15 @@ class RankingProvider with ChangeNotifier {
   }
 
   bool parseUsers(List response) {
-    // if the app got all parts, it returns true , else it returns false
+    // if the app got all parts, it returns false , else it returns true
     String generationBeginDate;
     String login;
     double level;
     bool isStaff;
 
-    if (response.isEmpty) return true;
+    if (response.isEmpty) {
+      return false;
+    }
     for (Map student in response) {
       level = student['level'];
       generationBeginDate = getGenerationTitle(student['begin_at']);
@@ -69,7 +73,7 @@ class RankingProvider with ChangeNotifier {
         generationStudents.addStudent(level, login);
       }
     }
-    return false;
+    return true;
   }
 
   setWidgetsList() {
@@ -84,17 +88,17 @@ class RankingProvider with ChangeNotifier {
     widgetsList.add(const SizedBox(height: 40.0));
   }
 
-  setRanking() async {
+  setRanking(BuildContext context) async {
     try {
       clearPreviousData();
-      await getGeneration();
+      await getGeneration(context);
       setWidgetsList();
       isLoading = false;
       notifyListeners();
     } catch (e) {
-      if (e is DioError && e.response!.statusCode == 403) {
+      if (e is DioError && (e.response!.statusCode == 403 || e.response!.statusCode == 401)) {
         await validateAccessToken();
-        await setRanking();
+        await setRanking(context);
       } else {
         rethrow ;
       }

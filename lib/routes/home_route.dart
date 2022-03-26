@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
-import 'package:notifier_42/functions/validate_access_token.dart';
 import 'package:notifier_42/globals/globals.dart';
 import 'package:provider/provider.dart';
 import 'package:notifier_42/providers/target_provider.dart';
@@ -10,7 +9,6 @@ import 'package:notifier_42/widgets/pop_ups/error_pop_up.dart';
 import 'package:notifier_42/widgets/pop_ups/loading_pop_up.dart';
 import 'package:notifier_42/widgets/pop_ups/user_not_found_pop_up.dart';
 import 'package:notifier_42/providers/pop_up_provider.dart';
-
 import '../constants/constants.dart';
 
 class HomeRoute extends StatefulWidget {
@@ -23,13 +21,14 @@ class _HomeRouteState extends State<HomeRoute> {
   final OutlineInputBorder border = OutlineInputBorder(borderSide: const BorderSide(color: Colors.white), borderRadius: BorderRadius.circular(0.0));
   final TextEditingController textController = TextEditingController();
   String? descriptionMessage;
+  bool isFirstPress = true;
 
   void onSearchPressed (BuildContext context, RoundedLoadingButtonController _btnController) async {
-    // try {
+    try {
+      isFirstPress = false;
       FocusManager.instance.primaryFocus?.unfocus();
       _btnController.start();
-      var status = await context.read<UserProvider>().getThisUser(textController.text.isEmpty ? 'anel-bou' : textController.text, context.read<TargetProvider>().targetedItemsData);
-      // var status = await context.read<UserProvider>().getThisUser('anel-bou');
+      var status = await context.read<UserProvider>().getThisUser(context, textController.text.isEmpty ? 'anel-bou' : textController.text, context.read<TargetProvider>().targetedItemsData);
       if (status == ConnectionStatus.success) {
         Navigator.pushNamed(context, 'routes_holder');
       } else if (status == ConnectionStatus.notFound) {
@@ -37,15 +36,15 @@ class _HomeRouteState extends State<HomeRoute> {
       } else if (status == ConnectionStatus.noInternet) {
         context.read<PopUpProvider>().displayNoInternetPopUp();
       }
-    // } catch (e) {
-    //   if (e is DioError) {
-    //     context.read<PopUpProvider>().displayUnknownErrorPopUp();
-    //     descriptionMessage = (e.response?.data as Map<String, dynamic>)['error_description'];
-    //   } else {
-    //     context.read<PopUpProvider>().displayUnknownErrorPopUp();
-    //     descriptionMessage = e.toString();
-    //   }
-    // }
+    } catch (e) {
+      if (e is DioError) {
+        context.read<PopUpProvider>().displayUnknownErrorPopUp();
+        descriptionMessage = (e.response?.data as Map<String, dynamic>)['error_description'];
+      } else {
+        context.read<PopUpProvider>().displayUnknownErrorPopUp();
+        descriptionMessage = e.toString();
+      }
+    }
     textController.clear();
     _btnController.reset();
   }
@@ -95,7 +94,7 @@ class _HomeRouteState extends State<HomeRoute> {
                               valueColor: Theme.of(context).scaffoldBackgroundColor,
                               controller: _btnController,
                               // onPressed: () => textController.text.isNotEmpty ? onSearchPressed(context, _btnController) : _btnController.reset(),
-                              onPressed: () => onSearchPressed(context, _btnController),
+                              onPressed: () => isFirstPress == true ? onSearchPressed(context, _btnController) : null,
                               child: const Padding(
                                 padding: EdgeInsets.only(top: 3.5),
                                 child: Text('Search', style: TextStyle(color: Colors.black, fontSize: 20.0)),
