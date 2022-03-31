@@ -137,6 +137,8 @@ class ClustersProvider with ChangeNotifier {
       if (e is DioError && (e.response!.statusCode == 403 || e.response!.statusCode == 401)) {
         await validateAccessToken();
         await getClusters(context);
+      } else if (e is DioError && e.response!.statusCode == 429) {
+        await getClusters(context);
       } else {
         rethrow;
       }
@@ -153,7 +155,7 @@ class ClustersProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  String _getPath({required int pageNum})  {
+  String _getPath({required int pageNum}) {
     return kHostname +
       '/v2/campus/16/locations'
       '?page[size]=100'
@@ -162,6 +164,5 @@ class ClustersProvider with ChangeNotifier {
       '&sort=host'
       '&filter[end]=false';
   }
-
 }
 

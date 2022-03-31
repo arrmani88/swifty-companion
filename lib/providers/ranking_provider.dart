@@ -35,7 +35,7 @@ class RankingProvider with ChangeNotifier {
         for (int pageNumber = 1; gotAllPages != 1; pageNumber += 3) {
           await Future.wait([
             // send (repeated) times the request and then check if one of the (repeated) requests is empty to finish the operation
-            for (int repeated = 0, interval = 1000; repeated < 3; repeated++, interval += 700)
+            for (int repeated = 0, interval = 1000; repeated < 10; repeated++, interval += 700)
               Future.delayed(Duration(milliseconds: interval))
                 .then((value) => dio.get(_getPath(pageNum: pageNumber + repeated), options: options)
                 .then((value) {
@@ -98,6 +98,8 @@ class RankingProvider with ChangeNotifier {
     } catch (e) {
       if (e is DioError && (e.response!.statusCode == 403 || e.response!.statusCode == 401)) {
         await validateAccessToken();
+        await setRanking(context);
+      } else if (e is DioError && e.response!.statusCode == 429) {
         await setRanking(context);
       } else {
         rethrow ;

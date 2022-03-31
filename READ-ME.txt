@@ -12,32 +12,27 @@ display all the users that subscribed to a specific project         >>>https://a
 show the resource owner profile                                     >>>https://api.intra.42.fr/apidoc/2.0/users/me.html
 log user out
 
-
 /****************/
 --------------------
+ki9ra targeted items men local storage
 what are scopes
 f authorization_route blast men setstate bach t affichi popup, dir provider
 clean pubspec.yaml
 chi animation dial scroll
 remove circle cursors from radar chart
 sync navbar when manual scroll on pageview
-search 3la chi user f wast ranking list + scroll to top + scroll to bottom
+search 3la chi user f wast ranking list
 activi ListenOnAllWorkstations(), f rankings route
 ---------------------------------
 click to show profile picture full screen
 search for profile using name part
-----------------------
-project mark box dir liha title chad lwidth kollo
 testi b thor
 data types dial user (login email ...etc) redhom nullable
 Hero animation dial logo f splash route
 dir loading widget non-hidable
-MOHIM BZF : GERER http 429 FACH KIJIB LCLUSTERS o ranking
-MOHIM BZF : fch kt wrrk joj merrat 3la search button fel home_page.dart ki loadi page joj mrrat donc ki sft request 2 mrrt
-
+dero ysft request 3ad y tsenna future.delayed (bach 9bel men lowla maytsna walo) fel cluster w ranking providers
 Continue doing: [
-            diri cluster iji b loop
-            double click 3la search fel home_route ki dir lcall joj marat
+
         ]
 
 

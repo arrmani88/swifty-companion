@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 
 late final double kScreenHeight;
 late final double kScreenWidth;
-const String kClientCredentialsFlowAuthorizationLink = 'https://api.intra.42.fr/oauth/token';
-// const String kAuthorizationCodeFlowAuthorizationLink = 'https://api.intra.42.fr/oauth/authorize';
+const String kAuthorizationLink = 'https://api.intra.42.fr/oauth/token';
 const String kHostname = 'https://api.intra.42.fr';
 const Color kSubscribedColor = Color(0xffdec666);
 const Color kValidatedColor = Color(0xff79ab98);

@@ -95,22 +95,7 @@ class UserProvider with ChangeNotifier {
       }
     }
   }
-/*
-      await InternetAddress.lookup('api.intra.42.fr');
-      await validateAccessToken();
-      await Future.delayed(const Duration(seconds: 1));
-      Response _response = await dio.get(
-        kHostname + '/v2/users/' + userLogin.toLowerCase(),
-        options: Options(headers: {'Authorization': 'Bearer ' + accessToken!}),
-      );
-      if (_response.statusCode! >= 200 && _response.statusCode! <= 299) {
-        destroyUser();
-        parseUserConstantData(_response, targetedItemsData);
-        parseUserVariableData();
-        notifyListeners();
-        return ConnectionStatus.success;
-      }
- */
+
   parseUserConstantData(Response rsp, Map<String, List<Map<String, dynamic>>> targetedItemsData) {
     response = rsp;
     email = (rsp.data as Map<String, dynamic>)['email'];

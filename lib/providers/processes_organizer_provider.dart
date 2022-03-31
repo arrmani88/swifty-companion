@@ -3,7 +3,7 @@ import 'dart:math';
 
 class ProcessesOrganizerProvider with ChangeNotifier {
   // The application has a request limit set as 2 requests per second
-  //    so the app can't send 3 requests or more at the same moment
+  //    so the app can't send 3 requests or more at the same moment.
   // The main purpose of this provider is to organize sending requests by doing a queue that
   //    allows requests with a bigger importance to run first, then it allows other requests with less
   //    importance etc ...
@@ -16,18 +16,15 @@ class ProcessesOrganizerProvider with ChangeNotifier {
   int currentRunningProcess = 0;
 
   canIRunThisProcess(int processId) async {
-    // print('<debug>:CanIRunThisProcess($processId)');
+    print('<debug>:CanIRunThisProcess($processId)');
     if (processesQueue.isEmpty) return true;
     if (processesQueue.contains(processId) == true) return false;
 
     if (processesQueue.contains(processId) == false) {
       while (true) {
-        print(
-            '<variables>:CRP=${currentRunningProcess}  queue>>>$processesQueue');
-        if ((currentRunningProcess == 0 && processesQueue.isNotEmpty &&
-            processesQueue.reduce(min) == processId)
-            || processesQueue
-                .isEmpty) { // if no process is currently running and no process is in the queue
+        print('<variables>:CRP=${currentRunningProcess}  queue>>>$processesQueue');
+        if ((currentRunningProcess == 0 && processesQueue.isNotEmpty && processesQueue.reduce(min) == processId)
+              || processesQueue.isEmpty) { // if no process is currently running and no process is in the queue
           return true;
         }
         await Future.delayed(const Duration(seconds: 1));

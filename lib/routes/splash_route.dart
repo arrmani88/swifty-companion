@@ -1,14 +1,10 @@
 import 'dart:io';
-
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:notifier_42/constants/constants.dart';
-import 'package:notifier_42/functions/do_refresh_tokens.dart';
-import 'package:notifier_42/functions/get_access_token_with_client_credentials_flow.dart';
 import 'package:notifier_42/functions/validate_access_token.dart';
 import 'package:notifier_42/globals/globals.dart';
-import 'package:notifier_42/functions/save_token_to_local_storage.dart';
 
 import '../providers/pop_up_provider.dart';
 import '../providers/target_provider.dart';
@@ -36,9 +32,12 @@ class _SplashRouteState extends State<SplashRoute> {
       await InternetAddress.lookup('api.intra.42.fr');
       tmp = await storage.read(key: 'accessTokenCreatedAt');
       if (tmp != null) accessTokenCreatedAt = int.parse(tmp);
+      /*  7ayed had partie men hna  */
       context.read<TargetProvider>().targetedItemsData['targeted_hosts'] = (targetedItemsBox.get('targeted_hosts', defaultValue: []) as List).map((e) => Map<String, dynamic>.from(e)).toList();
       context.read<TargetProvider>().targetedItemsData['targeted_users'] = (targetedItemsBox.get('targeted_users', defaultValue: []) as List).map((e) => Map<String, dynamic>.from(e)).toList();
-      if (accessTokenCreatedAt == null) { // if no token is   alocally saved
+      (context.read<TargetProvider>().targetedItemsData['targeted_hosts'] == null || context.read<TargetProvider>().targetedItemsData['targeted_users'] == null) ? context.read<TargetProvider>().somethingIsTargeted() : null;
+      /*  ************************  */
+      if (accessTokenCreatedAt == null) { // if no token is locally saved
         Navigator.pushReplacementNamed(context, 'authorization_route');
       } else { // if a token was saved locally
         await validateAccessToken();
@@ -84,3 +83,4 @@ class _SplashRouteState extends State<SplashRoute> {
     );
   }
 }
+

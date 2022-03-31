@@ -27,6 +27,7 @@ class _TargetSectionState extends State<TargetSection> with SingleTickerProvider
 
   @override
   Widget build(BuildContext context) {
+    print('anything ${context.read<TargetProvider>().isAnythingTargeted}');
     print('${widget.title} ===> ${widget.children}');
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10.0),
