@@ -23,6 +23,9 @@ class RankingProvider with ChangeNotifier {
   bool isLoading = true;
   final int processId = 2;
 
+  ProcessesOrganizerProvider? processesOrganizer;
+  RankingProvider(this.processesOrganizer);
+
   getGeneration(BuildContext context) async {
     Options options = Options(headers: {'Authorization': 'Bearer ' + accessToken!});
     int gotAllPages = -1;
@@ -44,12 +47,12 @@ class RankingProvider with ChangeNotifier {
               })),
           ]);
         }
-        context.read<ProcessesOrganizerProvider>().finishThisProcess(processId);
         // print('<debug>:finishProcess(ranking)');
       }
     } catch (e) {
       rethrow;
     }
+    context.read<ProcessesOrganizerProvider>().finishThisProcess(processId);
   }
 
   bool parseUsers(List response) {

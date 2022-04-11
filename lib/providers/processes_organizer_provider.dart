@@ -22,7 +22,7 @@ class ProcessesOrganizerProvider with ChangeNotifier {
 
     if (processesQueue.contains(processId) == false) {
       while (true) {
-        print('<variables>:CRP=${currentRunningProcess}  queue>>>$processesQueue');
+        print('<variables>:CRP=${currentRunningProcess} queue>>>$processesQueue');
         if ((currentRunningProcess == 0 && processesQueue.isNotEmpty && processesQueue.reduce(min) == processId)
               || processesQueue.isEmpty) { // if no process is currently running and no process is in the queue
           return true;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:notifier_42/providers/pop_up_provider.dart';
 import 'package:notifier_42/providers/ranking_provider.dart';
-import 'package:notifier_42/routes/home_route.dart';
+import 'package:notifier_42/routes/search_route.dart';
 import 'package:notifier_42/routes/authorization_route.dart';
 import 'package:notifier_42/routes/profile_route.dart';
 import 'package:notifier_42/constants/constants.dart';
@@ -22,12 +22,25 @@ void main() async {
   await Hive.openBox(targetedItemsBoxName);
   runApp(MultiProvider(
     providers: [
-      ChangeNotifierProvider(create: (_) => UserProvider()),
       ChangeNotifierProvider(create: (_) => PopUpProvider()),
-      ChangeNotifierProvider(create: (_) => ClustersProvider()),
-      ChangeNotifierProvider(create: (_) => TargetProvider()),
-      ChangeNotifierProvider(create: (_) => RankingProvider()),
-      ChangeNotifierProvider(create: (_) => ProcessesOrganizerProvider())
+      ChangeNotifierProvider(create: (_) => ProcessesOrganizerProvider()),
+      // ChangeNotifierProvider(create: (_) => UserProvider(null)),
+      ChangeNotifierProxyProvider<ProcessesOrganizerProvider, UserProvider>(
+          create: (_) => UserProvider(null),
+          update: (_, organizer, userProvider) => UserProvider(organizer)
+      ),
+      ChangeNotifierProxyProvider<ProcessesOrganizerProvider, ClustersProvider>(
+          create: (_) => ClustersProvider(null),
+          update: (_, organizer, clusterProvider) => ClustersProvider(organizer)
+      ),
+      ChangeNotifierProxyProvider<ProcessesOrganizerProvider, TargetProvider>(
+          create: (_) => TargetProvider(null),
+          update: (_, organizer, targetProvider) => TargetProvider(organizer)
+      ),
+      ChangeNotifierProxyProvider<ProcessesOrganizerProvider, RankingProvider>(
+          create: (_) => RankingProvider(null),
+          update: (_, organizer, rankingProvider) => RankingProvider(organizer)
+      ),
     ],
     child: Notifier42()
   ));
@@ -60,7 +73,7 @@ class _Notifier42State extends State<Notifier42> {
       routes: {
         'splash_route': (context) => SplashRoute(),
         'authorization_route': (context) => AuthorizationRoute(),
-        'home_route': (context) => HomeRoute(),
+        'home_route': (context) => SearchRoute(),
         'profile_route': (context) => ProfileRoute(),
         'routes_holder': (context) => RoutesHolder(),
         'projects': (context) => ProjectsRoute(),

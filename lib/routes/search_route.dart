@@ -11,12 +11,12 @@ import 'package:notifier_42/widgets/pop_ups/user_not_found_pop_up.dart';
 import 'package:notifier_42/providers/pop_up_provider.dart';
 import '../constants/constants.dart';
 
-class HomeRoute extends StatefulWidget {
-  HomeRoute({Key? key}) : super(key: key);
+class SearchRoute extends StatefulWidget {
+  SearchRoute({Key? key}) : super(key: key);
   @override
-  State<HomeRoute> createState() => _HomeRouteState();
+  State<SearchRoute> createState() => _SearchRouteState();
 }
-class _HomeRouteState extends State<HomeRoute> {
+class _SearchRouteState extends State<SearchRoute> {
   final RoundedLoadingButtonController _btnController = RoundedLoadingButtonController();
   final OutlineInputBorder border = OutlineInputBorder(borderSide: const BorderSide(color: Colors.white), borderRadius: BorderRadius.circular(0.0));
   final TextEditingController textController = TextEditingController();
@@ -28,6 +28,7 @@ class _HomeRouteState extends State<HomeRoute> {
       isFirstPress = false;
       FocusManager.instance.primaryFocus?.unfocus();
       _btnController.start();
+      print('start');
       var status = await context.read<UserProvider>().getThisUser(context, textController.text.isEmpty ? 'anel-bou' : textController.text, context.read<TargetProvider>().targetedItemsData);
       if (status == ConnectionStatus.success) {
         Navigator.pushNamed(context, 'routes_holder');
@@ -38,13 +39,15 @@ class _HomeRouteState extends State<HomeRoute> {
       }
     } catch (e) {
       if (e is DioError) {
-        context.read<PopUpProvider>().displayUnknownErrorPopUp();
         descriptionMessage = (e.response?.data as Map<String, dynamic>)['error_description'];
-      } else {
         context.read<PopUpProvider>().displayUnknownErrorPopUp();
+      } else {
         descriptionMessage = e.toString();
+        context.read<PopUpProvider>().displayUnknownErrorPopUp();
       }
     }
+    isFirstPress = true;
+    print(isFirstPress);
     textController.clear();
     _btnController.reset();
   }

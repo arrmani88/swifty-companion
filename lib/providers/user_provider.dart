@@ -38,7 +38,10 @@ class UserProvider with ChangeNotifier {
   late int userId;
   late int campusId;
   final int processId = 4;
-  
+  ProcessesOrganizerProvider? processesOrganizer;
+
+  UserProvider(this.processesOrganizer);
+
   targetThis(String key) {
     isUserTargeted = true;
     notifyListeners();
@@ -78,11 +81,10 @@ class UserProvider with ChangeNotifier {
           parseUserConstantData(_response, targetedItemsData);
           parseUserVariableData();
           notifyListeners();
-          context.read<ProcessesOrganizerProvider>().finishThisProcess(processId);
           print('<debug>:finishProcess(user)');
+          context.read<ProcessesOrganizerProvider>().finishThisProcess(processId);
           return ConnectionStatus.success;
         }
-        context.read<ProcessesOrganizerProvider>().finishThisProcess(processId);
         print('<debug>:finishProcess(user)');
       }
     } catch (e) {
@@ -94,6 +96,8 @@ class UserProvider with ChangeNotifier {
         rethrow ;
       }
     }
+    print('<debug>:finishProcess(user)');
+    context.read<ProcessesOrganizerProvider>().finishThisProcess(processId);
   }
 
   parseUserConstantData(Response rsp, Map<String, List<Map<String, dynamic>>> targetedItemsData) {
@@ -107,7 +111,8 @@ class UserProvider with ChangeNotifier {
     campus = (((rsp.data as Map<String, dynamic>)['campus'] as List<dynamic>)[0] as Map<String, dynamic>)['name'];
     for (var cursus in ((response.data as Map<String, dynamic>)['cursus_users'] as List<dynamic>)) {
       cursusNames.add((cursus['cursus'] as Map<String, dynamic>)['name']);
-      cursusIds[(cursus['cursus'] as Map<String, dynamic>)['name']] = (cursus['cursus'] as Map<String, dynamic>)['id'];      (cursus['cursus'] as Map<String, dynamic>)['id'];
+      cursusIds[(cursus['cursus'] as Map<String, dynamic>)['name']] = (cursus['cursus'] as Map<String, dynamic>)['id'];
+      // (cursus['cursus'] as Map<String, dynamic>)['id'];
     }
     selectedCursus = cursusNames[cursusNames.length - 1];
     for (String cursus in cursusNames) {

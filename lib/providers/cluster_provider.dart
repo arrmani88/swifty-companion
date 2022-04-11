@@ -21,6 +21,9 @@ class ClustersProvider with ChangeNotifier {
   List<List> e2Debug = [];
   final int processId = 3;
 
+  ProcessesOrganizerProvider? processesOrganizer;
+  ClustersProvider(this.processesOrganizer);
+
   bool addClusterPartToClustersList(List clusterPart) {
     if (clusterPart.isEmpty) return false;
     clustersJsonList.addAll(clusterPart);
@@ -137,9 +140,11 @@ class ClustersProvider with ChangeNotifier {
       if (e is DioError && (e.response!.statusCode == 403 || e.response!.statusCode == 401)) {
         await validateAccessToken();
         await getClusters(context);
-      } else if (e is DioError && e.response!.statusCode == 429) {
+      }
+      else if (e is DioError && e.response!.statusCode == 429) {
         await getClusters(context);
-      } else {
+      }
+      else {
         rethrow;
       }
     }
