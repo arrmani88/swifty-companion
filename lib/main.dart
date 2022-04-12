@@ -27,22 +27,23 @@ void main() async {
       // ChangeNotifierProvider(create: (_) => UserProvider(null)),
       ChangeNotifierProxyProvider<ProcessesOrganizerProvider, UserProvider>(
           create: (_) => UserProvider(null),
-          update: (_, organizer, userProvider) => UserProvider(organizer)
+          update: (_, organizer, userProvider) => userProvider!
       ),
       ChangeNotifierProxyProvider<ProcessesOrganizerProvider, ClustersProvider>(
           create: (_) => ClustersProvider(null),
-          update: (_, organizer, clusterProvider) => ClustersProvider(organizer)
+          update: (_, organizer, clustersProvider) => clustersProvider!
       ),
       ChangeNotifierProxyProvider<ProcessesOrganizerProvider, TargetProvider>(
           create: (_) => TargetProvider(null),
-          update: (_, organizer, targetProvider) => TargetProvider(organizer)
+          update: (_, organizer, targetProvider) => targetProvider!
       ),
-      ChangeNotifierProxyProvider<ProcessesOrganizerProvider, RankingProvider>(
-          create: (_) => RankingProvider(null),
-          update: (_, organizer, rankingProvider) => RankingProvider(organizer)
-      ),
+      // ChangeNotifierProxyProvider<ProcessesOrganizerProvider, RankingProvider>(
+      //     create: (_) => RankingProvider(null),
+      //     update: (_, organizer, rankingProvider) => rankingProvider!
+      // ),
+      ChangeNotifierProvider(create: (_) => RankingProvider())
     ],
-    child: Notifier42()
+    child: const Notifier42()
   ));
 }
 
@@ -51,7 +52,9 @@ class Notifier42 extends StatefulWidget {
   @override
   State<Notifier42> createState() => _Notifier42State();
 }
+
 class _Notifier42State extends State<Notifier42> {
+
   @override
   void initState() {
     super.initState();
@@ -71,7 +74,7 @@ class _Notifier42State extends State<Notifier42> {
       ),
       initialRoute: 'splash_route',
       routes: {
-        'splash_route': (context) => SplashRoute(),
+        'splash_route': (context) => const SplashRoute(),
         'authorization_route': (context) => AuthorizationRoute(),
         'home_route': (context) => SearchRoute(),
         'profile_route': (context) => ProfileRoute(),

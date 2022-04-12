@@ -23,8 +23,8 @@ class RankingProvider with ChangeNotifier {
   bool isLoading = true;
   final int processId = 2;
 
-  ProcessesOrganizerProvider? processesOrganizer;
-  RankingProvider(this.processesOrganizer);
+  // ProcessesOrganizerProvider? processesOrganizer;
+  // RankingProvider(this.processesOrganizer);
 
   getGeneration(BuildContext context) async {
     Options options = Options(headers: {'Authorization': 'Bearer ' + accessToken!});

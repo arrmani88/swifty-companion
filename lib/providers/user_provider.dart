@@ -38,8 +38,8 @@ class UserProvider with ChangeNotifier {
   late int userId;
   late int campusId;
   final int processId = 4;
-  ProcessesOrganizerProvider? processesOrganizer;
 
+  ProcessesOrganizerProvider? processesOrganizer;
   UserProvider(this.processesOrganizer);
 
   targetThis(String key) {

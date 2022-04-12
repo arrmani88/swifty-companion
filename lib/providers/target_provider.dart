@@ -22,7 +22,6 @@ class TargetProvider with ChangeNotifier {
   // TargetProvider(this.processesOrganizer);
 
   TargetProvider(this.processesOrganizer) {
-    print('--- CONSTRUCTING TARGET PROVIDER ---');
     getRequestPath();
     listenOnSpecifiedWorkstations();
   }
