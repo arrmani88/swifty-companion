@@ -15,12 +15,8 @@ log user out
 /****************/
 --------------------
 ki9ra targeted items men local storage
-what are scopes
+scopes
 f authorization_route blast men setstate bach t affichi popup, dir provider
-clean pubspec.yaml
-chi animation dial scroll
-remove circle cursors from radar chart
-sync navbar when manual scroll on pageview
 search 3la chi user f wast ranking list
 activi ListenOnAllWorkstations(), f rankings route
 ---------------------------------

@@ -38,10 +38,11 @@ class _SelectGenerationState extends State<SelectGeneration> {
                   icon: const Icon(Icons.arrow_downward, color: Colors.white,),
                   value: context.watch<RankingProvider>().selectedGeneration,
                   items: context.read<RankingProvider>().dropDownList,
-                  onChanged: (newValue) => setState(() {
+                  onChanged: (newValue) async {
                     context.read<RankingProvider>().updateSelectedGeneration(newValue!);
-                    context.read<RankingProvider>().setRanking(context);
-                  }),
+                    await context.read<RankingProvider>().setRanking(context);
+                    setState(() {});
+                  }
                 ),
               )
           ),
@@ -50,12 +51,3 @@ class _SelectGenerationState extends State<SelectGeneration> {
     );
   }
 }
-
-
-/*
-      value: 'text1',
-      items: const [
-        DropdownMenuItem(value: 'text1', child: Text('text1')),
-        DropdownMenuItem(value: 'text2', child: Text('text2'))
-      ],
-*/

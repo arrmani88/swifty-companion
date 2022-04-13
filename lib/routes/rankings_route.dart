@@ -12,8 +12,6 @@ class RankingsRoute extends StatefulWidget {
 }
 class _RankingsRouteState extends State<RankingsRoute> with TickerProviderStateMixin {
   late ScrollController scrollController;
-  // bool isScrollToTopDisplayed = false;
-  // bool isScrollToBottomDisplayed = true;
   late final AnimationController _controllerLeft = AnimationController(duration: const Duration(milliseconds: 500), vsync: this,);
   late final AnimationController _controllerRight = AnimationController(duration: const Duration(milliseconds: 500), vsync: this,);
   late final Animation<double> _animationLeft = CurvedAnimation(parent: _controllerLeft, curve: Curves.fastOutSlowIn);
@@ -83,9 +81,6 @@ class _RankingsRouteState extends State<RankingsRoute> with TickerProviderStateM
                             ),
                           ),
                         ),
-                        // if (isScrollToTopDisplayed == true)
-                        //   const SizedBox(width: 5.0),
-                        // if (isScrollToBottomDisplayed == true)
                           SizeTransition(
                             sizeFactor: _animationRight,
                             axis: Axis.horizontal,

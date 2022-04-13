@@ -101,6 +101,8 @@ class UserProvider with ChangeNotifier {
   }
 
   parseUserConstantData(Response rsp, Map<String, List<Map<String, dynamic>>> targetedItemsData) {
+    int userCampuses = ((rsp.data as Map<String, dynamic>)['campus'] as List<dynamic>).length;
+
     response = rsp;
     email = (rsp.data as Map<String, dynamic>)['email'];
     login = (rsp.data as Map<String, dynamic>)['login'];
@@ -108,7 +110,7 @@ class UserProvider with ChangeNotifier {
     displayName = (rsp.data as Map<String, dynamic>)['displayname'];
     imageURL = (rsp.data as Map<String, dynamic>)['image_url'];
     location = (rsp.data as Map<String, dynamic>)['location'];
-    campus = (((rsp.data as Map<String, dynamic>)['campus'] as List<dynamic>)[0] as Map<String, dynamic>)['name'];
+    campus = (((rsp.data as Map<String, dynamic>)['campus'] as List<dynamic>)[userCampuses - 1] as Map<String, dynamic>)['name'];
     for (var cursus in ((response.data as Map<String, dynamic>)['cursus_users'] as List<dynamic>)) {
       cursusNames.add((cursus['cursus'] as Map<String, dynamic>)['name']);
       cursusIds[(cursus['cursus'] as Map<String, dynamic>)['name']] = (cursus['cursus'] as Map<String, dynamic>)['id'];

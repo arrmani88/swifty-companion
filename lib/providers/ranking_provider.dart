@@ -23,16 +23,12 @@ class RankingProvider with ChangeNotifier {
   bool isLoading = true;
   final int processId = 2;
 
-  // ProcessesOrganizerProvider? processesOrganizer;
-  // RankingProvider(this.processesOrganizer);
-
   getGeneration(BuildContext context) async {
     Options options = Options(headers: {'Authorization': 'Bearer ' + accessToken!});
     int gotAllPages = -1;
     try {
       if (await context.read<ProcessesOrganizerProvider>().canIRunThisProcess(processId) == true) {
         context.read<ProcessesOrganizerProvider>().runThisProcess(processId);
-        // print('<debug>:runProcess(ranking)');
         // while gotAllPages != 1, send (repeated) times the request and wait for the (repeated) responses
         // and then check if one of them is empty to finish the operation
         for (int pageNumber = 1; gotAllPages != 1; pageNumber += 3) {
