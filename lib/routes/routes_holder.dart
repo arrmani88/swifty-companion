@@ -18,7 +18,7 @@ class RoutesHolder extends StatefulWidget {
   State<RoutesHolder> createState() => _RoutesHolderState();
 }
 class _RoutesHolderState extends State<RoutesHolder> {
-  int selectedIndex = 3;
+  int selectedIndex = 0;
 
   @override
   void initState() {

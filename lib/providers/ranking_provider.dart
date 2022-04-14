@@ -16,7 +16,7 @@ class RankingProvider with ChangeNotifier {
   List<Widget> widgetsList = [];
   List<DropdownMenuItem<String>> dropDownList = <DropdownMenuItem<String>>[];
   // list that contains the number of students of each gen
-  Map<String, int> generationsStudentsNumber = {};
+  Map<String, int> totalStudentsInEachGeneration = {};
   // selectedGeneration has a value of the last generation title
   // String selectedGeneration = generationsBeginDates[userCampusId]!.keys.toList()[generationsBeginDates[userCampusId]!.keys.length - 1];
   String selectedGeneration = '2019 March';
@@ -34,7 +34,7 @@ class RankingProvider with ChangeNotifier {
         for (int pageNumber = 1; gotAllPages != 1; pageNumber += 3) {
           await Future.wait([
             // send (repeated) times the request and then check if one of the (repeated) requests is empty to finish the operation
-            for (int repeated = 0, interval = 1000; repeated < 10; repeated++, interval += 700)
+            for (int repeated = 0, interval = 1000; repeated < 4; repeated++, interval += 700)
               Future.delayed(Duration(milliseconds: interval))
                 .then((value) => dio.get(_getPath(pageNum: pageNumber + repeated), options: options)
                 .then((value) {
@@ -46,8 +46,9 @@ class RankingProvider with ChangeNotifier {
       }
     } catch (e) {
       rethrow;
+    } finally {
+      context.read<ProcessesOrganizerProvider>().finishThisProcess(processId);
     }
-    context.read<ProcessesOrganizerProvider>().finishThisProcess(processId);
   }
 
   bool parseUsers(List response) {
@@ -65,8 +66,8 @@ class RankingProvider with ChangeNotifier {
       generationBeginDate = getGenerationTitle(student['begin_at']);
       login = (student['user'] as Map<String, dynamic>)['login'];
       isStaff = (student['user'] as Map<String, dynamic>)['staff?'];
-      (generationsStudentsNumber[generationBeginDate] ??= 0);
-      generationsStudentsNumber[generationBeginDate] = generationsStudentsNumber[generationBeginDate]! + 1;
+      (totalStudentsInEachGeneration[generationBeginDate] ??= 0);
+      totalStudentsInEachGeneration[generationBeginDate] = totalStudentsInEachGeneration[generationBeginDate]! + 1;
       if (!isStaff && generationBeginDate.isNotEmpty) {
         generationStudents.addStudent(level, login);
       }
@@ -77,7 +78,9 @@ class RankingProvider with ChangeNotifier {
   setWidgetsList() {
     int totalRanks;
 
-    totalRanks = generationsStudentsNumber[selectedGeneration]!;
+    print('<debug>: $selectedGeneration');
+    print('<debug>: $totalStudentsInEachGeneration');
+    totalRanks = totalStudentsInEachGeneration[selectedGeneration]!;
     generationStudents.forEach((level, loginsList) {
       for (String login in loginsList) {
         widgetsList.insert(0, RankingItem(rank: totalRanks--, login: login, level: level));
@@ -94,6 +97,7 @@ class RankingProvider with ChangeNotifier {
       isLoading = false;
       notifyListeners();
     } catch (e) {
+      print(e);
       if (e is DioError && (e.response!.statusCode == 403 || e.response!.statusCode == 401)) {
         await validateAccessToken();
         await setRanking(context);
@@ -106,7 +110,7 @@ class RankingProvider with ChangeNotifier {
   }
 
   clearPreviousData() {
-    generationsStudentsNumber.clear();
+    totalStudentsInEachGeneration.clear();
     generationStudents.clear();
     widgetsList.clear();
   }
@@ -143,11 +147,11 @@ class RankingProvider with ChangeNotifier {
 
     return kHostname +
       '/v2/cursus/21/cursus_users'
-        '?page[size]=100'
-        '&sort=begin_at'
-        '&filter[campus_id]=16'
-        '&page[number]=$pageNum'
-        '&range[begin_at]=$begin,$end';
+      '?page[size]=100'
+      '&sort=begin_at'
+      '&filter[campus_id]=16'
+      '&page[number]=$pageNum'
+      '&range[begin_at]=$begin,$end';
   }
 
 }

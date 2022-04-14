@@ -132,20 +132,18 @@ class ClustersProvider with ChangeNotifier {
               })),
           ]);
         }
-        context.read<ProcessesOrganizerProvider>().finishThisProcess(processId);
       }
     } catch (e) {
-      context.read<ProcessesOrganizerProvider>().finishThisProcess(processId);
       if (e is DioError && (e.response!.statusCode == 403 || e.response!.statusCode == 401)) {
         await validateAccessToken();
         await getClusters(context);
-      }
-      else if (e is DioError && e.response!.statusCode == 429) {
+      } else if (e is DioError && e.response!.statusCode == 429) {
         await getClusters(context);
-      }
-      else {
+      } else {
         rethrow;
       }
+    } finally {
+      context.read<ProcessesOrganizerProvider>().finishThisProcess(processId);
     }
   }
 

@@ -11,41 +11,24 @@ class RankingsRoute extends StatefulWidget {
   State<RankingsRoute> createState() => _RankingsRouteState();
 }
 
-class _RankingsRouteState extends State<RankingsRoute>
-    with TickerProviderStateMixin {
+class _RankingsRouteState extends State<RankingsRoute> with TickerProviderStateMixin {
   late ScrollController scrollController;
-  late final AnimationController _controllerLeft = AnimationController(
-    duration: const Duration(milliseconds: 500),
-    vsync: this,
-  );
-  late final AnimationController _controllerRight = AnimationController(
-    duration: const Duration(milliseconds: 500),
-    vsync: this,
-  );
-  late final Animation<double> _animationLeft =
-      CurvedAnimation(parent: _controllerLeft, curve: Curves.fastOutSlowIn);
-  late final Animation<double> _animationRight =
-      CurvedAnimation(parent: _controllerRight, curve: Curves.fastOutSlowIn);
+  late final AnimationController _controllerLeft = AnimationController(duration: const Duration(milliseconds: 500), vsync: this);
+  late final AnimationController _controllerRight = AnimationController(duration: const Duration(milliseconds: 500), vsync: this,);
+  late final Animation<double> _animationLeft = CurvedAnimation(parent: _controllerLeft, curve: Curves.fastOutSlowIn);
+  late final Animation<double> _animationRight = CurvedAnimation(parent: _controllerRight, curve: Curves.fastOutSlowIn);
 
-  scrollToTop() => scrollController.animateTo(0,
-      duration: const Duration(milliseconds: 500), curve: Curves.easeInOut);
+  scrollToTop() => scrollController.animateTo(0, duration: const Duration(milliseconds: 500), curve: Curves.easeInOut);
 
-  scrollToBottom() =>
-      scrollController.animateTo(scrollController.position.maxScrollExtent,
-          duration: const Duration(milliseconds: 500), curve: Curves.easeInOut);
+  scrollToBottom() => scrollController.animateTo(scrollController.position.maxScrollExtent, duration: const Duration(milliseconds: 500), curve: Curves.easeInOut);
 
   @override
   void initState() {
     scrollController = ScrollController()
       ..addListener(() => setState(() {
-            scrollController.offset > 600
-                ? _controllerLeft.forward()
-                : _controllerLeft.reverse();
-            scrollController.position.maxScrollExtent - 600 >
-                    scrollController.offset
-                ? _controllerRight.forward()
-                : _controllerRight.reverse();
-          }));
+        scrollController.offset > 600 ? _controllerLeft.forward() : _controllerLeft.reverse();
+        scrollController.position.maxScrollExtent - 600 > scrollController.offset ? _controllerRight.forward() : _controllerRight.reverse();
+      }));
     super.initState();
     WidgetsBinding.instance!.addPostFrameCallback((_) {
       context.read<RankingProvider>().setDropDownList();
@@ -71,8 +54,7 @@ class _RankingsRouteState extends State<RankingsRoute>
                             child: SingleChildScrollView(
                               controller: scrollController,
                               child: Column(
-                                children:
-                                    context.read<RankingProvider>().widgetsList,
+                                children: context.read<RankingProvider>().widgetsList,
                               ),
                             ),
                           ),
@@ -85,7 +67,6 @@ class _RankingsRouteState extends State<RankingsRoute>
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             const SizedBox(width: 15.0),
-                            // if (isScrollToTopDisplayed == true)
                             SizeTransition(
                               sizeFactor: _animationLeft,
                               axis: Axis.horizontal,
@@ -101,8 +82,7 @@ class _RankingsRouteState extends State<RankingsRoute>
                                   icon: Icon(
                                     Icons.arrow_upward,
                                     size: 35.0,
-                                    color: Theme.of(context)
-                                        .scaffoldBackgroundColor,
+                                    color: Theme.of(context).scaffoldBackgroundColor,
                                   ),
                                 ),
                               ),
@@ -121,8 +101,7 @@ class _RankingsRouteState extends State<RankingsRoute>
                                   icon: Icon(
                                     Icons.arrow_downward,
                                     size: 29.0,
-                                    color: Theme.of(context)
-                                        .scaffoldBackgroundColor,
+                                    color: Theme.of(context).scaffoldBackgroundColor,
                                   ),
                                 ),
                               ),

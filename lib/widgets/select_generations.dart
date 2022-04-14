@@ -28,23 +28,23 @@ class _SelectGenerationState extends State<SelectGeneration> {
           const SizedBox(width: 7.0),
           Expanded(
             flex: 5,
-              child: SizedBox(
-                width: 1,
-                child: DropdownButton<String>(
-                  dropdownColor: Theme.of(context).secondaryHeaderColor,
-                  isDense: true,
-                  isExpanded: true,
-                  underline: Container(height: 2, color: Theme.of(context).secondaryHeaderColor,),
-                  style: const TextStyle(color: Colors.white),
-                  icon: const Icon(Icons.arrow_downward, color: Colors.white,),
-                  value: context.watch<RankingProvider>().selectedGeneration,
-                  items: context.read<RankingProvider>().dropDownList,
-                  onChanged: (newValue) async {
-                    context.read<RankingProvider>().updateSelectedGeneration(newValue!);
-                    await context.read<RankingProvider>().setRanking(widget.context);
-                  }
-                ),
-              )
+            child: SizedBox(
+              width: 1,
+              child: DropdownButton<String>(
+                dropdownColor: Theme.of(context).secondaryHeaderColor,
+                isDense: true,
+                isExpanded: true,
+                underline: Container(height: 2, color: Theme.of(context).secondaryHeaderColor),
+                style: const TextStyle(color: Colors.white),
+                icon: const Icon(Icons.arrow_downward, color: Colors.white),
+                value: context.watch<RankingProvider>().selectedGeneration,
+                items: context.read<RankingProvider>().dropDownList,
+                onChanged: (newValue) async {
+                  context.read<RankingProvider>().updateSelectedGeneration(newValue!);
+                  await context.read<RankingProvider>().setRanking(widget.context);
+                }
+              ),
+            )
           ),
         ],
       ),

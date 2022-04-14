@@ -81,11 +81,9 @@ class UserProvider with ChangeNotifier {
           parseUserConstantData(_response, targetedItemsData);
           parseUserVariableData();
           notifyListeners();
-          print('<debug>:finishProcess(user)');
           context.read<ProcessesOrganizerProvider>().finishThisProcess(processId);
           return ConnectionStatus.success;
         }
-        print('<debug>:finishProcess(user)');
       }
     } catch (e) {
       if (e is SocketException) {
@@ -95,9 +93,10 @@ class UserProvider with ChangeNotifier {
       } else {
         rethrow ;
       }
+    } finally {
+      context.read<ProcessesOrganizerProvider>().finishThisProcess(processId);
     }
     print('<debug>:finishProcess(user)');
-    context.read<ProcessesOrganizerProvider>().finishThisProcess(processId);
   }
 
   parseUserConstantData(Response rsp, Map<String, List<Map<String, dynamic>>> targetedItemsData) {
