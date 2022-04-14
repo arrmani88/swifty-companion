@@ -118,7 +118,6 @@ class ClustersProvider with ChangeNotifier {
 
       if (await context.read<ProcessesOrganizerProvider>().canIRunThisProcess(processId) == true) {
         context.read<ProcessesOrganizerProvider>().runThisProcess(processId);
-        // print('<debug>:runProcess(CLUSTER)');
         // while gotAllPages != 1, send (repeated) times the request and wait for the (repeated) responses
         // and then check if one of them is empty to finish the operation
         for (int pageNumber = 1; gotAllPages != 1; pageNumber += 3) {
@@ -134,9 +133,9 @@ class ClustersProvider with ChangeNotifier {
           ]);
         }
         context.read<ProcessesOrganizerProvider>().finishThisProcess(processId);
-        // print('<debug>:finishProcess(CLUSTER)');
       }
     } catch (e) {
+      context.read<ProcessesOrganizerProvider>().finishThisProcess(processId);
       if (e is DioError && (e.response!.statusCode == 403 || e.response!.statusCode == 401)) {
         await validateAccessToken();
         await getClusters(context);

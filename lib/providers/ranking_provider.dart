@@ -43,7 +43,6 @@ class RankingProvider with ChangeNotifier {
               })),
           ]);
         }
-        // print('<debug>:finishProcess(ranking)');
       }
     } catch (e) {
       rethrow;

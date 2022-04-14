@@ -3,7 +3,8 @@ import 'package:notifier_42/providers/ranking_provider.dart';
 import 'package:provider/provider.dart';
 
 class SelectGeneration extends StatefulWidget {
-  const SelectGeneration({Key? key}) : super(key: key);
+  BuildContext context;
+  SelectGeneration(this.context, {Key? key}) : super(key: key);
 
   @override
   _SelectGenerationState createState() => _SelectGenerationState();
@@ -40,8 +41,7 @@ class _SelectGenerationState extends State<SelectGeneration> {
                   items: context.read<RankingProvider>().dropDownList,
                   onChanged: (newValue) async {
                     context.read<RankingProvider>().updateSelectedGeneration(newValue!);
-                    await context.read<RankingProvider>().setRanking(context);
-                    setState(() {});
+                    await context.read<RankingProvider>().setRanking(widget.context);
                   }
                 ),
               )
